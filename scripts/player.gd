@@ -26,7 +26,7 @@ var noisemaker_reload: float = 30
 func _ready() -> void:
 	health = max_health
 	speed = 0
-	#position = Vector2i(26400, 26wd400)
+	#position = Vector2i(26400, 26400)
 
 func _input(event: InputEvent) -> void:
 	pass
@@ -36,8 +36,6 @@ func min_abs(a: float, b: float)->float:
 	return b
 
 func _process(delta: float) -> void:
-	print(depth)
-	print(health)
 	#position.x = int(position.x + 1000*delta) % 100000
 	#position.y = int(position.x + 1000*delta) % 100000
 	#print(position)

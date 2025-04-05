@@ -37,6 +37,7 @@ func attack() -> void:
 		var distance: float = (target_pos+target_vel - shot.global_position).length()
 		var shot_dir: Vector2 = ((target_pos+target_vel*distance/shot.speed)-shot.global_position).normalized()
 		shot.look_at(global_position+shot_dir)
+		shot.depth = depth
 		$ShotCooldown.start(shot_cd)
 
 func move() -> void:
