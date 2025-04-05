@@ -30,7 +30,7 @@ uniform vec2 size;
 const vec4 GRASS_COLOR = vec4(0.1,0.4,0.1,1);
 
 void fragment() {
-	vec4 height = texture(map, (UV + offset / size) / 1000.);
+	vec4 height = texture(map, (UV + offset / size) / 150.);
 	vec4 color = height * 2. + vec4(waterColor.rgb , 1);
 
 	vec2 noiseUV = UV * tiling + offSetSpeed * TIME + offset / size;
@@ -54,6 +54,6 @@ void fragment() {
 	color = mix(texture(SCREEN_TEXTURE, backGroundUV),color, 0.2);
 
 	COLOR = mix(color, waterColor, colorCorection) * float(height.r < 0.15);
-	COLOR += GRASS_COLOR * float(height.r >= 0.15);
+	COLOR += GRASS_COLOR * (7. * height.r) * float(height.r >= 0.15);
 
 }
