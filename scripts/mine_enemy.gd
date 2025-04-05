@@ -5,11 +5,14 @@ const TARGET_LAYER: int = (1<<1) | (1<<2) # hitting player, player diversion
 
 var depth: float = -150
 
+func _ready() -> void:
+	blib.texture = preload("res://assets/mine/icon_minefield.png")
+
 func _on_body_entered(body: Node2D) -> void:
 	if (body.collision_layer & IGNORE_LAYER):
 		return
 	elif body.collision_layer & TARGET_LAYER:
-		if abs(body.depth - depth) > 15:
+		if abs(body.depth - depth) > 5:
 			return
 		if body.get_parent().has_method("change_health"):
 			body.get_parent().change_health(-dmg)

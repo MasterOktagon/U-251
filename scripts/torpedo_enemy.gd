@@ -7,6 +7,7 @@ var speed: float = 3
 var lifetime: float = 10
 
 func _ready() -> void:
+	blib.texture = preload("res://assets/torpedo/svp_torpedo.png")
 	$LifeTimer.start(lifetime)
 
 func _physics_process(delta: float) -> void:
