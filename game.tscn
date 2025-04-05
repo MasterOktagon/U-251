@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1txu8c4uik64"]
+[gd_scene load_steps=14 format=3 uid="uid://c1txu8c4uik64"]
 
 [ext_resource type="PackedScene" uid="uid://ltm6os276xx6" path="res://scenes/height.tscn" id="1_80nbo"]
 [ext_resource type="Shader" uid="uid://c8poukl35wv77" path="res://assets/shaders/map.gdshader" id="1_feb5d"]
@@ -28,29 +28,33 @@ shader = ExtResource("1_feb5d")
 shader_parameter/waterNoise = SubResource("NoiseTexture2D_2klcf")
 shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_gldc4")
 shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
-shader_parameter/colorCorection = 0.0
+shader_parameter/colorCorection = 0.35
 shader_parameter/distortionForce = 0.01
 shader_parameter/WDBrightness = 1.95
 shader_parameter/WDFreq = 0.6
 shader_parameter/WDSize = 0.9
-shader_parameter/WDSpeed = 4.0
+shader_parameter/WDSpeed = 8.7
 shader_parameter/tiling = Vector2(1, 1)
-shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/offSetSpeed = Vector2(0.03, 0.05)
 shader_parameter/backGroundDirX = 0.023
 shader_parameter/backGroundDirY = 0.01
 shader_parameter/map = ExtResource("2_ryrav")
 shader_parameter/offset = Vector2(0, 0)
-shader_parameter/size = Vector2(1356, 839)
+shader_parameter/size = Vector2(1490.5, 728.2)
+shader_parameter/zoom = Vector2(1, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_e2o6t"]
 
-[node name="Game" type="Node2D"]
+[sub_resource type="Environment" id="Environment_ryrav"]
+tonemap_mode = 4
+adjustment_enabled = true
+adjustment_brightness = 4.28
 
-[node name="Background" type="WorldEnvironment" parent="."]
+[node name="Game" type="Node2D"]
 
 [node name="Terrain" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_fc0e3")
-scale = Vector2(1356, 839)
+scale = Vector2(1490.5, 728.2)
 texture = SubResource("CanvasTexture_e2o6t")
 script = ExtResource("2_fc0e3")
 
@@ -67,3 +71,6 @@ offset_bottom = 23.0
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(114, -5)
 texture = ExtResource("5_7jktm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ryrav")

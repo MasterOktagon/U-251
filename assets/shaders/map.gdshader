@@ -26,19 +26,29 @@ group_uniforms map;
 uniform sampler2D map;
 uniform vec2 offset;
 uniform vec2 size;
+uniform vec2 zoom;
 
 const vec4 GRASS_COLOR = vec4(0.1,0.4,0.1,1);
 
+vec4 grayscale(vec4 i, float amount){
+	float med = (i.r + i.g + i.b + i.a) / 4.;
+	return vec4(med);
+}
+
 void fragment() {
-	vec4 height = texture(map, (UV + offset / size) / 1000.);
+	vec4 height = texture(map, (UV + offset)/ size / 60.);
 	vec4 color = height * 2. + vec4(waterColor.rgb , 1);
 
 	vec2 noiseUV = UV * tiling + offSetSpeed * TIME + offset / size;
+	//noiseUV /= zoom;
+	//noiseUV += (size) / 2.;
 	float noiseValue = texture(waterDistortionNoise, noiseUV).r;
 
 	vec2 waterUV = UV * tiling + offset / size;
 	waterUV.x += offSetSpeed.x * TIME;
 	waterUV.y += cos(TIME * min(1., offSetSpeed.y)) * 0.01;
+	//waterUV /= zoom;
+	//waterUV += (size) / 2.;
 	waterUV = waterUV + noiseValue * distortionForce * WDSpeed;
 
 
@@ -54,6 +64,6 @@ void fragment() {
 	color = mix(texture(SCREEN_TEXTURE, backGroundUV),color, 0.2);
 
 	COLOR = mix(color, waterColor, colorCorection) * float(height.r < 0.15);
-	COLOR += GRASS_COLOR * float(height.r >= 0.15);
+	COLOR += GRASS_COLOR * (3. * height.r) * float(height.r >= 0.15);
 
 }

@@ -25,11 +25,15 @@ var noisemaker_reload: float = 30
 func _ready() -> void:
 	health = max_health
 	speed = 0
+	position = Vector2i(26400, 26400)
 
 func _input(event: InputEvent) -> void:
 	pass
 
 func _process(delta: float) -> void:
+	#position.x = int(position.x + 1000*delta) % 100000
+	#position.y = int(position.x + 1000*delta) % 100000
+	#print(position)
 	if state == States.DEAD:
 		return
 	
