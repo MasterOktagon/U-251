@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://clow01wc1phxn"]
+
+[ext_resource type="Texture2D" uid="uid://bcfjg6m27y8xa" path="res://assets/vessel/svp_warship.png" id="1_80ghm"]
+[ext_resource type="Script" uid="uid://wxslj5bjgxbe" path="res://scripts/vessel_enemy.gd" id="1_dlmqs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dlmqs"]
+radius = 7.0
+height = 58.0
+
+[node name="VesselEnemy" type="Area2D"]
+script = ExtResource("1_dlmqs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_80ghm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dlmqs")
+
+[node name="ShotCooldown" type="Timer" parent="."]

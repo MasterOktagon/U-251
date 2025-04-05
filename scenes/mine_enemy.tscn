@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bc74fwve4joua" path="res://assets/mine/icon_minefield.png" id="2_62url"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_620uj"]
-radius = 9.0
+radius = 26.0
 
 [node name="MineEnemy" type="Area2D" groups=["Enemies"]]
 collision_layer = 33

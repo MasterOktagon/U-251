@@ -9,11 +9,13 @@ enum States{
 }
 var state: States = States.ALIVE
 
+var dmg: float = 0
+
 var target_pos:= Vector2(0,0)
 var target_vel:= Vector2(0,0)
 
-func update_target_pos(pos: Vector2) -> void:
-	target_pos = pos
+func update_target_pos() -> void:
+	target_pos = $"../Player".global_positon
 
-func update_target_vel(vel: Vector2) -> void:
-	target_vel = vel
+func update_target_vel() -> void:
+	target_vel = $"../Player".get_velocity()

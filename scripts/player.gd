@@ -31,6 +31,8 @@ func _input(event: InputEvent) -> void:
 	pass
 
 func _process(delta: float) -> void:
+	print(depth)
+	print(health)
 	#position.x = int(position.x + 1000*delta) % 100000
 	#position.y = int(position.x + 1000*delta) % 100000
 	#print(position)
@@ -63,9 +65,9 @@ func _process(delta: float) -> void:
 	
 	var max_depth: int = $Map.check_depth(self.global_position.x/100+2048, self.global_position.y/100+1024)
 	if depth<=max_depth:
-		depth = max_depth+0.1
+		depth = max_depth
 		# play sound "kiel auf grund"
-		change_health(-2)
+		change_health(-0.2)
 	
 	if Input.is_key_pressed(KEY_Q):
 		depth = move_toward(depth, 0, 0.2)
@@ -90,3 +92,6 @@ func change_max_health(amount: float):
 	if max_health <= 0:
 		state = States.DEAD
 	max_health_changed.emit(max_health)
+
+func get_velocity() -> Vector2:
+	return Vector2(0,-speed).from_angle(self.rotation)*speed
