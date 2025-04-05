@@ -27,13 +27,16 @@ uniform sampler2D map;
 uniform vec2 offset;
 uniform vec2 size;
 
+const vec4 GRASS_COLOR = vec4(0.1,0.4,0.1,1);
+
 void fragment() {
-	vec4 color = texture(map, UV + offset / 1000. / size) + vec4(waterColor.rgb , 1);
-	
-	vec2 noiseUV = UV * tiling + offSetSpeed * TIME + offset;
+	vec4 height = texture(map, (UV + offset / size) / 1000.);
+	vec4 color = height * 2. + vec4(waterColor.rgb , 1);
+
+	vec2 noiseUV = UV * tiling + offSetSpeed * TIME + offset / size;
 	float noiseValue = texture(waterDistortionNoise, noiseUV).r;
 
-	vec2 waterUV = UV * tiling + offset;
+	vec2 waterUV = UV * tiling + offset / size;
 	waterUV.x += offSetSpeed.x * TIME;
 	waterUV.y += cos(TIME * min(1., offSetSpeed.y)) * 0.01;
 	waterUV = waterUV + noiseValue * distortionForce * WDSpeed;
@@ -42,7 +45,7 @@ void fragment() {
 	vec4 noiseColor = texture(waterNoise, waterUV);
 	float intensity = smoothstep(WDFreq, WDSize, noiseColor.r);
 	color.rgb += intensity * vec3(WDBrightness);
-	
+
 	vec2 backGroundUV = SCREEN_UV;
 	backGroundUV.x += noiseValue * backGroundDirX;
 	backGroundUV.y += noiseValue * backGroundDirY;
@@ -50,7 +53,7 @@ void fragment() {
 
 	color = mix(texture(SCREEN_TEXTURE, backGroundUV),color, 0.2);
 
-	COLOR = mix(color, waterColor, colorCorection);
+	COLOR = mix(color, waterColor, colorCorection) * float(height.r < 0.15);
+	COLOR += GRASS_COLOR * float(height.r >= 0.15);
 
 }
-
