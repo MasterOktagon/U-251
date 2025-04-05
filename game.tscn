@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1txu8c4uik64"]
+[gd_scene load_steps=5 format=3 uid="uid://c1txu8c4uik64"]
 
-[ext_resource type="PackedScene" uid="uid://ltm6os276xx6" path="res://scenes/height.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" path="res://scenes/height.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://cow2i2nhhp4s2" path="res://scenes/player.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://c2guqw1lxu6us" path="res://scripts/fps.gd" id="3_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://c7isv0g4l0i4k" path="res://icon.svg" id="3_feb5d"]
 
 [node name="Game" type="Node2D"]
 
@@ -10,3 +12,12 @@
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="Height" parent="GUI" instance=ExtResource("1_80nbo")]
+
+[node name="FPS" type="Label" parent="GUI"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_fc0e3")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(114, -5)
+texture = ExtResource("3_feb5d")
