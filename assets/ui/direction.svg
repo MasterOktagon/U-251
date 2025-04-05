@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="60.13483mm"
+   height="73.165558mm"
+   viewBox="0 0 60.13483 73.165558"
+   version="1.1"
+   id="svg827"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="direction.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview829"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.5518659"
+     inkscape:cx="37.052171"
+     inkscape:cy="159.80762"
+     inkscape:window-width="1919"
+     inkscape:window-height="1048"
+     inkscape:window-x="1"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="36.58278" />
+  <defs
+     id="defs824" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-2.238623,-2.1104655)">
+    <path
+       id="path910"
+       style="fill:#12ff19;fill-opacity:0.439383;stroke-width:3.77953;stroke-linecap:square;stroke-opacity:0.996351;paint-order:markers stroke fill"
+       d="M 121.75586,7.9765625 105.03516,36.9375 A 113.86939,113.86939 0 0 0 8.4609375,146.24219 H 26.912109 a 95.45099,95.45099 0 0 1 95.205081,-92.316409 95.45099,95.45099 0 0 1 95.36523,92.316409 h 18.25977 A 113.86939,113.86939 0 0 0 138.40039,36.806641 Z"
+       transform="scale(0.26458333)" />
+  </g>
+</svg>
