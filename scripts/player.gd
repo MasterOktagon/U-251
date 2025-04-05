@@ -3,6 +3,7 @@ extends Node2D
 signal health_changed(val: float)
 signal max_health_changed(val: float)
 signal depth_changed(depth: float)
+signal air_changed(val: float)
 
 enum States{
 	ALIVE,
@@ -13,6 +14,9 @@ var state: States = States.ALIVE
 
 var max_health: float = 100
 var health: float = 0
+
+var max_air: float = 100
+var air: float = 100
 
 var max_speed: float = 2
 var speed: float = 0
@@ -33,6 +37,9 @@ func _ready() -> void:
 func min_abs(a: float, b: float)->float:
 	if abs(a) < abs(b): return a
 	return b
+	
+func surfaced()->bool:
+	return abs(depth) < 2
 
 func _process(delta: float) -> void:
 	#position.x = int(position.x + 1000*delta) % 100000
@@ -40,6 +47,17 @@ func _process(delta: float) -> void:
 	#print(position)
 	if state == States.DEAD:
 		return
+		
+	z_index = round(depth)
+		
+	if surfaced():
+		air = min(air + 10*delta, max_air)
+	else:
+		air = max(0, air - delta)
+		if air == 0:
+			change_health(-delta)
+		# play "sound air pressure low"
+	emit_signal("air_changed", air)
 	
 	if Input.is_key_pressed(KEY_W):
 		speed = move_toward(speed, max_speed, 0.01)

@@ -36,7 +36,7 @@ vec4 grayscale(vec4 i, float amount){
 }
 
 void fragment() {
-	vec4 height = texture(map, (UV + offset)/ size / 60.);
+	vec4 height = texture(map, (UV + offset)/ size / 100.);
 	vec4 color = height * 2. + vec4(waterColor.rgb , 1);
 
 	vec2 noiseUV = UV * tiling + offSetSpeed * TIME + offset / size;

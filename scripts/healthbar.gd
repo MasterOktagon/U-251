@@ -7,5 +7,8 @@ func _ready():
 func update_health(health: float = 0):
 	$ProgressBar.value = health
 
+func update_air(air: float = 0):
+	$AirBar.value = air
+
 func update_max_health(max_health: float = 0):
 	$ProgressBar.max_value = max_health
