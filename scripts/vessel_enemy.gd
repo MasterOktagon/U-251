@@ -23,7 +23,7 @@ func change_health(amount: float) -> void:
 	queue_free()
 
 func detect_player() -> void:
-	if (target_pos-global_position).length()<1000:
+	if (target_pos-global_position).length()<500:
 		get_tree().call_group("Enemies","alert")
 	else:
 		state = States.ALIVE
