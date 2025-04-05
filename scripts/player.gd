@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 		
 	if not (Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_S)):
 		speed = move_toward(speed, 0.0, 0.01)
+		# if motionless add drift
 		
 	if Input.is_key_pressed(KEY_A):
 		speed = move_toward(speed, 0.0, 0.005)

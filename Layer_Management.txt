@@ -1,0 +1,7 @@
+Layer Management:
+0: World
+1: Player
+2: Noisemaker/MOSS
+3: Player Torpedos
+4: Enemies (waterbased)
+5: Enemy torpedos/mines/bombs
