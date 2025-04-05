@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 		attack()
 	move()
 
-func change_health(amount: float) -> void:
+func change_health(_amount: float) -> void:
 	state = States.DEAD
 	queue_free()
 
@@ -37,6 +37,7 @@ func attack() -> void:
 		shot.dmg = dmg
 		shot.global_transform.origin = self.global_transform.origin
 		shot.transform.origin.distance_to(target_pos)
+		print(target_vel)
 		var distance: float = (target_pos+target_vel - shot.global_position).length()
 		var shot_dir: Vector2 = ((target_pos+target_vel*distance/shot.speed)-shot.global_position).normalized()
 		shot.look_at(global_position+shot_dir)

@@ -122,4 +122,4 @@ func change_max_health(amount: float):
 	max_health_changed.emit(max_health)
 
 func get_velocity() -> Vector2:
-	return Vector2(0,-speed).from_angle(self.rotation)*speed
+	return Vector2(0,speed).from_angle(self.rotation-PI/2)*speed
