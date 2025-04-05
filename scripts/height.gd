@@ -16,3 +16,12 @@ func _process(_delta: float) -> void:
 	$Panel/NinePatchRect/Waterline/Boat.offset_top = p_depth/150 * patch_size.y - 20
 	$Panel/NinePatchRect/Waterline/Boat.offset_bottom = p_depth/150 * patch_size.y + 20
 	$Panel/NinePatchRect/Depth/Label.text = str(int(round(depth*10))) + " m"
+	
+	for n: Node in $Panel/NinePatchRect/EnemiesNear.get_children():
+		$Panel/NinePatchRect/EnemiesNear.remove_child(n)
+	for e: Enemy in get_tree().get_nodes_in_group("Enemies"):
+		if abs(pos - e.position) <= 1500:
+			$Panel/NinePatchRect/EnemiesNear.add_child(e.blip)
+			e.blip.offset_top = e.blip.depth/150 * patch_size.y - 20
+			e.blip.offset_bottom = e.blip.depth/150 * patch_size.y + 20
+	

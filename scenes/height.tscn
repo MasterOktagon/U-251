@@ -81,3 +81,8 @@ text = "90 m"
 label_settings = SubResource("LabelSettings_tddaw")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="EnemiesNear" type="Control" parent="Panel/NinePatchRect"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
