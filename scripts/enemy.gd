@@ -10,6 +10,7 @@ enum States{
 var state: States = States.ALIVE
 var blib: TextureRect = TextureRect.new()
 
+var depth: float = 0
 var dmg: float = 0
 
 var target_pos:= Vector2(0,0)

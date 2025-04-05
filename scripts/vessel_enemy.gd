@@ -1,7 +1,6 @@
 extends Enemy
 
 var speed: float = 2
-var depth: float = 0
 var shot_cd: float = 2
 
 func _ready() -> void:
