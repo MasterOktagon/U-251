@@ -9,6 +9,10 @@ func _ready() -> void:
 	z_index = int(depth)
 	dmg = 50
 
+func _process(_delta: float) -> void:
+	if self.overlaps_body($"../Player"):
+		_on_body_entered($"../Player")
+
 func _on_body_entered(body: Node2D) -> void:
 	if (body.collision_layer & IGNORE_LAYER):
 		return
