@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c1txu8c4uik64"]
+[gd_scene load_steps=20 format=3 uid="uid://c1txu8c4uik64"]
 
 [ext_resource type="PackedScene" uid="uid://ltm6os276xx6" path="res://scenes/height.tscn" id="1_80nbo"]
 [ext_resource type="Shader" uid="uid://c8poukl35wv77" path="res://assets/shaders/map.gdshader" id="1_feb5d"]
@@ -7,7 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://ca0iei775uhpw" path="res://assets/heightmap/VirginLands.png" id="2_ryrav"]
 [ext_resource type="Texture2D" uid="uid://c7isv0g4l0i4k" path="res://icon.svg" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://c2guqw1lxu6us" path="res://scripts/fps.gd" id="6_eow3j"]
-[ext_resource type="Script" uid="uid://be2vhf36teocy" path="res://scripts/healthbar.gd" id="7_vef74"]
+[ext_resource type="Script" path="res://scripts/healthbar.gd" id="7_vef74"]
+[ext_resource type="PackedScene" uid="uid://m2owfkt7wla3" path="res://scenes/head_display.tscn" id="8_hve3p"]
 [ext_resource type="PackedScene" uid="uid://h2rrq3170ej3" path="res://scenes/mine_enemy.tscn" id="8_j5wjh"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_paxxb"]
@@ -43,7 +44,7 @@ shader_parameter/backGroundDirX = 0.023
 shader_parameter/backGroundDirY = 0.01
 shader_parameter/map = ExtResource("2_ryrav")
 shader_parameter/offset = Vector2(0, 0)
-shader_parameter/size = Vector2(1491.6, 685.3)
+shader_parameter/size = Vector2(2845.5, 1390.2)
 shader_parameter/zoom = Vector2(1, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_e2o6t"]
@@ -73,7 +74,7 @@ adjustment_brightness = 4.28
 
 [node name="Terrain" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_fc0e3")
-scale = Vector2(1491.6, 685.3)
+scale = Vector2(2845.5, 1390.2)
 texture = SubResource("CanvasTexture_e2o6t")
 script = ExtResource("2_fc0e3")
 
@@ -119,6 +120,8 @@ theme_override_styles/background = SubResource("StyleBoxFlat_vef74")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hve3p")
 show_percentage = false
 
+[node name="HeadDisplay" parent="GUI" instance=ExtResource("8_hve3p")]
+
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(114, -5)
 texture = ExtResource("5_7jktm")
@@ -128,3 +131,5 @@ environment = SubResource("Environment_ryrav")
 
 [node name="MineEnemy" parent="." instance=ExtResource("8_j5wjh")]
 position = Vector2(-125, -15)
+
+[connection signal="depth_changed" from="Player" to="GUI/HeadDisplay" method="_on_depth_change"]
