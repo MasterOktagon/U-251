@@ -1,9 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1txu8c4uik64"]
+[gd_scene load_steps=11 format=3 uid="uid://c1txu8c4uik64"]
 
 [ext_resource type="PackedScene" uid="uid://ltm6os276xx6" path="res://scenes/height.tscn" id="1_80nbo"]
+[ext_resource type="Shader" uid="uid://c8poukl35wv77" path="res://assets/shaders/map.gdshader" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://cow2i2nhhp4s2" path="res://scenes/player.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://cdv8hf5016som" path="res://terrain.gd" id="2_fc0e3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_paxxb"]
+noise_type = 3
+frequency = 0.0617
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gldc4"]
+noise = SubResource("FastNoiseLite_paxxb")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0cso3"]
+noise_type = 3
+frequency = 0.0248
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2klcf"]
+seamless = true
+seamless_blend_skirt = 0.159
+noise = SubResource("FastNoiseLite_0cso3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fc0e3"]
+shader = ExtResource("1_feb5d")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_2klcf")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_gldc4")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.0
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 1.95
+shader_parameter/WDFreq = 0.6
+shader_parameter/WDSize = 0.9
+shader_parameter/WDSpeed = 4.0
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.023
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_e2o6t"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Terrain" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_fc0e3")
+texture = SubResource("CanvasTexture_e2o6t")
+script = ExtResource("2_fc0e3")
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 

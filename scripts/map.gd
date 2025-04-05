@@ -1,6 +1,6 @@
 extends Node2D
 
-var heightmap : PackedColorArray = PackedColorArray(preload("res://assets/heightmap/VirginLands.png").get_image().get_data())
+var heightmap : PackedColorArray = []#PackedColorArray(preload("res://assets/heightmap/VirginLands.png").get_image().get_data())
 
 func _ready() -> void:
 	pass
