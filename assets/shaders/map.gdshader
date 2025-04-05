@@ -22,13 +22,18 @@ group_uniforms BG_distortion;
 uniform float backGroundDirX : hint_range(-0.1, 0.1) = 0.01;
 uniform float backGroundDirY : hint_range(-0.1, 0.1) = 0.01;
 
+group_uniforms map;
+uniform sampler2D map;
+uniform vec2 offset;
+uniform vec2 size;
+
 void fragment() {
-	vec4 color = vec4(waterColor.rgb , 1);
+	vec4 color = texture(map, UV + offset / 1000. / size) + vec4(waterColor.rgb , 1);
 	
-	vec2 noiseUV = UV * tiling + offSetSpeed * TIME;
+	vec2 noiseUV = UV * tiling + offSetSpeed * TIME + offset;
 	float noiseValue = texture(waterDistortionNoise, noiseUV).r;
 
-	vec2 waterUV = UV * tiling;
+	vec2 waterUV = UV * tiling + offset;
 	waterUV.x += offSetSpeed.x * TIME;
 	waterUV.y += cos(TIME * min(1., offSetSpeed.y)) * 0.01;
 	waterUV = waterUV + noiseValue * distortionForce * WDSpeed;
