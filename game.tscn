@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://be2vhf36teocy" path="res://scripts/healthbar.gd" id="7_vef74"]
 [ext_resource type="PackedScene" uid="uid://m2owfkt7wla3" path="res://scenes/head_display.tscn" id="8_hve3p"]
 [ext_resource type="PackedScene" uid="uid://h2rrq3170ej3" path="res://scenes/mine_enemy.tscn" id="8_j5wjh"]
-[ext_resource type="PackedScene" uid="uid://clow01wc1phxn" path="res://scenes/vessel_enemy.tscn" id="11_mfdv2"]
+[ext_resource type="PackedScene" path="res://scenes/vessel_enemy.tscn" id="11_mfdv2"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_paxxb"]
 noise_type = 3
@@ -45,7 +45,7 @@ shader_parameter/backGroundDirX = 0.023
 shader_parameter/backGroundDirY = 0.01
 shader_parameter/map = ExtResource("2_ryrav")
 shader_parameter/offset = Vector2(0, 0)
-shader_parameter/size = Vector2(2847.6, 1308.3)
+shader_parameter/size = Vector2(2845.5, 1390.2)
 shader_parameter/zoom = Vector2(1, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_e2o6t"]
@@ -75,7 +75,7 @@ adjustment_brightness = 4.28
 
 [node name="Terrain" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_fc0e3")
-scale = Vector2(2847.6, 1308.3)
+scale = Vector2(2845.5, 1390.2)
 texture = SubResource("CanvasTexture_e2o6t")
 script = ExtResource("2_fc0e3")
 
@@ -137,3 +137,4 @@ position = Vector2(-125, -15)
 position = Vector2(-324, 214)
 
 [connection signal="depth_changed" from="Player" to="GUI/HeadDisplay" method="_on_depth_change"]
+[connection signal="health_changed" from="Player" to="GUI/Healthbar" method="update_health"]
