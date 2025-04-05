@@ -13,9 +13,9 @@ var state: States = States.ALIVE
 var max_health: float = 100
 var health: float = 0
 
-var max_speed: float = 10
+var max_speed: float = 2
 var speed: float = 0
-var rotation_speed: float = 0.5
+var rotation_speed: float = 0.3
 
 var noisemaker_cd: float = 2
 var noisemaker_reload: float = 30
@@ -41,11 +41,11 @@ func _process(delta: float) -> void:
 		speed = move_toward(speed, 0.0, 0.01)
 		
 	if Input.is_key_pressed(KEY_A):
-		speed = move_toward(speed, 0.0, 0.01)
+		speed = move_toward(speed, 0.0, 0.005)
 		rotation -= delta*rotation_speed*speed
 		
 	if Input.is_key_pressed(KEY_D):
-		speed = move_toward(speed, 0.0, 0.01)
+		speed = move_toward(speed, 0.0, 0.005)
 		rotation += delta*rotation_speed*speed
 	
 	if Input.is_key_pressed(KEY_PAGEUP):
@@ -54,6 +54,7 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_PAGEDOWN):
 		$MainCamera.zoom = clamp($MainCamera.zoom*1.01,Vector2(0.5,0.5), Vector2(2,2))
 	
+	#print(speed)
 	move_local_y(-speed)
 
 func change_health(amount: float):
