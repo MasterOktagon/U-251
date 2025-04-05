@@ -3,7 +3,7 @@ extends Control
 
 func _process(_delta: float) -> void:
 	var pos: Vector2 = $"../../Player".position
-	var depth: float = abs($"../../Player/Map".check_depth(int(pos.x), int(pos.y)))
+	var depth: float = abs($"../../Player/Map".check_depth(int(pos.x/100+2048), int(pos.y/100+1024)))
 	var p_depth: float = abs($"../../Player".depth)
 	
 	var rel_depth: float = depth/150

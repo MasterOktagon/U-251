@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ltm6os276xx6"]
+[gd_scene load_steps=4 format=3 uid="uid://ltm6os276xx6"]
 
 [ext_resource type="Script" uid="uid://chvx1ynlm5u7f" path="res://scripts/height.gd" id="1_tddaw"]
+[ext_resource type="Texture2D" uid="uid://cj28bshgnuy3e" path="res://assets/ui/svp_ownship.png" id="2_p7lhr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tddaw"]
 font_color = Color(0, 1, 0, 1)
@@ -49,7 +50,7 @@ offset_right = 1.0
 offset_bottom = 44.0
 color = Color(0, 1, 0, 1)
 
-[node name="Boat" type="ColorRect" parent="Panel/NinePatchRect/Waterline"]
+[node name="Boat" type="TextureRect" parent="Panel/NinePatchRect/Waterline"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.065
@@ -58,6 +59,7 @@ anchor_bottom = 0.065
 offset_top = -20.0
 offset_right = -83.0
 offset_bottom = 20.0
+texture = ExtResource("2_p7lhr")
 
 [node name="Depth" type="ColorRect" parent="Panel/NinePatchRect"]
 layout_mode = 1
