@@ -8,6 +8,7 @@ func _ready() -> void:
 	dmg = 20
 
 func _process(delta: float) -> void:
+	z_index = int(depth)
 	if state == States.DEAD:
 		return
 	

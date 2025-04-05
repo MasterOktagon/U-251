@@ -11,6 +11,7 @@ func _ready() -> void:
 	$LifeTimer.start(lifetime)
 
 func _physics_process(delta: float) -> void:
+	z_index = int(depth)
 	if $LifeTimer.time_left == 0:
 		state == States.DEAD
 		queue_free()
