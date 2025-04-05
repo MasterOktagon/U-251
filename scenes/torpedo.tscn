@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cueei66b5kxem"]
+
+[node name="torpedo" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
