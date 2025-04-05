@@ -17,6 +17,8 @@ var max_speed: float = 2
 var speed: float = 0
 var rotation_speed: float = 0.3
 
+var depth: float = 0
+
 var noisemaker_cd: float = 2
 var noisemaker_reload: float = 30
 
@@ -53,6 +55,12 @@ func _process(delta: float) -> void:
 	
 	if Input.is_key_pressed(KEY_PAGEDOWN):
 		$MainCamera.zoom = clamp($MainCamera.zoom*1.01,Vector2(0.5,0.5), Vector2(2,2))
+	
+	if Input.is_key_pressed(KEY_Q):
+		depth = move_toward(depth, 0, 1)
+	
+	if Input.is_key_pressed(KEY_E):
+		depth = move_toward(depth, -150, 1)
 	
 	#print(speed)
 	move_local_y(-speed)
