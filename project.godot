@@ -11,6 +11,6 @@ config_version=5
 [application]
 
 config/name="U-251"
-run/main_scene="uid://cskqcp8pvp060"
+run/main_scene="uid://c1txu8c4uik64"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

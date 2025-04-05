@@ -12,13 +12,10 @@ var health: float = 0
 
 var max_speed: float = 10
 var speed: float = 0
-var rotation_speed: float = 0.5
-
-var player_rotation := Vector2(0,0)
+var rotation_speed: float = 0.3
 
 func _ready() -> void:
 	health = max_health
-	player_rotation.limit_length(1.0)
 
 func _input(event: InputEvent) -> void:
 	pass
