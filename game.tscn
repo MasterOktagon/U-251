@@ -40,7 +40,7 @@ shader_parameter/backGroundDirX = 0.023
 shader_parameter/backGroundDirY = 0.01
 shader_parameter/map = ExtResource("2_ryrav")
 shader_parameter/offset = Vector2(0, 0)
-shader_parameter/size = Vector2(1355, 662)
+shader_parameter/size = Vector2(1356, 839)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_e2o6t"]
 
@@ -50,7 +50,7 @@ shader_parameter/size = Vector2(1355, 662)
 
 [node name="Terrain" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_fc0e3")
-scale = Vector2(1355, 662)
+scale = Vector2(1356, 839)
 texture = SubResource("CanvasTexture_e2o6t")
 script = ExtResource("2_fc0e3")
 

@@ -7,15 +7,13 @@ var speed: float = 3
 var dmg: float = 20
 var lifetime: float = 10
 
-var hit := false
-
 func _ready() -> void:
 	$LifeTimer.start(lifetime)
 
 func _physics_process(delta: float) -> void:
 	if $LifeTimer.time_left == 0:
 		queue_free()
-	if hit:
+	if state == States.DEAD:
 		return
 	move_local_x(speed)
 
@@ -25,5 +23,5 @@ func _on_body_entered(body: Node2D) -> void:
 	elif body.collision_layer & TARGET_LAYER:
 		if body.get_parent().has_method("change_health"):
 			body.get_parent().change_health(-dmg)
-	hit = true
+	state = States.DEAD
 	queue_free()

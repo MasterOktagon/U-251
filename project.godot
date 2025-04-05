@@ -14,3 +14,7 @@ config/name="U-251"
 run/main_scene="uid://c1txu8c4uik64"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[global_group]
+
+Enemies=""

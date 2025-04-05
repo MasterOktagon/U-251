@@ -63,6 +63,12 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_E):
 		depth = move_toward(depth, -150, 1)
 	
+	var max_depth: float = $Map.check_depth()
+	if depth<max_depth:
+		depth = max_depth
+		# play sound "kiel auf grund"
+		change_health(-2)
+	
 	#print(speed)
 	move_local_y(-speed)
 
