@@ -19,8 +19,10 @@ texture = ExtResource("2_qhqgy")
 polygon = PackedVector2Array(0, -70, -7, -66, -11, -54, -8, -47, -8, 43, -16, 52, 0, 70, 16, 52, 8, 43, 8, -47, 11, -54, 7, -66)
 
 [node name="NoisemakerCooldown" type="Timer" parent="."]
+one_shot = true
 
 [node name="NoisemakerReload" type="Timer" parent="."]
+one_shot = true
 
 [node name="Map" parent="." instance=ExtResource("3_qhqgy")]
 

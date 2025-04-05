@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 	detect_player()
 	if state==States.ALERTED:
 		update_target_vel()
+		update_target_depth()
 		attack()
 	move()
 
@@ -22,13 +23,15 @@ func change_health(amount: float) -> void:
 	queue_free()
 
 func detect_player() -> void:
-	if (target_pos-global_position).length()<200:
+	if (target_pos-global_position).length()<1000:
 		get_tree().call_group("Enemies","alert")
 	else:
 		state = States.ALIVE
 
 func attack() -> void:
+	print($ShotCooldown.time_left)
 	if $ShotCooldown.time_left == 0.0:
+		print("attacking")
 		var shot: Enemy = preload("res://scenes/torpedo_enemy.tscn").instantiate()
 		get_parent().add_child(shot,true)
 		shot.dmg = dmg
@@ -37,7 +40,7 @@ func attack() -> void:
 		var distance: float = (target_pos+target_vel - shot.global_position).length()
 		var shot_dir: Vector2 = ((target_pos+target_vel*distance/shot.speed)-shot.global_position).normalized()
 		shot.look_at(global_position+shot_dir)
-		shot.depth = depth
+		shot.target_depth = target_depth
 		$ShotCooldown.start(shot_cd)
 
 func move() -> void:

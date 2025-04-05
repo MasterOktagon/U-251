@@ -21,5 +21,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8idko")
 
 [node name="LifeTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

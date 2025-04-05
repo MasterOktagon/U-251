@@ -5,7 +5,7 @@ const TARGET_LAYER: int = (1<<1) | (1<<2) # hitting player, player diversion
 
 func _ready() -> void:
 	blib.texture = preload("res://assets/mine/icon_minefield.png")
-	depth = -150
+	depth = -130
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body.collision_layer & IGNORE_LAYER):

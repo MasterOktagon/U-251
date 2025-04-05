@@ -2,7 +2,7 @@ extends Node2D
 
 signal health_changed(val: float)
 signal max_health_changed(val: float)
-signal depth_changed(depth: float)
+#signal depth_changed(depth: float)
 
 enum States{
 	ALIVE,
@@ -26,10 +26,9 @@ var noisemaker_reload: float = 30
 func _ready() -> void:
 	health = max_health
 	speed = 0
+	max_health_changed.emit(max_health)
+	health_changed.emit(health)
 	#position = Vector2i(26400, 26400)
-
-func _input(event: InputEvent) -> void:
-	pass
 	
 func min_abs(a: float, b: float)->float:
 	if abs(a) < abs(b): return a
@@ -79,11 +78,11 @@ func _process(delta: float) -> void:
 	
 	if Input.is_key_pressed(KEY_Q):
 		depth = move_toward(depth, 0, 0.2)
-		emit_signal("depth_changed", depth)
+		#emit_signal("depth_changed", depth)
 	
 	if Input.is_key_pressed(KEY_E) and !(depth == max_depth):
 		depth = move_toward(depth, -150, 0.2)
-		emit_signal("depth_changed", depth)
+		#emit_signal("depth_changed", depth)
 	
 	#print(speed)
 	move_local_y(-speed)

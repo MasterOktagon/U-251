@@ -12,9 +12,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if $LifeTimer.time_left == 0:
+		state == States.DEAD
 		queue_free()
 	if state == States.DEAD:
 		return
+	depth = move_toward(depth, target_depth, 1) # delta anpassen
 	move_local_x(speed)
 
 func _on_body_entered(body: Node2D) -> void:

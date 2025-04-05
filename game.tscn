@@ -135,5 +135,3 @@ position = Vector2(-125, -15)
 
 [node name="VesselEnemy" parent="." instance=ExtResource("11_mfdv2")]
 position = Vector2(-324, 214)
-
-[connection signal="depth_changed" from="Player" to="GUI/HeadDisplay" method="_on_depth_change"]
