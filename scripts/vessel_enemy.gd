@@ -28,6 +28,7 @@ func detect_player() -> void:
 	if (target_pos-global_position).length()<500:
 		get_tree().call_group("Enemies","alert")
 	else:
+		$AlertLabel.hide()
 		state = States.ALIVE
 
 func attack() -> void:
@@ -37,7 +38,6 @@ func attack() -> void:
 		shot.dmg = dmg
 		shot.global_transform.origin = self.global_transform.origin
 		shot.transform.origin.distance_to(target_pos)
-		print(target_vel)
 		var distance: float = (target_pos+target_vel - shot.global_position).length()
 		var shot_dir: Vector2 = ((target_pos+target_vel*distance/shot.speed)-shot.global_position).normalized()
 		shot.look_at(global_position+shot_dir)
@@ -49,3 +49,4 @@ func move() -> void:
 
 func alert() -> void:
 	state = States.ALERTED
+	$AlertLabel.show()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://clow01wc1phxn"]
+[gd_scene load_steps=7 format=3 uid="uid://clow01wc1phxn"]
 
 [ext_resource type="Texture2D" uid="uid://bcfjg6m27y8xa" path="res://assets/vessel/svp_warship.png" id="1_80ghm"]
 [ext_resource type="Script" uid="uid://wxslj5bjgxbe" path="res://scripts/vessel_enemy.gd" id="1_dlmqs"]
@@ -6,6 +6,16 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dlmqs"]
 radius = 7.0
 height = 58.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_dlmqs"]
+font_size = 23
+font_color = Color(1, 0.0901961, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_kftnf"]
+colors = PackedColorArray(0.628499, 0.838099, 0.372814, 1, 1, 0.176471, 0.258824, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_15qmo"]
+gradient = SubResource("Gradient_kftnf")
 
 [node name="VesselEnemy" type="Area2D" groups=["Enemies"]]
 script = ExtResource("1_dlmqs")
@@ -20,3 +30,21 @@ shape = SubResource("CapsuleShape2D_dlmqs")
 
 [node name="ShotCooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="AlertLabel" type="Label" parent="."]
+visible = false
+offset_left = -4.0
+offset_top = -47.0
+offset_right = 36.0
+offset_bottom = -15.0
+text = "!"
+label_settings = SubResource("LabelSettings_dlmqs")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
+offset_right = 256.0
+offset_bottom = 1.0
+rotation = -1.5708
+value = 50.0
+fill_mode = 3
+texture_progress = SubResource("GradientTexture1D_15qmo")
