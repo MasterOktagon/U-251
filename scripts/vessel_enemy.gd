@@ -13,10 +13,10 @@ func _process(delta: float) -> void:
 		return
 	
 	update_target_pos()
+	update_target_vel()
+	update_target_depth()
 	detect_player()
 	if state==States.ALERTED:
-		update_target_vel()
-		update_target_depth()
 		attack()
 	move()
 
@@ -25,7 +25,14 @@ func change_health(_amount: float) -> void:
 	queue_free()
 
 func detect_player() -> void:
-	if (target_pos-global_position).length()<500:
+	var dist_diff: float = (target_pos-global_position).length()
+	var depth_diff: float = abs(depth-target_depth)*10
+	var dist_certainty: float = 1- clamp(remap(dist_diff, 100, 1000, 0, 1), 0, 1)
+	var depth_certainty: float = 1- clamp(remap(depth_diff, 10, 200,  0, 1), 0, 1)
+	var sound_certainty: float = remap(target_vel.length(), 0, 1.8, 0.3, 1)
+	var certainty: float = (dist_certainty+depth_certainty+sound_certainty)/2
+	print(certainty)
+	if (certainty)>0.8:
 		get_tree().call_group("Enemies","alert")
 	else:
 		$AlertLabel.hide()

@@ -105,7 +105,7 @@ func _process(delta: float) -> void:
 	#print(speed)
 	move_local_y(-speed)
 
-func change_health(amount: float):
+func change_health(amount: float) -> void:
 	health += amount
 	if health <= 0:
 		state = States.DEAD
@@ -115,11 +115,11 @@ func change_health(amount: float):
 	print(health)
 	health_changed.emit(health)
 
-func change_max_health(amount: float):
+func change_max_health(amount: float) -> void:
 	max_health += amount
 	if max_health <= 0:
 		state = States.DEAD
 	max_health_changed.emit(max_health)
 
 func get_velocity() -> Vector2:
-	return Vector2(0,speed).from_angle(self.rotation-PI/2)*speed
+	return Vector2.from_angle(self.rotation-PI/2)*speed
