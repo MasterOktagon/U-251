@@ -4,7 +4,7 @@ const IGNORE_LAYER: int = (1<<3) | (1<<4) | (1<<5) # ignoring player torpedos, e
 const TARGET_LAYER: int = (1<<0) | (1<<1) | (1<<2) # hitting world, player, player diversion
 
 var speed: float = 1
-var lifetime: float = 10
+var lifetime: float = 30
 
 func _ready() -> void:
 	blib.texture = preload("res://assets/torpedo/svp_torpedo.png")

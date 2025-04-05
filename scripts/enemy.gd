@@ -16,6 +16,7 @@ var dmg: float = 0
 var target_pos:= Vector2(0,0)
 var target_vel:= Vector2(0,0)
 var target_depth: float = 0
+var uncertainty_diviation: float = 0
 
 func update_target_pos() -> void:
 	target_pos = $"../Player".global_position

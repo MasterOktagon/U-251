@@ -30,10 +30,10 @@ func detect_player() -> void:
 	var dist_certainty: float = 1- clamp(remap(dist_diff, 100, 1000, 0, 1), 0, 1)
 	var depth_certainty: float = 1- clamp(remap(depth_diff, 10, 200,  0, 1), 0, 1)
 	var sound_certainty: float = remap(target_vel.length(), 0, 1.8, 0.3, 1)
-	var certainty: float = (dist_certainty+depth_certainty+sound_certainty)/2
+	var certainty: float = clamp((dist_certainty+depth_certainty+sound_certainty)/2, 0, 1.5)
 	print(certainty)
-	if (certainty)>0.8:
-		get_tree().call_group("Enemies","alert")
+	if (certainty)>0.5:
+		get_tree().call_group("Enemies","alert", certainty)
 	else:
 		$AlertLabel.hide()
 		state = States.ALIVE
@@ -44,9 +44,10 @@ func attack() -> void:
 		get_parent().add_child(shot,true)
 		shot.dmg = dmg
 		shot.global_transform.origin = self.global_transform.origin
-		shot.transform.origin.distance_to(target_pos)
-		var distance: float = (target_pos+target_vel - shot.global_position).length()
-		var shot_dir: Vector2 = ((target_pos+target_vel*distance/shot.speed)-shot.global_position).normalized()
+		var est_pos: Vector2 = target_pos + target_pos*uncertainty_diviation
+		var est_vel: Vector2 = target_vel + target_vel*uncertainty_diviation
+		var distance: float = (est_pos+est_vel - shot.global_position).length()
+		var shot_dir: Vector2 = ((est_pos+est_vel*distance/shot.speed)-shot.global_position).normalized()
 		shot.look_at(global_position+shot_dir)
 		shot.target_depth = target_depth
 		$ShotCooldown.start(shot_cd)
@@ -54,6 +55,8 @@ func attack() -> void:
 func move() -> void:
 	pass
 
-func alert() -> void:
+func alert(certainty: float) -> void:
 	state = States.ALERTED
+	uncertainty_diviation = (1-certainty)*randf_range(-1,1)
+	#print(uncertainty_diviation)
 	$AlertLabel.show()
