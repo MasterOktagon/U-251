@@ -29,9 +29,7 @@ func detect_player() -> void:
 		state = States.ALIVE
 
 func attack() -> void:
-	print($ShotCooldown.time_left)
 	if $ShotCooldown.time_left == 0.0:
-		print("attacking")
 		var shot: Enemy = preload("res://scenes/torpedo_enemy.tscn").instantiate()
 		get_parent().add_child(shot,true)
 		shot.dmg = dmg

@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	if state == States.DEAD:
 		return
-	depth = move_toward(depth, target_depth, 1) # delta anpassen
+	depth = move_toward(depth, target_depth, 1) # delta anpassen, maybe schneller?
 	move_local_x(speed)
 
 func _on_body_entered(body: Node2D) -> void:
