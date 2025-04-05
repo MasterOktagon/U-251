@@ -5,6 +5,7 @@ var shot_cd: float = 2
 
 func _ready() -> void:
 	blib.texture = preload("res://assets/vessel/svp_warship.png")
+	dmg = 20
 
 func _process(delta: float) -> void:
 	if state == States.DEAD:

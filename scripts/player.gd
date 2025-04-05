@@ -94,6 +94,7 @@ func change_health(amount: float):
 		health = 0
 	if health > max_health:
 		health = max_health
+	print(health)
 	health_changed.emit(health)
 
 func change_max_health(amount: float):
