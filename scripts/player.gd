@@ -25,7 +25,7 @@ var noisemaker_reload: float = 30
 func _ready() -> void:
 	health = max_health
 	speed = 0
-	position = Vector2i(26400, 26400)
+	#position = Vector2i(26400, 26400)
 
 func _input(event: InputEvent) -> void:
 	pass
@@ -61,17 +61,17 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_PAGEDOWN):
 		$MainCamera.zoom = clamp($MainCamera.zoom*1.01,Vector2(0.5,0.5), Vector2(2,2))
 	
-	if Input.is_key_pressed(KEY_Q):
-		depth = move_toward(depth, 0, 1)
-	
-	if Input.is_key_pressed(KEY_E):
-		depth = move_toward(depth, -150, 1)
-	
-	var max_depth: float = $Map.check_depth()
-	if depth<max_depth:
-		depth = max_depth
+	var max_depth: int = $Map.check_depth(self.global_position.x/100+2048, self.global_position.y/100+1024)
+	if depth<=max_depth:
+		depth = max_depth+0.1
 		# play sound "kiel auf grund"
 		change_health(-2)
+	
+	if Input.is_key_pressed(KEY_Q):
+		depth = move_toward(depth, 0, 0.2)
+	
+	if Input.is_key_pressed(KEY_E) and !(depth == max_depth):
+		depth = move_toward(depth, -150, 0.2)
 	
 	#print(speed)
 	move_local_y(-speed)
