@@ -30,9 +30,11 @@ func detect_player() -> void:
 	var dist_certainty: float = 1- clamp(remap(dist_diff, 100, 1000, 0, 1), 0, 1)
 	var depth_certainty: float = 1- clamp(remap(depth_diff, 10, 200,  0, 1), 0, 1)
 	var sound_certainty: float = remap(target_vel.length(), 0, 1.8, 0.3, 1)
-	var certainty: float = clamp((dist_certainty+depth_certainty+sound_certainty)/2, 0, 1.5)
-	print(certainty)
-	if (certainty)>0.5:
+	var cert: float = clamp((dist_certainty+depth_certainty+sound_certainty)/2, 0, 1.5)
+	print(cert)
+	if (cert)>0.5:
+		if cert>certainty:
+			certainty = cert
 		get_tree().call_group("Enemies","alert", certainty)
 	else:
 		$AlertLabel.hide()
@@ -57,7 +59,6 @@ func move() -> void:
 
 func alert(cert: float) -> void:
 	state = States.ALERTED
-	if cert>self.certainty:
-		uncertainty_diviation = Vector2((1-cert)*randf_range(-1,1), (1-cert)*randf_range(-1,1))
+	uncertainty_diviation = Vector2((1-cert)*randf_range(-1,1), (1-cert)*randf_range(-1,1))
 	#print(uncertainty_diviation)
 	$AlertLabel.show()
