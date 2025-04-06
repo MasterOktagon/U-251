@@ -24,6 +24,7 @@ uniform float backGroundDirY : hint_range(-0.1, 0.1) = 0.01;
 
 group_uniforms map;
 uniform sampler2D map;
+uniform float sealevel;
 uniform vec2 offset;
 uniform vec2 size;
 uniform vec2 sizePx;
@@ -31,15 +32,31 @@ uniform vec2 zoom;
 
 const vec4 GRASS_COLOR = vec4(0.1,0.4,0.1,1);
 
-vec4 grayscale(vec4 i, float amount){
-	float med = (i.r + i.g + i.b + i.a) / 4.;
-	return vec4(med);
+float grayscale(vec4 i){
+	float med = (i.r + i.g + i.b) / 3.;
+	return med;
 }
 
 void fragment() {
-	vec4 height = texture(map, (offset + vec2(2048.) + size/2.) / (4096. * 1.) + UV/1.);//(UV /3. - 3.*(vec2(2048.)/TEXTURE_PIXEL_SIZE) + offset / size / 3.));
-	//vec4 color = height;
-	vec4 color = vec4(waterColor.rgb * height.r, 1.);
+	//vec4 height = texture(map, (offset + vec2(2048.) + size/2.) / (4096. * 1.) + UV/1.);//(UV /3. - 3.*(vec2(2048.)/TEXTURE_PIXEL_SIZE) + offset / size / 3.));
+	float height = grayscale(texture(map, UV));
+	
+	float heightmin = -2000.;
+	float heightmax = 550.;
+	float heightmetres = heightmin + (heightmax-heightmin)*height;
+	
+	vec4 color = vec4(vec3(height),1);
+	if (heightmetres>sealevel){
+		color = GRASS_COLOR;
+		COLOR = color;
+	}
+	else{
+		color.rgb = waterColor.rgb * (height+0.4)*2.5;
+	
+	
+	//COLOR = vec4(color.rgb,1.);
+	
+	//vec4 color = vec4(waterColor.rgb * height.r, 1.);
 
 	vec2 noiseUV = UV * tiling + offSetSpeed * TIME + offset / size;
 	//noiseUV /= zoom;
@@ -63,9 +80,12 @@ void fragment() {
 	backGroundUV.y += noiseValue * backGroundDirY;
 
 
-	color = mix(texture(SCREEN_TEXTURE, backGroundUV),color, 0.2);
+	color = mix(texture(SCREEN_TEXTURE, backGroundUV),color, 1);
 
-	COLOR = mix(color, waterColor, colorCorection);// * float(height.r < 100./255.);
-	//COLOR += GRASS_COLOR * (3. * height.r) * float(height.r >= 100./255.);
+	COLOR = mix(color, waterColor, colorCorection);// * float(height > 0./255.);
+	}
+	//COLOR += GRASS_COLOR * (3. * height) * float(height >= 100./255.);
+	
+	//COLOR = color;// * float(height.r < 100./255.);
 
 }

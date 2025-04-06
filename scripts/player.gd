@@ -47,7 +47,6 @@ func _process(delta: float) -> void:
 	time += delta
 	if (time >= 2*PI): time -= 2*PI
 	var sway_amp := 1.
-	print(speed)
 	$PlayerSprite.offset.x = sin(time) * 5 * sway_amp
 	$PlayerSprite.offset.y = cos(time) * 7 * sway_amp
 	$PlayerSprite.rotation = cos(time) * 0.05 * sway_amp
@@ -97,7 +96,7 @@ func _process(delta: float) -> void:
 		$DirectionSprite.rotation = $DirectionSprite.rotation * 0.7
 	
 	if Input.is_key_pressed(KEY_PAGEUP):
-		$MainCamera.zoom = clamp($MainCamera.zoom*0.99,Vector2(0.5,0.5), Vector2(2,2))
+		$MainCamera.zoom = clamp($MainCamera.zoom*0.99,Vector2(0.005,0.005), Vector2(2,2))
 	
 	if Input.is_key_pressed(KEY_PAGEDOWN):
 		$MainCamera.zoom = clamp($MainCamera.zoom*1.01,Vector2(0.5,0.5), Vector2(2,2))
@@ -116,7 +115,7 @@ func _process(delta: float) -> void:
 		depth = move_toward(depth, -150, 0.03)
 		emit_signal("depth_changed", depth)
 	
-	#print(speed)
+	#print(depth)
 	move_local_y(-speed)
 
 func change_health(amount: float) -> void:
@@ -126,7 +125,6 @@ func change_health(amount: float) -> void:
 		health = 0
 	if health > max_health:
 		health = max_health
-	print(health)
 	health_changed.emit(health)
 
 func change_max_health(amount: float) -> void:

@@ -38,7 +38,6 @@ func detect_player() -> void:
 	var depth_certainty: float = 1- clamp(remap(depth_diff, 10, 200,  0, 1), 0, 1)
 	var sound_certainty: float = remap(target_vel.length(), 0, 1.8, 0.3, 1)
 	var cert: float = clamp((dist_certainty+depth_certainty+sound_certainty)/2, 0, 1.5)
-	print(cert)
 	if (cert)>0.5:
 		if cert>certainty:
 			certainty = cert
