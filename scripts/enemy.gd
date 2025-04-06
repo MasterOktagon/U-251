@@ -7,7 +7,21 @@ enum States{
 	DEAD,
 	DEFAULT
 }
-var state: States = States.ALIVE
+var state: States = States.DEFAULT
+
+enum Types{
+	MINE,
+	TORPEDO,
+	BOMB,
+	SONARBOYE,
+	PLANE,
+	CHOPPER,
+	WAHRSHIP,
+	SUBMARINE,
+	DEFAULT
+}
+var type: Types = Types.DEFAULT
+
 var blib: TextureRect = TextureRect.new()
 
 var depth: float = 0

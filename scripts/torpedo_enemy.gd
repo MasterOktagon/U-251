@@ -8,6 +8,8 @@ var lifetime: float = 30
 
 func _ready() -> void:
 	blib.texture = preload("res://assets/torpedo/svp_torpedo.png")
+	state = States.ALIVE
+	type = Types.TORPEDO
 	$LifeTimer.start(lifetime)
 
 func _physics_process(delta: float) -> void:

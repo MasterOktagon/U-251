@@ -1,10 +1,13 @@
 extends Enemy
 
-var speed: float = 2
+var speed: float = 0.3
 var shot_cd: float = 2
+var chopper_cd: float = 5
 
 func _ready() -> void:
 	blib.texture = preload("res://assets/vessel/svp_warship.png")
+	state = States.ALIVE
+	type = Types.WAHRSHIP
 	dmg = 20
 
 func _process(delta: float) -> void:
@@ -17,8 +20,12 @@ func _process(delta: float) -> void:
 	update_target_depth()
 	detect_player()
 	if state==States.ALERTED:
-		attack()
-	move()
+		var est_pos: Vector2 = target_pos + target_pos*uncertainty_diviation
+		var est_vel: Vector2 = target_vel + target_vel*uncertainty_diviation
+		var est_dist: float = (est_pos+est_vel - global_position).length()
+		attack(est_pos, est_vel, est_dist)
+		move_attack(est_pos, est_vel, est_dist)
+	move_patrol()
 
 func change_health(_amount: float) -> void:
 	state = States.DEAD
@@ -40,22 +47,30 @@ func detect_player() -> void:
 		$AlertLabel.hide()
 		state = States.ALIVE
 
-func attack() -> void:
+func attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 	if $ShotCooldown.time_left == 0.0:
 		var shot: Enemy = preload("res://scenes/torpedo_enemy.tscn").instantiate()
 		get_parent().add_child(shot,true)
 		shot.dmg = dmg
 		shot.global_transform.origin = self.global_transform.origin
-		var est_pos: Vector2 = target_pos + target_pos*uncertainty_diviation
-		var est_vel: Vector2 = target_vel + target_vel*uncertainty_diviation
-		var distance: float = (est_pos+est_vel - shot.global_position).length()
-		var shot_dir: Vector2 = ((est_pos+est_vel*distance/shot.speed)-shot.global_position).normalized()
+		var shot_dir: Vector2 = ((est_pos+est_vel*est_dist/shot.speed)-shot.global_position).normalized()
 		shot.look_at(global_position+shot_dir)
 		shot.target_depth = target_depth
 		$ShotCooldown.start(shot_cd)
+	
+	# if chopper is back and alert ships send chopper after cd
 
-func move() -> void:
+func move_patrol() -> void:
 	pass
+
+func move_attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
+	var dir: Vector2 = ((est_pos+est_vel*est_dist/speed)-global_position).normalized()
+	var angle: float = dir.angle_to(Vector2.from_angle(self.rotation+PI))
+	self.global_rotation = move_toward(self.global_rotation, self.global_rotation+angle, 0.01)
+	move_local_x(speed)
+	
+	if type == Types.SUBMARINE:
+		depth = move_toward(depth, target_depth, 0.2)
 
 func alert(cert: float) -> void:
 	state = States.ALERTED

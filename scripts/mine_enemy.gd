@@ -5,6 +5,8 @@ const TARGET_LAYER: int = (1<<1) | (1<<2) # hitting player, player diversion
 
 func _ready() -> void:
 	blib.texture = preload("res://assets/mine/icon_minefield.png")
+	state = States.ALIVE
+	type = Types.MINE
 	depth = -130
 	z_index = int(depth)
 	dmg = 50
