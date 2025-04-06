@@ -57,6 +57,7 @@ func move() -> void:
 
 func alert(certainty: float) -> void:
 	state = States.ALERTED
-	uncertainty_diviation = (1-certainty)*randf_range(-1,1)
+	if certainty>self.certainty:
+		uncertainty_diviation = Vector2((1-certainty)*randf_range(-1,1), (1-certainty)*randf_range(-1,1))
 	#print(uncertainty_diviation)
 	$AlertLabel.show()
