@@ -54,35 +54,36 @@ void fragment() {
 		color.rgb = waterColor.rgb * (height+0.4)*2.5;
 	
 	
-	//COLOR = vec4(color.rgb,1.);
-	
-	//vec4 color = vec4(waterColor.rgb * height.r, 1.);
+		//COLOR = vec4(color.rgb,1.);
+		
+		//vec4 color = vec4(waterColor.rgb * height.r, 1.);
 
-	vec2 noiseUV = UV * tiling + offSetSpeed * TIME + offset / size;
-	//noiseUV /= zoom;
-	//noiseUV += (size) / 2.;
-	float noiseValue = texture(waterDistortionNoise, noiseUV).r;
+		vec2 noiseUV = UV * tiling + offSetSpeed * TIME + offset / size;
+		//noiseUV /= zoom;
+		//noiseUV += (size) / 2.;
+		float noiseValue = texture(waterDistortionNoise, noiseUV).r;
 
-	vec2 waterUV = UV * tiling + offset / size;
-	waterUV.x += offSetSpeed.x * TIME;
-	waterUV.y += cos(TIME * min(1., offSetSpeed.y)) * 0.01;
-	//waterUV /= zoom;
-	//waterUV += (size) / 2.;
-	waterUV = waterUV + noiseValue * distortionForce * WDSpeed;
-
-
-	vec4 noiseColor = texture(waterNoise, waterUV);
-	float intensity = smoothstep(WDFreq, WDSize, noiseColor.r);
-	color.rgb += intensity * vec3(WDBrightness);
-
-	vec2 backGroundUV = SCREEN_UV;
-	backGroundUV.x += noiseValue * backGroundDirX;
-	backGroundUV.y += noiseValue * backGroundDirY;
+		vec2 waterUV = UV * tiling + offset / size;
+		waterUV.x += offSetSpeed.x * TIME;
+		waterUV.y += cos(TIME * min(1., offSetSpeed.y)) * 0.01;
+		//waterUV /= zoom;
+		//waterUV += (size) / 2.;
+		waterUV = waterUV + noiseValue * distortionForce * WDSpeed;
 
 
-	color = mix(texture(SCREEN_TEXTURE, backGroundUV),color, 1);
+		vec4 noiseColor = texture(waterNoise, waterUV);
+		float intensity = smoothstep(WDFreq, WDSize, noiseColor.r);
+		color.rgb += intensity * vec3(WDBrightness);
 
-	COLOR = mix(color, waterColor, colorCorection);// * float(height > 0./255.);
+		vec2 backGroundUV = SCREEN_UV;
+		backGroundUV.x += noiseValue * backGroundDirX;
+		backGroundUV.y += noiseValue * backGroundDirY;
+
+
+		color = mix(texture(SCREEN_TEXTURE, backGroundUV),color, 1);
+
+		COLOR = mix(color, waterColor, colorCorection);// * float(height > 0./255.);
+		COLOR.a = COLOR.a*height*2.5+0.5;
 	}
 	//COLOR += GRASS_COLOR * (3. * height) * float(height >= 100./255.);
 	

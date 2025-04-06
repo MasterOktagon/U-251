@@ -39,7 +39,7 @@ func _ready() -> void:
 	speed = 0
 	max_health_changed.emit(max_health)
 	health_changed.emit(health)
-	position = Vector2i(-500, -500)
+	position = Vector2i(500, 500)
 	depth_changed.emit(0)
 	
 func min_abs(a: float, b: float)->float:
@@ -76,6 +76,7 @@ func _process(delta: float) -> void:
 	emit_signal("air_changed", air)
 	
 	var max_depth: int = $Map.check_depth(self.global_position.x, self.global_position.y)
+	
 	if Input.is_key_pressed(KEY_W):
 		#if !(depth <= max_depth):
 		speed = move_toward(speed, max_speed, 0.01)
@@ -129,6 +130,10 @@ func _process(delta: float) -> void:
 	
 	#print(depth)
 	move_local_y(-speed)
+	if $Map.check_depth(self.global_position.x, self.global_position.y)>=0:
+		move_local_y(speed)
+		speed = 0
+		change_health(10)
 	if (abs(speed) > 0): emit_signal("moved", position)
 
 func change_health(amount: float) -> void:

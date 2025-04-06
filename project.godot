@@ -15,6 +15,10 @@ run/main_scene="uid://c1txu8c4uik64"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/vsync/vsync_mode=2
+
 [global_group]
 
 Enemies=""

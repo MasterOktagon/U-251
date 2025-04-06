@@ -10,10 +10,10 @@
 [ext_resource type="Script" uid="uid://be2vhf36teocy" path="res://scripts/healthbar.gd" id="7_vef74"]
 [ext_resource type="PackedScene" uid="uid://m2owfkt7wla3" path="res://scenes/head_display.tscn" id="8_hve3p"]
 [ext_resource type="PackedScene" uid="uid://h2rrq3170ej3" path="res://scenes/mine_enemy.tscn" id="8_j5wjh"]
-[ext_resource type="Script" uid="uid://w4b7lina4jch" path="res://scripts/mine_manager.gd" id="11_iotsf"]
+[ext_resource type="Script" path="res://scripts/mine_manager.gd" id="11_iotsf"]
 [ext_resource type="PackedScene" uid="uid://clow01wc1phxn" path="res://scenes/vessel_enemy.tscn" id="11_mfdv2"]
 [ext_resource type="Script" uid="uid://d167g4f0n4xpu" path="res://scripts/vessel_manager.gd" id="12_iotsf"]
-[ext_resource type="Script" uid="uid://bvpkeu6ubbb8b" path="res://scripts/aircraft_manager.gd" id="14_215e1"]
+[ext_resource type="Script" path="res://scripts/aircraft_manager.gd" id="14_215e1"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_paxxb"]
 noise_type = 3
@@ -51,9 +51,9 @@ shader_parameter/offSetSpeed = Vector2(0.03, 0.05)
 shader_parameter/backGroundDirX = 0.023
 shader_parameter/backGroundDirY = 0.01
 shader_parameter/map = ExtResource("2_ryrav")
-shader_parameter/sealevel = -990.0
-shader_parameter/heightmin = -2000.0
-shader_parameter/heightmax = 550.0
+shader_parameter/sealevel = -220.0
+shader_parameter/heightmin = -255.0
+shader_parameter/heightmax = 0.0
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/size = Vector2(0, 0)
 shader_parameter/sizePx = Vector2(1, 1)
