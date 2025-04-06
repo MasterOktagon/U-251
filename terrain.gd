@@ -1,5 +1,7 @@
 extends Sprite2D
 
+var map_scale: int = 1
+
 func _ready() -> void:
 	#material.set_shader_parameter("map", preload("res://assets/heightmap/Topo Custom3 16x8.png"))
 	material.set_shader_parameter("map", preload("res://assets/heightmap/VirginLands.png"))
@@ -11,6 +13,9 @@ func _ready() -> void:
 	#material.set_shader_parameter("sealevel", -990)
 	#material.set_shader_parameter("heightmin", -2000)
 	#material.set_shader_parameter("heightmax", 550)
+	map_scale = int(material.get_shader_parameter("map_scale"))
+	scale *= map_scale
+	print(get_rect().size * scale)
 
 func _process(_delta: float) -> void:
 	var m := get_viewport_rect().size
@@ -25,7 +30,7 @@ func _process(_delta: float) -> void:
 	material.set_shader_parameter("offset", on_map)
 	material.set_shader_parameter("size", scale)
 	#material.set_shader_parameter("sizePx", Vector2(max(m.x,m.y), max(m.x,m.y)) * 2.1)
-	material.set_shader_parameter("zoom", $"../Player/MainCamera".zoom)
+	#material.set_shader_parameter("zoom", $"../Player/MainCamera".zoom)
 	if Input.is_key_pressed(KEY_1):
 		$"../Sprite2D".show()
 	if Input.is_key_pressed(KEY_2):

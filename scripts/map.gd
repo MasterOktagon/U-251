@@ -5,6 +5,7 @@ var height_max: float = 0
 var sea_level: float = -220
 var heightmap: PackedByteArray = preload("res://assets/heightmap/VirginLands.png").get_image().get_data()
 var map_size: Vector2i = Vector2i(4096, 4096)
+var map_scale: int = 0
 const DELETE_RADIUS: float = 2000;
 
 func _ready() -> void:
@@ -16,7 +17,7 @@ func _ready() -> void:
 	#print(check_depth(0,20))
 	#print(check_depth(10,20))
 	
-	
+	map_scale = int($"../../Terrain".material.get_shader_parameter("map_scale"))
 	map_size = $"../../Terrain".material.get_shader_parameter("map").get_size()
 	heightmap = $"../../Terrain".material.get_shader_parameter("map").get_image().get_data()
 	$"../../Terrain".material.set_shader_parameter("sealevel", sea_level)
@@ -33,6 +34,7 @@ func update_enemies()->void:
 
 func check_depth(x: int, y: int) -> int:
 	var on_map: Vector2i = abs(Vector2i(x,y))
+	on_map /= map_scale
 	on_map.x = clamp(on_map.x, 0, map_size.x-1)
 	on_map.y = clamp(on_map.y, 0, map_size.y-1)
 	var depth: float = height_min + (height_max-height_min)*heightmap[(on_map.y*map_size.x+on_map.x)*3]/255.
