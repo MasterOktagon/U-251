@@ -130,7 +130,8 @@ func _process(delta: float) -> void:
 	
 	#print(depth)
 	move_local_y(-speed)
-	if $Map.check_depth(self.global_position.x, self.global_position.y)>=0:
+	var bow_pos = self.global_position + Vector2(-$PlayerSprite.get_rect().size.y/2,-$PlayerSprite.get_rect().size.y/2)*Vector2.from_angle(self.global_rotation-PI/2)*sign(-speed)
+	if $Map.check_depth(bow_pos.x, bow_pos.y)>=0:
 		move_local_y(speed)
 		speed = 0
 		change_health(10)
