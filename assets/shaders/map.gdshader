@@ -29,8 +29,7 @@ uniform float heightmin;
 uniform float heightmax;
 uniform vec2 offset;
 uniform vec2 size;
-uniform vec2 sizePx;
-uniform vec2 zoom;
+uniform float map_scale : hint_range(1.0, 100.0, 1.0) = 1;
 
 const vec4 GRASS_COLOR = vec4(0.1,0.4,0.1,1);
 
@@ -73,17 +72,17 @@ void fragment() {
 
 		vec4 noiseColor = texture(waterNoise, waterUV);
 		float intensity = smoothstep(WDFreq, WDSize, noiseColor.r);
-		color.rgb += intensity * vec3(WDBrightness);
+		color += vec4(intensity * vec3(WDBrightness), color.a);
 
 		vec2 backGroundUV = SCREEN_UV;
 		backGroundUV.x += noiseValue * backGroundDirX;
 		backGroundUV.y += noiseValue * backGroundDirY;
 
 
-		color = mix(texture(SCREEN_TEXTURE, backGroundUV),color, 1);
+		color = mix(texture(SCREEN_TEXTURE, backGroundUV),color, 0.5);
 
 		COLOR = mix(color, waterColor, colorCorection);// * float(height > 0./255.);
-		COLOR.a = COLOR.a*height*2.5+0.5;
+		COLOR.a = 1.;//COLOR.a*height*2.5+0.5;
 	}
 	//COLOR += GRASS_COLOR * (3. * height) * float(height >= 100./255.);
 	

@@ -39,7 +39,7 @@ func _ready() -> void:
 	speed = 0
 	max_health_changed.emit(max_health)
 	health_changed.emit(health)
-	position = Vector2i(500, 500)
+	position = Vector2i(21000, 17000)
 	depth_changed.emit(0)
 	
 func min_abs(a: float, b: float)->float:

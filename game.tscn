@@ -56,8 +56,7 @@ shader_parameter/heightmin = -255.0
 shader_parameter/heightmax = 0.0
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/size = Vector2(0, 0)
-shader_parameter/sizePx = Vector2(1, 1)
-shader_parameter/zoom = Vector2(1, 1)
+shader_parameter/map_scale = 10.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_e2o6t"]
 
