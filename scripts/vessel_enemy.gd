@@ -55,9 +55,9 @@ func attack() -> void:
 func move() -> void:
 	pass
 
-func alert(certainty: float) -> void:
+func alert(cert: float) -> void:
 	state = States.ALERTED
-	if certainty>self.certainty:
-		uncertainty_diviation = Vector2((1-certainty)*randf_range(-1,1), (1-certainty)*randf_range(-1,1))
+	if cert>self.certainty:
+		uncertainty_diviation = Vector2((1-cert)*randf_range(-1,1), (1-cert)*randf_range(-1,1))
 	#print(uncertainty_diviation)
 	$AlertLabel.show()
