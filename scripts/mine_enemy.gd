@@ -1,3 +1,4 @@
+class_name Mine
 extends Enemy
 
 const IGNORE_LAYER: int = (1<<3) | (1<<4) | (1<<5) # ignoring player torpedos, enemies, enemy weapons
@@ -7,7 +8,7 @@ func _ready() -> void:
 	blib.texture = preload("res://assets/mine/icon_minefield.png")
 	state = States.ALIVE
 	type = Types.MINE
-	depth = -130
+	#depth = -130
 	z_index = int(depth)
 	dmg = 50
 

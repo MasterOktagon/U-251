@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c1txu8c4uik64"]
+[gd_scene load_steps=25 format=3 uid="uid://c1txu8c4uik64"]
 
 [ext_resource type="PackedScene" uid="uid://ltm6os276xx6" path="res://scenes/height.tscn" id="1_80nbo"]
 [ext_resource type="Shader" uid="uid://c8poukl35wv77" path="res://assets/shaders/map.gdshader" id="1_feb5d"]
@@ -10,7 +10,11 @@
 [ext_resource type="Script" uid="uid://be2vhf36teocy" path="res://scripts/healthbar.gd" id="7_vef74"]
 [ext_resource type="PackedScene" uid="uid://m2owfkt7wla3" path="res://scenes/head_display.tscn" id="8_hve3p"]
 [ext_resource type="PackedScene" uid="uid://h2rrq3170ej3" path="res://scenes/mine_enemy.tscn" id="8_j5wjh"]
+
+[ext_resource type="Script" uid="uid://w4b7lina4jch" path="res://scripts/mine_manager.gd" id="11_iotsf"]
 [ext_resource type="PackedScene" uid="uid://clow01wc1phxn" path="res://scenes/vessel_enemy.tscn" id="11_mfdv2"]
+[ext_resource type="Script" uid="uid://d167g4f0n4xpu" path="res://scripts/vessel_manager.gd" id="12_iotsf"]
+[ext_resource type="PackedScene" uid="uid://4nwpp0a4ns3t" path="res://scenes/aircraft_enemy.tscn" id="13_lc2xo"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_paxxb"]
 noise_type = 3
@@ -179,6 +183,22 @@ position = Vector2(-125, -15)
 [node name="VesselEnemy" parent="." instance=ExtResource("11_mfdv2")]
 position = Vector2(-324, 214)
 
+[node name="MineManager" type="Node2D" parent="."]
+script = ExtResource("11_iotsf")
+
+[node name="VesselManager" type="Node2D" parent="."]
+script = ExtResource("12_iotsf")
+
+[node name="Timer" type="Timer" parent="VesselManager"]
+wait_time = 5.0
+autostart = true
+
+[node name="Aircraft" parent="." instance=ExtResource("13_lc2xo")]
+position = Vector2(-476, 238)
+
 [connection signal="air_changed" from="Player" to="GUI/Healthbar" method="update_air"]
 [connection signal="depth_changed" from="Player" to="GUI/HeadDisplay" method="_on_depth_change"]
 [connection signal="health_changed" from="Player" to="GUI/Healthbar" method="update_health"]
+[connection signal="moved" from="Player" to="MineManager" method="_on_player_move"]
+[connection signal="moved" from="Player" to="VesselManager" method="_on_player_move"]
+[connection signal="timeout" from="VesselManager/Timer" to="VesselManager" method="_on_timer_timeout"]

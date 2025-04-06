@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://4nwpp0a4ns3t"]
+
+[ext_resource type="Script" uid="uid://kak7hfoxpw3o" path="res://scripts/aircraft_enemy.gd" id="1_je1o6"]
+[ext_resource type="Texture2D" uid="uid://gqf8kq76uhp" path="res://assets/aircraft/P38_lvl_0_d0.png" id="2_v1ftv"]
+[ext_resource type="Shader" uid="uid://cm0t4lvxqqoq7" path="res://assets/shaders/shadow.gdshader" id="3_wf73f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5rw1f"]
+shader = ExtResource("3_wf73f")
+shader_parameter/shadow_color = Vector4(0, 0, 0, 0.2)
+
+[node name="Aircraft" type="Area2D" groups=["Enemies"]]
+z_index = 20
+script = ExtResource("1_je1o6")
+metadata/_custom_type_script = "uid://yesh6ob8cj7l"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, 1.90735e-06)
+rotation = 1.5708
+scale = Vector2(0.568182, 0.568182)
+texture = ExtResource("2_v1ftv")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5rw1f")
+rotation = 1.5708
+scale = Vector2(0.568, 0.568)
+texture = ExtResource("2_v1ftv")
+
+[node name="Reload" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

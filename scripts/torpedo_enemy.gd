@@ -19,8 +19,9 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	if state == States.DEAD:
 		return
-	depth = move_toward(depth, target_depth, 0.1) # delta anpassen
-	move_local_x(speed)
+	depth = move_toward(depth, target_depth, min(1, abs(target_depth - depth) / 30)) # delta anpassen
+	if (depth >= 0): move_local_x(speed)
+	$Trail.emitting = depth >= 0
 
 func _on_body_entered(body: Node2D) -> void:
 	if (body.collision_layer & IGNORE_LAYER):
