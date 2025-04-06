@@ -32,7 +32,7 @@ func _ready() -> void:
 	speed = 0
 	max_health_changed.emit(max_health)
 	health_changed.emit(health)
-	#position = Vector2i(26400, 26400)
+	#position = Vector2i(-500, -500)
 	
 func min_abs(a: float, b: float)->float:
 	if abs(a) < abs(b): return a
@@ -48,21 +48,25 @@ func _process(delta: float) -> void:
 	if state == States.DEAD:
 		return
 		
-	z_index = round(depth)
 		
 	if surfaced():
 		air = min(air + 10*delta, max_air)
+		z_index = 1
 	else:
+		z_index = round(depth)
 		air = max(0, air - delta)
 		if air == 0:
 			change_health(-delta)
 		# play "sound air pressure low"
 	emit_signal("air_changed", air)
 	
+	var max_depth: int = $Map.check_depth(self.global_position.x/100+2048, self.global_position.y/100+2048)
 	if Input.is_key_pressed(KEY_W):
+		#if !(depth <= max_depth):
 		speed = move_toward(speed, max_speed, 0.01)
 		
-	if Input.is_key_pressed(KEY_S):
+	elif Input.is_key_pressed(KEY_S):
+		#if !(depth <= max_depth):
 		speed = move_toward(speed, -max_speed, 0.01)
 		
 	if not (Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_S)):
@@ -88,18 +92,18 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_PAGEDOWN):
 		$MainCamera.zoom = clamp($MainCamera.zoom*1.01,Vector2(0.5,0.5), Vector2(2,2))
 	
-	var max_depth: int = $Map.check_depth(self.global_position.x/100+2048, self.global_position.y/100+1024)
 	if depth<=max_depth:
 		depth = max_depth
 		# play sound "kiel auf grund"
 		change_health(-0.2)
+		depth = max_depth
 	
 	if Input.is_key_pressed(KEY_Q):
-		depth = move_toward(depth, 0, 0.2)
+		depth = move_toward(depth, 0, 0.03)
 		emit_signal("depth_changed", depth)
 	
-	if Input.is_key_pressed(KEY_E) and !(depth == max_depth):
-		depth = move_toward(depth, -150, 0.2)
+	if Input.is_key_pressed(KEY_E) and !(depth <= max_depth):
+		depth = move_toward(depth, -150, 0.03)
 		emit_signal("depth_changed", depth)
 	
 	#print(speed)

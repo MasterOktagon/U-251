@@ -9,5 +9,6 @@ func _ready() -> void:
 	pass
 
 func check_depth(x: int, y: int) -> int:
-	#return -150
-	return heightmap[(y*4095+x)*3]-150
+	if 0 <= x and x < 4096 and 0 <= y and y < 4096:
+		return heightmap[(y*4096+x)*3]-150
+	return -150
