@@ -4,6 +4,7 @@ signal health_changed(val: float)
 signal max_health_changed(val: float)
 signal depth_changed(depth: float)
 signal air_changed(val: float)
+signal moved(pos: Vector2)
 
 enum States{
 	ALIVE,
@@ -50,11 +51,10 @@ func _process(delta: float) -> void:
 	$PlayerSprite.offset.x = sin(time) * 5 * sway_amp
 	$PlayerSprite.offset.y = cos(time) * 7 * sway_amp
 	$PlayerSprite.rotation = cos(time) * 0.05 * sway_amp
+	$Trail.emitting = abs(speed) > 0
 	
-	#position.x = int(position.x + 1000*delta) % 100000
-	#position.y = int(position.x + 1000*delta) % 100000
-	#print(position)
 	if state == States.DEAD:
+		speed = 0
 		return
 		
 		
@@ -117,6 +117,7 @@ func _process(delta: float) -> void:
 	
 	#print(depth)
 	move_local_y(-speed)
+	if (abs(speed) > 0): emit_signal("moved", position)
 
 func change_health(amount: float) -> void:
 	health += amount

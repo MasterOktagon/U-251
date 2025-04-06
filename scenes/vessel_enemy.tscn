@@ -29,6 +29,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_dlmqs")
 
 [node name="ShotCooldown" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 
 [node name="ChopperCooldown" type="Timer" parent="."]

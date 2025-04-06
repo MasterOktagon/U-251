@@ -1,7 +1,8 @@
+class_name Vessel
 extends Enemy
 
 var speed: float = 0.3
-var shot_cd: float = 2
+var shot_cd: float = 4
 var chopper_cd: float = 5
 
 func _ready() -> void:
@@ -24,7 +25,7 @@ func _process(delta: float) -> void:
 		var est_vel: Vector2 = target_vel + target_vel*uncertainty_diviation
 		var est_dist: float = (est_pos+est_vel - global_position).length()
 		attack(est_pos, est_vel, est_dist)
-		move_attack(est_pos, est_vel, est_dist)
+		if est_dist > 200 and (target_pos - position).length() < 1500: move_attack(est_pos, est_vel, est_dist)
 	move_patrol()
 
 func change_health(_amount: float) -> void:
@@ -52,6 +53,7 @@ func attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 		get_parent().add_child(shot,true)
 		shot.dmg = dmg
 		shot.global_transform.origin = self.global_transform.origin
+		shot.depth = 0
 		var shot_dir: Vector2 = ((est_pos+est_vel*est_dist/shot.speed)-shot.global_position).normalized()
 		shot.look_at(global_position+shot_dir)
 		shot.target_depth = target_depth

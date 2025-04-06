@@ -1,9 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://cow2i2nhhp4s2"]
+[gd_scene load_steps=10 format=3 uid="uid://cow2i2nhhp4s2"]
 
 [ext_resource type="Script" uid="uid://cqta5igr403b2" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://doka67yj0l3mv" path="res://assets/player/ShipSubMarineHull.png" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://objm3tdls3ao" path="res://scenes/map.tscn" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dxjv84gvfvd76" path="res://assets/ui/direction.svg" id="4_dqkch"]
+
+[sub_resource type="Gradient" id="Gradient_dqkch"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dqkch"]
+gradient = SubResource("Gradient_dqkch")
+
+[sub_resource type="Curve" id="Curve_dqkch"]
+_limits = [0.0, 1.0, 0.0, 355.99]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(214.641, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_qlg0r"]
+curve_y = SubResource("Curve_dqkch")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tuyoq"]
+lifetime_randomness = 0.13
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 1, 1)
+angle_min = -9.99999
+angle_max = 10.0
+angular_velocity_min = -44.31
+angular_velocity_max = 110.77
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_qlg0r")
+gravity = Vector3(0, 0, 0)
+scale_max = 12.49
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("GradientTexture1D_dqkch")
+turbulence_enabled = true
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
@@ -30,3 +62,10 @@ one_shot = true
 z_index = 1
 z_as_relative = false
 texture = ExtResource("4_dqkch")
+
+[node name="Trail" type="GPUParticles2D" parent="."]
+position = Vector2(0, 65)
+amount = 40
+lifetime = 1.25
+visibility_rect = Rect2(-1, -0.998299, 2, 80.0734)
+process_material = SubResource("ParticleProcessMaterial_tuyoq")
