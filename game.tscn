@@ -10,17 +10,10 @@
 [ext_resource type="Script" uid="uid://be2vhf36teocy" path="res://scripts/healthbar.gd" id="7_vef74"]
 [ext_resource type="PackedScene" uid="uid://m2owfkt7wla3" path="res://scenes/head_display.tscn" id="8_hve3p"]
 [ext_resource type="PackedScene" uid="uid://h2rrq3170ej3" path="res://scenes/mine_enemy.tscn" id="8_j5wjh"]
-<<<<<<< HEAD
-[ext_resource type="Script" path="res://scripts/mine_manager.gd" id="11_iotsf"]
-[ext_resource type="PackedScene" uid="uid://clow01wc1phxn" path="res://scenes/vessel_enemy.tscn" id="11_mfdv2"]
-[ext_resource type="Script" path="res://scripts/vessel_manager.gd" id="12_iotsf"]
-[ext_resource type="PackedScene" path="res://scenes/aircraft_enemy.tscn" id="13_lc2xo"]
-=======
 [ext_resource type="Script" uid="uid://w4b7lina4jch" path="res://scripts/mine_manager.gd" id="11_iotsf"]
 [ext_resource type="PackedScene" uid="uid://clow01wc1phxn" path="res://scenes/vessel_enemy.tscn" id="11_mfdv2"]
 [ext_resource type="Script" uid="uid://d167g4f0n4xpu" path="res://scripts/vessel_manager.gd" id="12_iotsf"]
 [ext_resource type="Script" uid="uid://bvpkeu6ubbb8b" path="res://scripts/aircraft_manager.gd" id="14_215e1"]
->>>>>>> 1a028453f6783e5ab82ac6a582581febf3930548
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_paxxb"]
 noise_type = 3
