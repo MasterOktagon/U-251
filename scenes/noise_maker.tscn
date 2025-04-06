@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs4a2yw4ilbx5"]
+
+[ext_resource type="Script" uid="uid://j8mkgw55ujvu" path="res://scripts/noise_maker.gd" id="1_2hggc"]
+[ext_resource type="Texture2D" uid="uid://bc74fwve4joua" path="res://assets/mine/icon_minefield.png" id="2_rb4ai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rb4ai"]
+radius = 7.07107
+
+[node name="NoiseMaker" type="Area2D" groups=["NoiseMaker"]]
+script = ExtResource("1_2hggc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.436904, 0.320132, 0, 1)
+texture = ExtResource("2_rb4ai")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rb4ai")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

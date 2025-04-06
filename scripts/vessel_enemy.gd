@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 		var est_pos: Vector2 = target_pos + target_pos*uncertainty_diviation
 		var est_vel: Vector2 = target_vel + target_vel*uncertainty_diviation
 		var est_dist: float = (est_pos+est_vel - global_position).length()
-		attack(est_pos, est_vel, est_dist)
+		if (est_dist < 1200): attack(est_pos, est_vel, est_dist)
 		if est_dist > 200 and (target_pos - position).length() < 1500: move_attack(est_pos, est_vel, est_dist)
 	move_patrol()
 
@@ -54,7 +54,7 @@ func attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 		shot.dmg = dmg
 		shot.global_transform.origin = self.global_transform.origin
 		shot.depth = 0
-		var shot_dir: Vector2 = ((est_pos+est_vel*est_dist/shot.speed)-shot.global_position).normalized()
+		var shot_dir: Vector2 = ((est_pos+est_vel*est_dist/shot.max_speed)-shot.global_position).normalized()
 		shot.look_at(global_position+shot_dir)
 		shot.target_depth = target_depth
 		$ShotCooldown.start(shot_cd)

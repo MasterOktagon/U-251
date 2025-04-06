@@ -1,11 +1,16 @@
 extends Node2D
 
+<<<<<<< HEAD
 var height_min: float = -255
 var height_max: float = 0
 var sea_level: float = -220
 var heightmap: PackedByteArray = preload("res://assets/heightmap/VirginLands.png").get_image().get_data()
 var map_size: Vector2i = Vector2i(4096, 4096)
 const DELETE_RADIUS: float = 2000;
+=======
+var heightmap : PackedByteArray = preload("res://assets/heightmap/VirginLands.png").get_image().get_data()
+const DELETE_RADIUS: float = 2500;
+>>>>>>> 1a028453f6783e5ab82ac6a582581febf3930548
 
 func _ready() -> void:
 	#heightmap = preload("res://assets/heightmap/test2.png").get_image().get_data()

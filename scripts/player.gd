@@ -116,6 +116,12 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_E) and !(depth <= max_depth):
 		depth = move_toward(depth, -150, 0.03)
 		emit_signal("depth_changed", depth)
+		
+	if Input.is_key_pressed(KEY_SPACE) and $NoisemakerCooldown.time_left == 0:
+		var nm := preload("res://scenes/noise_maker.tscn").instantiate()
+		nm.position = position
+		$"..".add_child(nm)
+		$NoisemakerCooldown.start()
 	
 	#print(depth)
 	move_local_y(-speed)

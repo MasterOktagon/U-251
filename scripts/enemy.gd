@@ -34,6 +34,10 @@ var certainty: float = 0
 var uncertainty_diviation: Vector2 = Vector2(0,0)
 
 func update_target_pos() -> void:
+	for e: NoiseMaker in get_tree().get_nodes_in_group("NoiseMaker"):
+		if e != null and (e.position-position).length() < 300:
+			target_pos = e.position
+			return
 	target_pos = $"../Player".global_position
 
 func update_target_vel() -> void:
