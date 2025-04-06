@@ -5,6 +5,7 @@ const TARGET_LAYER: int = (1<<0) | (1<<1) | (1<<2) # hitting world, player, play
 
 var speed: float = 1
 var lifetime: float = 30
+var max_speed: float = 5
 
 func _ready() -> void:
 	blib.texture = preload("res://assets/torpedo/svp_torpedo.png")
@@ -13,6 +14,8 @@ func _ready() -> void:
 	$LifeTimer.start(lifetime)
 
 func _physics_process(delta: float) -> void:
+	update_target_pos()
+	update_target_depth()
 	z_index = int(depth)
 	if $LifeTimer.time_left == 0:
 		state == States.DEAD
@@ -20,7 +23,12 @@ func _physics_process(delta: float) -> void:
 	if state == States.DEAD:
 		return
 	depth = move_toward(depth, target_depth, min(1, abs(target_depth - depth) / 30)) # delta anpassen
-	if (depth >= 0): move_local_x(speed)
+	if (depth >= 0):
+		speed = min(speed+0.02, max_speed)
+		move_local_x(speed)
+		if (target_pos-position).length() < 150:
+			var test_rot  := position.angle_to_point(target_pos)
+			rotation = rotate_toward(rotation, test_rot, 0.01)
 	$Trail.emitting = depth >= 0
 
 func _on_body_entered(body: Node2D) -> void:

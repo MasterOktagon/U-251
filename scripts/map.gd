@@ -1,7 +1,7 @@
 extends Node2D
 
 var heightmap : PackedByteArray = preload("res://assets/heightmap/VirginLands.png").get_image().get_data()
-const DELETE_RADIUS: float = 2000;
+const DELETE_RADIUS: float = 2500;
 
 func _ready() -> void:
 	#print(heightmap.size())

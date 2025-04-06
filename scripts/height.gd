@@ -23,8 +23,8 @@ func _process(_delta: float) -> void:
 		$Panel/NinePatchRect/EnemiesNear.remove_child(n)
 	for e: Enemy in get_tree().get_nodes_in_group("Enemies"):
 		if (pos - e.position).length() <= 500:
-			e.blib.offset_top = abs(e.depth/150) * patch_size.y - 20
-			e.blib.offset_bottom = abs(e.depth/150) * patch_size.y + 20
+			e.blib.offset_top = -(e.depth/150) * patch_size.y - 20
+			e.blib.offset_bottom = -(e.depth/150) * patch_size.y + 20
 			e.blib.offset_left = 50
 			$Panel/NinePatchRect/EnemiesNear.add_child(e.blib)
 	
