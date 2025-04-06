@@ -10,7 +10,7 @@ func _ready() -> void:
 	type = Types.PLANE
 	look_at($"../Player".position)
 	speed = 7
-	depth = 20
+	depth = 10
 
 func _physics_process(delta: float) -> void:
 	$Sprite2D.offset = to_local(global_position + Vector2(-50, 0))
@@ -25,8 +25,8 @@ func _physics_process(delta: float) -> void:
 	if (position-target_pos).length() < 200 and ammo > 0 and $Reload.time_left == 0:
 		var t := torpedo.instantiate()
 		t.dmg = 20
-		t.position = position
-		t.depth = depth
+		t.global_transform.origin = self.global_transform.origin
+		t.depth = 0
 		t.target_depth = target_depth
 		t.rotation = rotation
 		$"..".add_child(t)

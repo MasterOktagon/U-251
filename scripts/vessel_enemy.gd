@@ -50,13 +50,13 @@ func detect_player() -> void:
 func attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 	if $ShotCooldown.time_left == 0.0:
 		var shot: Enemy = preload("res://scenes/torpedo_enemy.tscn").instantiate()
-		get_parent().add_child(shot,true)
+		get_parent().add_child(shot)
 		shot.dmg = dmg
 		shot.global_transform.origin = self.global_transform.origin
 		shot.depth = 0
 		var shot_dir: Vector2 = ((est_pos+est_vel*est_dist/shot.max_speed)-shot.global_position).normalized()
 		shot.look_at(global_position+shot_dir)
-		shot.target_depth = target_depth
+		shot.target_depth = -target_depth
 		$ShotCooldown.start(shot_cd)
 	
 	# if chopper is back and alert ships send chopper after cd

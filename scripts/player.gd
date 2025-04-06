@@ -31,7 +31,7 @@ var noisemaker_reload: float = 30
 var time : float = 0.
 var exp_i : int = 0
 
-const invincible := true
+const invincible := false
 
 func _ready() -> void:
 	randomize()
@@ -53,9 +53,10 @@ func _process(delta: float) -> void:
 	time += delta
 	if (time >= 2*PI): time -= 2*PI
 	var sway_amp := 1.
-	$PlayerSprite.offset.x = sin(time) * 5 * sway_amp
-	$PlayerSprite.offset.y = cos(time) * 7 * sway_amp
-	$PlayerSprite.rotation = cos(time) * 0.05 * sway_amp
+	if (state != States.DEAD):
+		$PlayerSprite.offset.x = sin(time) * 5 * sway_amp
+		$PlayerSprite.offset.y = cos(time) * 7 * sway_amp
+		$PlayerSprite.rotation = cos(time) * 0.05 * sway_amp
 	$Trail.emitting = abs(speed) > 0
 	
 	z_index = round(depth)
@@ -136,6 +137,7 @@ func _process(delta: float) -> void:
 		speed = 0
 		change_health(10)
 	if (abs(speed) > 0): emit_signal("moved", position)
+	if depth > 0: depth = 0
 
 func change_health(amount: float) -> void:
 	if invincible:
@@ -170,4 +172,4 @@ func _on_explosion_timeout() -> void:
 			$"..".add_child(explosion)
 			modulate = modulate.darkened(0.05)
 		else:
-			depth = max(depth - 0.1, $Map.check_depth(self.global_position.x/100+2048, self.global_position.y/100+2048))
+			depth = max(depth - 1, $Map.check_depth(self.global_position.x, self.global_position.y))

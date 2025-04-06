@@ -24,15 +24,14 @@ func _process(_delta: float) -> void:
 	$Panel/NinePatchRect/Waterline/Boat.offset_top = p_depth/depth_max * patch_size.y - 20
 	$Panel/NinePatchRect/Waterline/Boat.offset_bottom = p_depth/depth_max * patch_size.y + 20
 	$Panel/NinePatchRect/Depth/Label.text = str(abs(int(round(depth*10)))) + " m"
-	
 	for n: Node in $Panel/NinePatchRect/EnemiesNear.get_children():
 		$Panel/NinePatchRect/EnemiesNear.remove_child(n)
 	for e: Enemy in get_tree().get_nodes_in_group("Enemies"):
 		if (pos - e.position).length() <= 500:
 			var height: float = e.depth 
-			if e is Mine: height = e.depth*-1
-			e.blib.offset_top = (height/depth_max) * patch_size.y - 20
-			e.blib.offset_bottom = (height/depth_max) * patch_size.y + 20
+			#if e is Mine: height = e.depth*-1
+			e.blib.offset_top = -(height/depth_max) * patch_size.y - 20
+			e.blib.offset_bottom = -(height/depth_max) * patch_size.y + 20
 			e.blib.offset_left = 50
 			$Panel/NinePatchRect/EnemiesNear.add_child(e.blib)
 	
