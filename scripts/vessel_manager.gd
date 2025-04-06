@@ -20,9 +20,9 @@ func _on_timer_timeout() -> void:
 	var r: float = 1900 * sqrt(randf())
 	var theta: float = randf() * 2 * PI
 	var p := Vector2(ppos.x + r * cos(theta),ppos.y + r * sin(theta))
-	
+
 	var max_depth: float = $"../Player/Map".check_depth(int(p.x/100+2048), int(p.y/100+2048))
-	if (max_depth > -15): return
+	if (max_depth > -10): return
 	var m := vessel.instantiate()
 	m.depth = 0
 	m.position = p

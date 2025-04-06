@@ -39,5 +39,10 @@ func _on_body_entered(body: Node2D) -> void:
 			return
 		if body.has_method("change_health"):
 			body.change_health(-dmg)
+			var explosion := preload("res://scenes/explosion.tscn").instantiate()
+			explosion.position = position
+			explosion.autoplay = "default"
+			explosion.z_index = depth+3
+			$"..".add_child(explosion)
 	state = States.DEAD
 	queue_free()

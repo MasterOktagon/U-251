@@ -29,15 +29,18 @@ var noisemaker_cd: float = 2
 var noisemaker_reload: float = 30
 
 var time : float = 0.
+var exp_i : int = 0
 
 const invincible := true
 
 func _ready() -> void:
+	randomize()
 	health = max_health
 	speed = 0
 	max_health_changed.emit(max_health)
 	health_changed.emit(health)
 	position = Vector2i(-500, -500)
+	depth_changed.emit(0)
 	
 func min_abs(a: float, b: float)->float:
 	if abs(a) < abs(b): return a
@@ -55,6 +58,8 @@ func _process(delta: float) -> void:
 	$PlayerSprite.rotation = cos(time) * 0.05 * sway_amp
 	$Trail.emitting = abs(speed) > 0
 	
+	z_index = round(depth)
+	
 	if state == States.DEAD:
 		speed = 0
 		return
@@ -64,7 +69,6 @@ func _process(delta: float) -> void:
 		air = min(air + 10*delta, max_air)
 		z_index = 1
 	else:
-		z_index = round(depth)
 		air = max(0, air - delta)
 		if air == 0:
 			change_health(-delta)
@@ -146,3 +150,18 @@ func change_max_health(amount: float) -> void:
 
 func get_velocity() -> Vector2:
 	return Vector2.from_angle(self.rotation-PI/2)*speed
+
+
+func _on_explosion_timeout() -> void:
+	if state == States.DEAD:
+		if exp_i < 25:
+			$DirectionSprite.hide()
+			exp_i+=1
+			var explosion := preload("res://scenes/explosion.tscn").instantiate()
+			explosion.position = position + Vector2(randf_range(-7,7), randf_range(-45,45))
+			explosion.autoplay = "default"
+			explosion.z_index = depth+3
+			$"..".add_child(explosion)
+			modulate = modulate.darkened(0.05)
+		else:
+			depth = max(depth - 0.1, $Map.check_depth(self.global_position.x/100+2048, self.global_position.y/100+2048))

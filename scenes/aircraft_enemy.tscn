@@ -14,12 +14,16 @@ script = ExtResource("1_je1o6")
 metadata/_custom_type_script = "uid://yesh6ob8cj7l"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 20
+z_as_relative = false
 position = Vector2(-3.8147e-06, 1.90735e-06)
 rotation = 1.5708
 scale = Vector2(0.568182, 0.568182)
 texture = ExtResource("2_v1ftv")
 
 [node name="Shadow" type="Sprite2D" parent="."]
+z_index = 19
+z_as_relative = false
 material = SubResource("ShaderMaterial_5rw1f")
 rotation = 1.5708
 scale = Vector2(0.568, 0.568)

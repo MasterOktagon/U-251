@@ -69,3 +69,9 @@ amount = 40
 lifetime = 1.25
 visibility_rect = Rect2(-1, -0.998299, 2, 80.0734)
 process_material = SubResource("ParticleProcessMaterial_tuyoq")
+
+[node name="Explosion" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Explosion" to="." method="_on_explosion_timeout"]
