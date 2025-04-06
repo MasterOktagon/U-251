@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		ammo -= 1
 		$Reload.start()
 	
-	print("Plane: ",abs(rotation - test_rot) < PI)
+	#print("Plane: ",abs(rotation - test_rot) < PI)
 	if (ammo == 0):
 		var r: float = 1900 * sqrt(randf())
 		var theta: float = randf() * 2 * PI

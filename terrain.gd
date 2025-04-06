@@ -1,21 +1,25 @@
 extends Sprite2D
 
 func _ready() -> void:
-	material.set_shader_parameter("map", preload("res://assets/heightmap/Topo Custom3 16x8.png"))
-	print(material.get_shader_parameter("map").get_size())
+	#material.set_shader_parameter("map", preload("res://assets/heightmap/Topo Custom3 16x8.png"))
+	material.set_shader_parameter("map", preload("res://assets/heightmap/VirginLands.png"))
 	self.global_scale = material.get_shader_parameter("map").get_size()
-	material.set_shader_parameter("sealevel", 0)
-	material.set_shader_parameter("heightmin", -10894)#-2000
-	material.set_shader_parameter("heightmax", 7891)#550
+	#material.set_shader_parameter("sealevel", 0)
+	#material.set_shader_parameter("heightmin", -10894)
+	#material.set_shader_parameter("heightmax", 7891)
+	
+	#material.set_shader_parameter("sealevel", -990)
+	#material.set_shader_parameter("heightmin", -2000)
+	#material.set_shader_parameter("heightmax", 550)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var m := get_viewport_rect().size
 	#scale = Vector2(max(m.x,m.y), max(m.x,m.y)) * 2.1#/100
 	#scale = scale / $"../Player/MainCamera".zoom
 	var player_pos: Vector2 = $"../Player".global_position#/100
 	var on_map: Vector2 = floor(abs(player_pos))
-	on_map.x = clamp(on_map.x, 0, 4095)
-	on_map.y = clamp(on_map.y, 0, 4095)
+	on_map.x = clamp(on_map.x, 0, self.global_scale.x-1)
+	on_map.y = clamp(on_map.y, 0, self.global_scale.y-1)
 	#print((position/2. + Vector2(2048,2048) - scale/2.) / (4096. * 2.))
 	#print(Vector2(max(m.x,m.y), max(m.x,m.y)))
 	material.set_shader_parameter("offset", on_map)

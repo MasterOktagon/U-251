@@ -1,20 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://c1txu8c4uik64"]
+[gd_scene load_steps=26 format=3 uid="uid://c1txu8c4uik64"]
 
 [ext_resource type="PackedScene" uid="uid://ltm6os276xx6" path="res://scenes/height.tscn" id="1_80nbo"]
 [ext_resource type="Shader" uid="uid://c8poukl35wv77" path="res://assets/shaders/map.gdshader" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://cow2i2nhhp4s2" path="res://scenes/player.tscn" id="2_e2o6t"]
 [ext_resource type="Script" uid="uid://cdv8hf5016som" path="res://terrain.gd" id="2_fc0e3"]
-[ext_resource type="Texture2D" uid="uid://8f521b8u74dr" path="res://assets/heightmap/Topo Custom3 16x8.png" id="2_mfdv2"]
+[ext_resource type="Texture2D" uid="uid://ca0iei775uhpw" path="res://assets/heightmap/VirginLands.png" id="2_ryrav"]
 [ext_resource type="Texture2D" uid="uid://c7isv0g4l0i4k" path="res://icon.svg" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://c2guqw1lxu6us" path="res://scripts/fps.gd" id="6_eow3j"]
 [ext_resource type="Script" uid="uid://be2vhf36teocy" path="res://scripts/healthbar.gd" id="7_vef74"]
 [ext_resource type="PackedScene" uid="uid://m2owfkt7wla3" path="res://scenes/head_display.tscn" id="8_hve3p"]
 [ext_resource type="PackedScene" uid="uid://h2rrq3170ej3" path="res://scenes/mine_enemy.tscn" id="8_j5wjh"]
-
-[ext_resource type="Script" uid="uid://w4b7lina4jch" path="res://scripts/mine_manager.gd" id="11_iotsf"]
+[ext_resource type="Script" path="res://scripts/mine_manager.gd" id="11_iotsf"]
 [ext_resource type="PackedScene" uid="uid://clow01wc1phxn" path="res://scenes/vessel_enemy.tscn" id="11_mfdv2"]
-[ext_resource type="Script" uid="uid://d167g4f0n4xpu" path="res://scripts/vessel_manager.gd" id="12_iotsf"]
-[ext_resource type="PackedScene" uid="uid://4nwpp0a4ns3t" path="res://scenes/aircraft_enemy.tscn" id="13_lc2xo"]
+[ext_resource type="Script" path="res://scripts/vessel_manager.gd" id="12_iotsf"]
+[ext_resource type="PackedScene" path="res://scenes/aircraft_enemy.tscn" id="13_lc2xo"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_paxxb"]
 noise_type = 3
@@ -51,10 +50,10 @@ shader_parameter/tiling = Vector2(1, 1)
 shader_parameter/offSetSpeed = Vector2(0.03, 0.05)
 shader_parameter/backGroundDirX = 0.023
 shader_parameter/backGroundDirY = 0.01
-shader_parameter/map = ExtResource("2_mfdv2")
-shader_parameter/sealevel = -1800.0
-shader_parameter/heightmin = 0.0
-shader_parameter/heightmax = 0.0
+shader_parameter/map = ExtResource("2_ryrav")
+shader_parameter/sealevel = -990.0
+shader_parameter/heightmin = -2000.0
+shader_parameter/heightmax = 550.0
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/size = Vector2(0, 0)
 shader_parameter/sizePx = Vector2(1, 1)
@@ -105,11 +104,13 @@ adjustment_brightness = 4.28
 material = SubResource("ShaderMaterial_fc0e3")
 scale = Vector2(4096, 4096)
 texture = SubResource("CanvasTexture_e2o6t")
+centered = false
 script = ExtResource("2_fc0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_mfdv2")
+texture = ExtResource("2_ryrav")
+centered = false
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 
@@ -201,6 +202,4 @@ position = Vector2(-476, 238)
 [connection signal="air_changed" from="Player" to="GUI/Healthbar" method="update_air"]
 [connection signal="depth_changed" from="Player" to="GUI/HeadDisplay" method="_on_depth_change"]
 [connection signal="health_changed" from="Player" to="GUI/Healthbar" method="update_health"]
-[connection signal="moved" from="Player" to="MineManager" method="_on_player_move"]
-[connection signal="moved" from="Player" to="VesselManager" method="_on_player_move"]
 [connection signal="timeout" from="VesselManager/Timer" to="VesselManager" method="_on_timer_timeout"]

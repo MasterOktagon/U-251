@@ -30,12 +30,14 @@ var noisemaker_reload: float = 30
 
 var time : float = 0.
 
+const invincible := true
+
 func _ready() -> void:
 	health = max_health
 	speed = 0
 	max_health_changed.emit(max_health)
 	health_changed.emit(health)
-	#position = Vector2i(-500, -500)
+	position = Vector2i(-500, -500)
 	
 func min_abs(a: float, b: float)->float:
 	if abs(a) < abs(b): return a
@@ -69,7 +71,7 @@ func _process(delta: float) -> void:
 		# play "sound air pressure low"
 	emit_signal("air_changed", air)
 	
-	var max_depth: int = $Map.check_depth(self.global_position.x/100+2048, self.global_position.y/100+2048)
+	var max_depth: int = $Map.check_depth(self.global_position.x, self.global_position.y)
 	if Input.is_key_pressed(KEY_W):
 		#if !(depth <= max_depth):
 		speed = move_toward(speed, max_speed, 0.01)
@@ -101,11 +103,11 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_PAGEDOWN):
 		$MainCamera.zoom = clamp($MainCamera.zoom*1.01,Vector2(0.5,0.5), Vector2(2,2))
 	
+	#print("max_depth", max_depth)
 	if depth<=max_depth:
 		depth = max_depth
 		# play sound "kiel auf grund"
 		change_health(-0.2)
-		depth = max_depth
 	
 	if Input.is_key_pressed(KEY_Q):
 		depth = move_toward(depth, 0, 0.03)
@@ -120,6 +122,8 @@ func _process(delta: float) -> void:
 	if (abs(speed) > 0): emit_signal("moved", position)
 
 func change_health(amount: float) -> void:
+	if invincible:
+		return
 	health += amount
 	if health <= 0:
 		state = States.DEAD

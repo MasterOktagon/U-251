@@ -35,7 +35,7 @@ uniform vec2 zoom;
 const vec4 GRASS_COLOR = vec4(0.1,0.4,0.1,1);
 
 float grayscale(vec4 i){
-	float med = (i.r + i.g + i.b) / 3.;
+	float med = (i.r + i.g + i.b )/3.;//+ i.a) / 4.;
 	return med;
 }
 
