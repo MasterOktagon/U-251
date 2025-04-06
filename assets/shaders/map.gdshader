@@ -25,6 +25,8 @@ uniform float backGroundDirY : hint_range(-0.1, 0.1) = 0.01;
 group_uniforms map;
 uniform sampler2D map;
 uniform float sealevel;
+uniform float heightmin;
+uniform float heightmax;
 uniform vec2 offset;
 uniform vec2 size;
 uniform vec2 sizePx;
@@ -41,8 +43,6 @@ void fragment() {
 	//vec4 height = texture(map, (offset + vec2(2048.) + size/2.) / (4096. * 1.) + UV/1.);//(UV /3. - 3.*(vec2(2048.)/TEXTURE_PIXEL_SIZE) + offset / size / 3.));
 	float height = grayscale(texture(map, UV));
 	
-	float heightmin = -2000.;
-	float heightmax = 550.;
 	float heightmetres = heightmin + (heightmax-heightmin)*height;
 	
 	vec4 color = vec4(vec3(height),1);
