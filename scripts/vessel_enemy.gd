@@ -69,6 +69,10 @@ func move_attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 	var angle: float = dir.angle_to(Vector2.from_angle(self.rotation+PI))
 	self.global_rotation = move_toward(self.global_rotation, self.global_rotation+angle, 0.01)
 	move_local_x(speed)
+	var bow_pos = self.global_position + Vector2($Sprite2D.get_rect().size.x/2,$Sprite2D.get_rect().size.x/2)*Vector2.from_angle(self.global_rotation)*sign(speed)
+	if $"../Player/Map".check_depth(bow_pos.x, bow_pos.y)>=0:
+		move_local_x(-speed)
+		state = States.ALIVE
 	
 	if type == Types.SUBMARINE:
 		depth = move_toward(depth, target_depth, 0.2)
