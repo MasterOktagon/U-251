@@ -28,6 +28,16 @@ func _physics_process(delta: float) -> void:
 	if (depth <= 0):
 		speed = min(speed+0.02, max_speed)
 		move_local_x(speed)
+		var bow_pos = self.global_position + Vector2($TorpedoSprite.get_rect().size.x/2,$TorpedoSprite.get_rect().size.x/2)*Vector2.from_angle(self.global_rotation)*sign(speed)
+		if $"../Player/Map".check_depth(bow_pos.x, bow_pos.y)>=0:
+			var explosion := preload("res://scenes/explosion.tscn").instantiate()
+			explosion.position = position
+			explosion.autoplay = "default"
+			explosion.z_index = depth+3
+			$"..".add_child(explosion)
+			state = States.DEAD
+			queue_free()
+		
 		if (target_pos-position).length() < 150:
 			var test_rot  := position.angle_to_point(target_pos)
 			rotation = rotate_toward(rotation, test_rot, 0.01)
