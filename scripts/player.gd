@@ -27,6 +27,8 @@ var depth: float = 0
 var noisemaker_cd: float = 2
 var noisemaker_reload: float = 30
 
+var time : float = 0.
+
 func _ready() -> void:
 	health = max_health
 	speed = 0
@@ -42,6 +44,14 @@ func surfaced()->bool:
 	return abs(depth) < 2
 
 func _process(delta: float) -> void:
+	time += delta
+	if (time >= 2*PI): time -= 2*PI
+	var sway_amp := 1.
+	print(speed)
+	$PlayerSprite.offset.x = sin(time) * 5 * sway_amp
+	$PlayerSprite.offset.y = cos(time) * 7 * sway_amp
+	$PlayerSprite.rotation = cos(time) * 0.05 * sway_amp
+	
 	#position.x = int(position.x + 1000*delta) % 100000
 	#position.y = int(position.x + 1000*delta) % 100000
 	#print(position)
