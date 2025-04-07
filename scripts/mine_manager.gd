@@ -7,13 +7,9 @@ func _ready()->void:
 	randomize()
 
 func _on_player_move(ppos: Vector2):
-	var i : int = 0;
-	for e: Enemy in get_tree().get_nodes_in_group("Enemies"):
-		if e is Mine:
-			i+=1
-	if i >= 200: return
+	var i : int = get_tree().get_node_count_in_group("Mines")
 		
-	var r: float = 1900 * sqrt(randf())
+	var r: float = 1000 + randi_range(0, 900)
 	var theta: float = randf() * 2 * PI
 	var p := Vector2(ppos.x + r * cos(theta),ppos.y + r * sin(theta))
 	

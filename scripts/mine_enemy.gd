@@ -11,6 +11,7 @@ func _ready() -> void:
 	#depth = -130
 	z_index = int(depth)
 	dmg = 50
+	add_to_group("Mines")
 
 func _process(_delta: float) -> void:
 	if self.overlaps_body($"../Player"):

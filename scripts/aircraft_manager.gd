@@ -12,7 +12,7 @@ func _on_player_move(ppos: Vector2):
 	self.ppos = ppos
 
 func _on_timer_timeout() -> void:
-	var r: float = 2200 * sqrt(randf())
+	var r: float = 1900
 	var theta: float = randf() * 2 * PI
 	var p := Vector2(ppos.x + r * cos(theta),ppos.y + r * sin(theta))
 	

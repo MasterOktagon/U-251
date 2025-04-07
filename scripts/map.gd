@@ -2,7 +2,7 @@ extends Node2D
 
 var height_min: float = -255
 var height_max: float = 0
-var sea_level: float = -220
+var sea_level: float = -42.01
 var heightmap: PackedByteArray = preload("res://assets/heightmap/VirginLands.png").get_image().get_data()
 var map_size: Vector2i = Vector2i(4096, 4096)
 var map_scale: int = 0
@@ -32,7 +32,7 @@ func update_enemies()->void:
 		if (global_position - e.position).length() > DELETE_RADIUS:
 			e.queue_free()
 
-func check_depth(x: int, y: int) -> int:
+func check_depth(x: int, y: int) -> float:
 	var on_map: Vector2i = abs(Vector2i(x,y))
 	on_map /= map_scale
 	on_map.x = clamp(on_map.x, 0, map_size.x-1)
