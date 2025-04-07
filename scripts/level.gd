@@ -62,7 +62,7 @@ func load_channel():
 	map_resource = "res://assets/heightmap/channel.png"
 	heightmap = preload("res://assets/heightmap/channel.png").get_image().get_data()
 	map_size = Vector2i(3636, 3636)
-	map_scale = 15
+	map_scale = 10
 	start_pos = Vector2i(3240, 1200)
 	start_rot = -0.5*PI
 	checkpoint_pos = [Vector2(2450,2500), Vector2(1154,3150), Vector2(1720,280), Vector2(520,3500), Vector2(107, 1440)]
