@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://c1txu8c4uik64"]
+[gd_scene load_steps=26 format=3 uid="uid://c1txu8c4uik64"]
 
 [ext_resource type="PackedScene" uid="uid://ltm6os276xx6" path="res://scenes/height.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://objm3tdls3ao" path="res://scenes/map.tscn" id="1_215e1"]
 [ext_resource type="PackedScene" uid="uid://cow2i2nhhp4s2" path="res://scenes/player.tscn" id="2_e2o6t"]
+[ext_resource type="Shader" uid="uid://blju74fsoqg0n" path="res://assets/shaders/pprocessing.gdshader" id="3_80cx4"]
 [ext_resource type="Script" uid="uid://c2guqw1lxu6us" path="res://scripts/fps.gd" id="6_eow3j"]
 [ext_resource type="Script" uid="uid://be2vhf36teocy" path="res://scripts/healthbar.gd" id="7_vef74"]
 [ext_resource type="PackedScene" uid="uid://m2owfkt7wla3" path="res://scenes/head_display.tscn" id="8_hve3p"]
@@ -15,6 +16,10 @@
 [ext_resource type="Script" uid="uid://d167g4f0n4xpu" path="res://scripts/vessel_manager.gd" id="12_iotsf"]
 [ext_resource type="AudioStream" uid="uid://bo7ftqrd7diwr" path="res://assets/music/sub game.mp3" id="14_7sc4i"]
 [ext_resource type="Script" uid="uid://bvpkeu6ubbb8b" path="res://scripts/aircraft_manager.gd" id="14_215e1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8heu"]
+shader = ExtResource("3_80cx4")
+shader_parameter/size = Vector2(32, 28)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vef74"]
 bg_color = Color(0.6, 0.352941, 0.6, 1)
@@ -31,6 +36,10 @@ border_width_left = 3
 border_width_top = 3
 border_width_bottom = 3
 border_color = Color(0.587224, 0.845714, 0.939149, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7sc4i"]
+line_spacing = 0.0
+font = ExtResource("10_lc2xo")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfdv2"]
 bg_color = Color(0.31, 0.31, 0.31, 1)
@@ -66,8 +75,20 @@ adjustment_brightness = 4.28
 
 [node name="Map" parent="." instance=ExtResource("1_215e1")]
 
+[node name="Postprocessing" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Postprocessing"]
+material = SubResource("ShaderMaterial_e8heu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_iotsf")
+
 [node name="GUI" type="CanvasLayer" parent="."]
 process_mode = 3
+layer = 2
 
 [node name="Height" parent="GUI" instance=ExtResource("1_80nbo")]
 
@@ -77,6 +98,7 @@ offset_bottom = 23.0
 script = ExtResource("6_eow3j")
 
 [node name="Pos" type="Label" parent="GUI"]
+visible = false
 offset_top = 25.0
 offset_right = 40.0
 offset_bottom = 48.0
@@ -113,6 +135,20 @@ theme_override_styles/background = SubResource("StyleBoxFlat_vef74")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hve3p")
 show_percentage = false
 
+[node name="Label" type="Label" parent="GUI/Healthbar/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "If your integrity falls to 0 due to torpedos, mines or lack of pressure, your ship implodes"
+mouse_filter = 0
+text = "Integrity"
+label_settings = SubResource("LabelSettings_7sc4i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AirBar" type="ProgressBar" parent="GUI/Healthbar"]
 layout_mode = 1
 anchors_preset = -1
@@ -129,6 +165,20 @@ grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_mfdv2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_iotsf")
 show_percentage = false
+
+[node name="Label" type="Label" parent="GUI/Healthbar/AirBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "The pressure drops if you are under water. If the pressure hits 0, you lose integrity. Go back to the surface to repressurize"
+mouse_filter = 1
+text = "Pressure"
+label_settings = SubResource("LabelSettings_7sc4i")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HeadDisplay" parent="GUI" instance=ExtResource("8_hve3p")]
 
@@ -173,6 +223,12 @@ label_settings = SubResource("LabelSettings_215e1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Button" type="Button" parent="GUI/EndScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("10_lc2xo")
+text = "Return to menu"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ryrav")
 
@@ -190,7 +246,7 @@ autostart = true
 script = ExtResource("14_215e1")
 
 [node name="Timer" type="Timer" parent="AircraftManager"]
-wait_time = 30.0
+wait_time = 90.0
 autostart = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
@@ -208,5 +264,6 @@ parameters/looping = true
 [connection signal="moved" from="Player" to="VesselManager" method="_on_player_move"]
 [connection signal="moved" from="Player" to="AircraftManager" method="_on_player_move"]
 [connection signal="final_checkpoint" from="Map" to="GUI/EndScreen" method="_on_map_final_checkpoint"]
+[connection signal="pressed" from="GUI/EndScreen/CenterContainer/VBoxContainer/Button" to="GUI/EndScreen" method="_on_button_pressed"]
 [connection signal="timeout" from="VesselManager/Timer" to="VesselManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="AircraftManager/Timer" to="AircraftManager" method="_on_timer_timeout"]

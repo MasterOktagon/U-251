@@ -19,3 +19,11 @@ func _on_player_died() -> void:
 	$CenterContainer.show()
 	$"CenterContainer/VBoxContainer/Status".text = "FAILURE"
 	$"CenterContainer/VBoxContainer/Label".text = "How did we fail our emperor again?!"
+
+
+func _on_button_pressed() -> void:
+	var menu := preload("res://lore.tscn")
+	Global.skip_menu = true
+	get_tree().paused = false
+	
+	get_tree().change_scene_to_packed(menu)

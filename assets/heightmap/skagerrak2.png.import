@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfmllwnw8pyys"
-path="res://.godot/imported/svp_torpedo.png-247f3cf0c7cb377c38b358900cb05253.ctex"
+uid="uid://cq6v2x6nafmmu"
+path="res://.godot/imported/skagerrak2.png-495d5286b8550570cc126014b04c5b64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/torpedo/svp_torpedo.png"
-dest_files=["res://.godot/imported/svp_torpedo.png-247f3cf0c7cb377c38b358900cb05253.ctex"]
+source_file="res://assets/heightmap/skagerrak2.png"
+dest_files=["res://.godot/imported/skagerrak2.png-495d5286b8550570cc126014b04c5b64.ctex"]
 
 [params]
 

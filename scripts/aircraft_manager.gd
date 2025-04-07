@@ -23,3 +23,5 @@ func _on_timer_timeout() -> void:
 	m.position = p
 	m.add_to_group("Enemies")
 	$"..".add_child(m)
+	$Timer.wait_time = 30.
+	$Timer.start()

@@ -97,4 +97,4 @@ func check_depth(x: int, y: int) -> float:
 	on_map.x = clamp(on_map.x, 0, level.map_size.x-1)
 	on_map.y = clamp(on_map.y, 0, level.map_size.y-1)
 	var depth: float = level.height_min + (level.height_max-level.height_min)*level.heightmap[(on_map.y*level.map_size.x+on_map.x)*3]/255.
-	return depth-level.sea_level
+	return (depth-level.sea_level) * level.depth_scale

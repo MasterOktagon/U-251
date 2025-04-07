@@ -28,6 +28,6 @@ func _process(_delta: float) -> void:
 			#if e is Mine: height = e.depth*-1
 			e.blib.offset_top = -(height/depth_max) * patch_size.y - e.blib.texture.get_size().y/2
 			e.blib.offset_bottom = -(height/depth_max) * patch_size.y + e.blib.texture.get_size().y/2
-			e.blib.offset_left = 50
+			e.blib.offset_left = 50 + 20 * int(e is Mine)
 			$Panel/NinePatchRect/EnemiesNear.add_child(e.blib)
 	

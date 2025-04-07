@@ -8,7 +8,7 @@ var lifetime: float = 30
 var max_speed: float = 5
 
 func _ready() -> void:
-	blib.texture = preload("res://assets/torpedo/svp_torpedo.png")
+	blib.texture = preload("res://assets/torpedo/torpedo.png")
 	state = States.ALIVE
 	type = Types.TORPEDO
 	$LifeTimer.start(lifetime)

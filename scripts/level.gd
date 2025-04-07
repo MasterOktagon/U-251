@@ -14,6 +14,7 @@ var start_rot: float = 0
 var checkpoint_pos: Array[Vector2] = []
 var checkpoint_names : Array[String] = []
 var checkpoints: Array[Sprite2D] = []
+var depth_scale = 1
 
 func load_VirginLands():
 	height_min = -255
@@ -52,3 +53,4 @@ func load_skagerrak():
 	start_rot = 0*PI
 	checkpoint_pos = [Vector2(1500,2800), Vector2(1550,2610), Vector2(1506,2348), Vector2(1710,1616), Vector2(1534, 709)]
 	checkpoint_names = ["Kieler Bucht", "Fehmarnsund", "Nakskov", "Kattegat", "Skagerrak"]
+	depth_scale = 3
