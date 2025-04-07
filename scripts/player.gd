@@ -39,7 +39,7 @@ func _ready() -> void:
 	speed = 0
 	max_health_changed.emit(max_health)
 	health_changed.emit(health)
-	position = Vector2i(55500, 12000)
+	self.global_position = $"../Map".level.start_pos
 	depth_changed.emit(0)
 	
 func min_abs(a: float, b: float)->float:
@@ -76,7 +76,7 @@ func _process(delta: float) -> void:
 		# play "sound air pressure low"
 	emit_signal("air_changed", air)
 	
-	var max_depth: int = $Map.check_depth(self.global_position.x, self.global_position.y)
+	var max_depth: int = $"../Map".check_depth(self.global_position.x, self.global_position.y)
 	
 	if Input.is_key_pressed(KEY_W):
 		#if !(depth <= max_depth):
@@ -132,7 +132,7 @@ func _process(delta: float) -> void:
 	#print(depth)
 	move_local_y(-speed)
 	var bow_pos = self.global_position + Vector2(-$PlayerSprite.get_rect().size.y/2,-$PlayerSprite.get_rect().size.y/2)*Vector2.from_angle(self.global_rotation-PI/2)*sign(-speed)
-	if $Map.check_depth(bow_pos.x, bow_pos.y)>=0:
+	if $"../Map".check_depth(bow_pos.x, bow_pos.y)>=0:
 		move_local_y(speed)
 		speed = 0
 		change_health(-10)
@@ -172,4 +172,4 @@ func _on_explosion_timeout() -> void:
 			$"..".add_child(explosion)
 			modulate = modulate.darkened(0.05)
 		else:
-			depth = max(depth - 1, $Map.check_depth(self.global_position.x, self.global_position.y))
+			depth = max(depth - 1, $"../Map".check_depth(self.global_position.x, self.global_position.y))

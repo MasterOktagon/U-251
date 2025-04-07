@@ -4,7 +4,7 @@ var map_scale: int = 1
 
 func _ready() -> void:
 	#material.set_shader_parameter("map", preload("res://assets/heightmap/Topo Custom3 16x8.png"))
-	material.set_shader_parameter("map", preload("res://assets/heightmap/map.png"))
+	material.set_shader_parameter("map", preload("res://assets/heightmap/atlantic.png"))
 	self.global_scale = material.get_shader_parameter("map").get_size()
 	#material.set_shader_parameter("sealevel", 0)
 	#material.set_shader_parameter("heightmin", -10894)
@@ -31,13 +31,4 @@ func _process(_delta: float) -> void:
 	material.set_shader_parameter("size", scale)
 	#material.set_shader_parameter("sizePx", Vector2(max(m.x,m.y), max(m.x,m.y)) * 2.1)
 	#material.set_shader_parameter("zoom", $"../Player/MainCamera".zoom)
-	if Input.is_key_pressed(KEY_1):
-		$"../Sprite2D".show()
-	if Input.is_key_pressed(KEY_2):
-		$"../Sprite2D".hide()
-	if Input.is_key_pressed(KEY_UP):
-		material.set_shader_parameter("sealevel", (material.get_shader_parameter("sealevel")+1))
-		print(material.get_shader_parameter("sealevel"))
-	if Input.is_key_pressed(KEY_DOWN):
-		material.set_shader_parameter("sealevel", (material.get_shader_parameter("sealevel")-1))
-		print(material.get_shader_parameter("sealevel"))
+	

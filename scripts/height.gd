@@ -3,16 +3,12 @@ extends Control
 var depth_max: float = 0
 
 func _ready() -> void:
-	depth_max = abs($"../../Player/Map".height_min)
+	depth_max = abs($"../../Map".level.height_min)
 
 func _process(_delta: float) -> void:
 	var pos: Vector2 = $"../../Player".position
-	var depth: float = - ($"../../Player/Map".check_depth(pos.x, pos.y))
-	#print("CHeck_Depth", depth)
-	#print(depth)
-	#print(int(pos.x/1+2048), "\t", int(pos.y/1+2048))
+	var depth: float = - ($"../../Map".check_depth(pos.x, pos.y))
 	var p_depth: float = - $"../../Player".depth
-	#print("Player_Depth", p_depth)
 	
 	var rel_depth: float = depth/depth_max
 	var patch_size: Vector2 = $Panel/NinePatchRect.size - Vector2(0, 100)

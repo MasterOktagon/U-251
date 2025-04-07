@@ -24,3 +24,7 @@ window/vsync/vsync_mode=2
 Enemies=""
 NoiseMaker=""
 Mines=""
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

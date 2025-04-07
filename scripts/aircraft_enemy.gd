@@ -12,7 +12,7 @@ func _ready() -> void:
 	speed = 7
 	depth = 10
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	$Sprite2D.offset = to_local(global_position + Vector2(-50, 0))
 	move_local_x(speed)
 	if (ammo > -1):

@@ -15,7 +15,7 @@ func _ready() -> void:
 	update_target_depth()
 	print("Torpedo created at ", position, " | ", depth, " target ", target_depth)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	update_target_pos()
 	#update_target_depth()
 	z_index = int(depth)
@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 		speed = min(speed+0.02, max_speed)
 		move_local_x(speed)
 		var bow_pos = self.global_position + Vector2($TorpedoSprite.get_rect().size.x/2,$TorpedoSprite.get_rect().size.x/2)*Vector2.from_angle(self.global_rotation)*sign(speed)
-		if $"../Player/Map".check_depth(bow_pos.x, bow_pos.y)>=0:
+		if $"../Map".check_depth(bow_pos.x, bow_pos.y)>=0:
 			var explosion := preload("res://scenes/explosion.tscn").instantiate()
 			explosion.position = position
 			explosion.autoplay = "default"

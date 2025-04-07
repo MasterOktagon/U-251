@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cow2i2nhhp4s2"]
+[gd_scene load_steps=9 format=3 uid="uid://cow2i2nhhp4s2"]
 
 [ext_resource type="Script" uid="uid://cqta5igr403b2" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://doka67yj0l3mv" path="res://assets/player/ShipSubMarineHull.png" id="2_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://objm3tdls3ao" path="res://scenes/map.tscn" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dxjv84gvfvd76" path="res://assets/ui/direction.svg" id="4_dqkch"]
 
 [sub_resource type="Gradient" id="Gradient_dqkch"]
@@ -55,8 +54,6 @@ one_shot = true
 
 [node name="NoisemakerReload" type="Timer" parent="."]
 one_shot = true
-
-[node name="Map" parent="." instance=ExtResource("3_qhqgy")]
 
 [node name="DirectionSprite" type="Sprite2D" parent="."]
 z_index = 1

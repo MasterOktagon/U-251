@@ -1,10 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://c1txu8c4uik64"]
+[gd_scene load_steps=20 format=3 uid="uid://c1txu8c4uik64"]
 
 [ext_resource type="PackedScene" uid="uid://ltm6os276xx6" path="res://scenes/height.tscn" id="1_80nbo"]
-[ext_resource type="Shader" uid="uid://c8poukl35wv77" path="res://assets/shaders/map.gdshader" id="1_feb5d"]
-[ext_resource type="Texture2D" uid="uid://lwvt5ueskx8k" path="res://assets/heightmap/map.png" id="2_7sc4i"]
+[ext_resource type="PackedScene" uid="uid://objm3tdls3ao" path="res://scenes/map.tscn" id="1_215e1"]
 [ext_resource type="PackedScene" uid="uid://cow2i2nhhp4s2" path="res://scenes/player.tscn" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://cdv8hf5016som" path="res://terrain.gd" id="2_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://ca0iei775uhpw" path="res://assets/heightmap/VirginLands.png" id="2_ryrav"]
 [ext_resource type="Texture2D" uid="uid://c7isv0g4l0i4k" path="res://icon.svg" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://c2guqw1lxu6us" path="res://scripts/fps.gd" id="6_eow3j"]
@@ -16,51 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://clow01wc1phxn" path="res://scenes/vessel_enemy.tscn" id="11_mfdv2"]
 [ext_resource type="Script" uid="uid://d167g4f0n4xpu" path="res://scripts/vessel_manager.gd" id="12_iotsf"]
 [ext_resource type="Script" uid="uid://bvpkeu6ubbb8b" path="res://scripts/aircraft_manager.gd" id="14_215e1"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_paxxb"]
-noise_type = 3
-frequency = 0.0617
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gldc4"]
-width = 1024
-height = 1024
-noise = SubResource("FastNoiseLite_paxxb")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_0cso3"]
-noise_type = 3
-frequency = 0.0248
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2klcf"]
-width = 4096
-height = 4096
-seamless = true
-seamless_blend_skirt = 0.159
-noise = SubResource("FastNoiseLite_0cso3")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fc0e3"]
-shader = ExtResource("1_feb5d")
-shader_parameter/waterNoise = SubResource("NoiseTexture2D_2klcf")
-shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_gldc4")
-shader_parameter/waterColor = Color(0.116, 0.270667, 0.58, 1)
-shader_parameter/colorCorection = 0.15
-shader_parameter/distortionForce = 0.014
-shader_parameter/WDBrightness = 0.6
-shader_parameter/WDFreq = 0.6
-shader_parameter/WDSize = 0.6
-shader_parameter/WDSpeed = 4.0
-shader_parameter/tiling = Vector2(8, 8)
-shader_parameter/offSetSpeed = Vector2(0.003, 0.003)
-shader_parameter/backGroundDirX = 0.023
-shader_parameter/backGroundDirY = 0.01
-shader_parameter/map = ExtResource("2_7sc4i")
-shader_parameter/sealevel = -42.01
-shader_parameter/heightmin = -255.0
-shader_parameter/heightmax = 0.0
-shader_parameter/offset = Vector2(0, 0)
-shader_parameter/size = Vector2(0, 0)
-shader_parameter/map_scale = 15.0
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_e2o6t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vef74"]
 bg_color = Color(0.6, 0.352941, 0.6, 1)
@@ -101,12 +54,7 @@ adjustment_brightness = 4.28
 
 [node name="Game" type="Node2D" groups=["Mines"]]
 
-[node name="Terrain" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_fc0e3")
-scale = Vector2(4096, 4096)
-texture = SubResource("CanvasTexture_e2o6t")
-centered = false
-script = ExtResource("2_fc0e3")
+[node name="Map" parent="." instance=ExtResource("1_215e1")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
