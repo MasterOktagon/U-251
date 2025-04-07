@@ -93,15 +93,10 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_A):
 		speed = move_toward(speed, 0.0, 0.005)
 		rotation -= delta*rotation_speed*speed
-		$DirectionSprite.rotation = min_abs($DirectionSprite.rotation - 0.5*delta, -1)
 		
 	elif Input.is_key_pressed(KEY_D):
 		speed = move_toward(speed, 0.0, 0.005)
 		rotation += delta*rotation_speed*speed
-		$DirectionSprite.rotation = min_abs($DirectionSprite.rotation + 0.5*delta, 1)
-	
-	else:
-		$DirectionSprite.rotation = $DirectionSprite.rotation * 0.7
 	
 	if Input.is_key_pressed(KEY_PAGEUP):
 		$MainCamera.zoom = clamp($MainCamera.zoom*0.99,Vector2(0.005,0.005), Vector2(2,2))

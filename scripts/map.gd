@@ -21,6 +21,7 @@ func load_level(mission: Missions = Missions.DEFAULT):
 			level.load_atlantic()
 		var err:
 			print("couldn´t load level: ", err)
+			level.load_VirginLands()
 	
 	# setting shader
 	$Terrain.material.set_shader_parameter("map_scale", level.map_scale)
@@ -37,10 +38,8 @@ func load_level(mission: Missions = Missions.DEFAULT):
 		level.checkpoints.append(Sprite2D.new())
 		level.checkpoints[i].global_position = level.checkpoint_pos[i]*level.map_scale
 		level.checkpoints[i].texture = preload("res://assets/heightmap/test2.png")
-		level.checkpoints[i].scale = level.checkpoints[i].texture.get_size()
 		level.checkpoints[i].z_index = 0
 		add_child(level.checkpoints[i])
-		print(level.checkpoints[i])
 
 func _process(_delta: float) -> void:
 	player_pos = $"../Player".global_position
@@ -53,9 +52,11 @@ func _process(_delta: float) -> void:
 	$Terrain.material.set_shader_parameter("size", scale)
 	
 	# chechpoint check
+	var nearest_pos: Vector2 = Vector2(0,0)
+	var nearest_dist:float = INF
 	for i in range(len(level.checkpoints)):
-		# direction arrow look at
-		if abs((player_pos-level.checkpoints[i].global_position).length())<100:
+		var dist: float =  abs((player_pos-level.checkpoints[i].global_position).length())
+		if dist<200:
 			print("chechpoint reached: ", level.checkpoint_names[i])
 			var del: Array[Sprite2D] = level.checkpoints.slice(0,i+1)
 			level.checkpoints = level.checkpoints.slice(i+1,len(level.checkpoints))
@@ -63,6 +64,11 @@ func _process(_delta: float) -> void:
 			for d in del:
 				d.queue_free()
 			break
+		if dist<nearest_dist:
+			nearest_dist = dist
+			nearest_pos = level.checkpoints[i].global_position
+	$"../Player/DirectionSprite".look_at(nearest_pos)
+	$"../Player/DirectionSprite".global_rotation += PI/2
 
 func update_enemies()->void:
 	for e: Enemy in get_tree().get_nodes_in_group("Enemies"):
