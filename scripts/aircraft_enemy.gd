@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		var t := torpedo.instantiate()
 		t.dmg = 20
 		t.global_transform.origin = self.global_transform.origin
-		t.depth = 0
+		t.depth = 1
 		t.target_depth = target_depth
 		t.rotation = rotation
 		$"..".add_child(t)

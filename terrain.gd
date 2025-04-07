@@ -4,7 +4,7 @@ var map_scale: int = 1
 
 func _ready() -> void:
 	#material.set_shader_parameter("map", preload("res://assets/heightmap/Topo Custom3 16x8.png"))
-	material.set_shader_parameter("map", preload("res://assets/heightmap/VirginLands.png"))
+	material.set_shader_parameter("map", preload("res://assets/heightmap/map.png"))
 	self.global_scale = material.get_shader_parameter("map").get_size()
 	#material.set_shader_parameter("sealevel", 0)
 	#material.set_shader_parameter("heightmin", -10894)

@@ -31,7 +31,7 @@ var noisemaker_reload: float = 30
 var time : float = 0.
 var exp_i : int = 0
 
-const invincible := false
+const invincible := true
 
 func _ready() -> void:
 	randomize()
@@ -39,7 +39,7 @@ func _ready() -> void:
 	speed = 0
 	max_health_changed.emit(max_health)
 	health_changed.emit(health)
-	position = Vector2i(21000, 17000)
+	position = Vector2i(55500, 12000)
 	depth_changed.emit(0)
 	
 func min_abs(a: float, b: float)->float:

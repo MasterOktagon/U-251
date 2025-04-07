@@ -10,6 +10,7 @@ func _ready() -> void:
 	state = States.ALIVE
 	type = Types.WAHRSHIP
 	dmg = 20
+	add_to_group("Vessels")
 
 func _process(delta: float) -> void:
 	z_index = int(depth)

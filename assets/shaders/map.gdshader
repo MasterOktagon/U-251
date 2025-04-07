@@ -45,7 +45,7 @@ void fragment() {
 	float heightmetres = heightmin + (heightmax-heightmin)*height;
 	
 	vec4 color = vec4(vec3(height),1);
-	if (heightmetres>sealevel){
+	if (heightmetres>=sealevel){
 		color = GRASS_COLOR;
 		COLOR = color;
 	}
@@ -70,7 +70,7 @@ void fragment() {
 		waterUV = waterUV + noiseValue * distortionForce * WDSpeed;
 
 
-		vec4 noiseColor = texture(waterNoise, waterUV);
+		vec4 noiseColor = texture(waterNoise, waterUV*2.);
 		float intensity = smoothstep(WDFreq, WDSize, noiseColor.r);
 		color += vec4(intensity * vec3(WDBrightness), color.a);
 
