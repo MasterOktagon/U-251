@@ -38,3 +38,8 @@ func _on_new_char_timeout() -> void:
 	if current - 20 > len(texts[idx]):
 		current = 0
 		idx += 1
+
+
+func _on_button_pressed() -> void:
+	$CenterContainer.hide()
+	$LevelSelection.show()

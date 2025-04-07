@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5compp1o6nvr"]
+[gd_scene load_steps=7 format=3 uid="uid://b5compp1o6nvr"]
 
 [ext_resource type="FontFile" uid="uid://c01e3tw5rptgh" path="res://assets/fonts/Mechanical-g5Y5.otf" id="1_k5caf"]
 [ext_resource type="Script" uid="uid://dj78u1syvtdio" path="res://scripts/lore.gd" id="1_pp6gk"]
 [ext_resource type="Script" uid="uid://ds3lhh2lgy03s" path="res://scripts/bg_color.gd" id="3_iswpb"]
+[ext_resource type="FontFile" uid="uid://bot3o81ywy68" path="res://assets/fonts/DinSchablonierschrift-ARBA.ttf" id="4_sb8fh"]
 
 [sub_resource type="Theme" id="Theme_iswpb"]
 default_font = ExtResource("1_k5caf")
+
+[sub_resource type="LabelSettings" id="LabelSettings_uwkfr"]
+font = ExtResource("4_sb8fh")
+font_size = 30
 
 [node name="Lore" type="Control"]
 layout_mode = 3
@@ -46,4 +51,34 @@ text = "Accept Task"
 wait_time = 0.05
 autostart = true
 
+[node name="LevelSelection" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelList" type="VBoxContainer" parent="LevelSelection"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelSelection/LevelList"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "U-251"
+label_settings = SubResource("LabelSettings_uwkfr")
+
+[node name="Level1" type="Button" parent="LevelSelection/LevelList"]
+layout_mode = 2
+text = "1. Skagerrak"
+alignment = 0
+
+[node name="Level2" type="Button" parent="LevelSelection/LevelList"]
+layout_mode = 2
+text = "2. Channel"
+alignment = 0
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="NewChar" to="." method="_on_new_char_timeout"]
