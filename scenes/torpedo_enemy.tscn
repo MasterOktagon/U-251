@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://cueei66b5kxem"]
 
 [ext_resource type="Script" uid="uid://n0ywel7so0ih" path="res://scripts/torpedo_enemy.gd" id="1_uvraf"]
-[ext_resource type="Texture2D" uid="uid://bfmllwnw8pyys" path="res://assets/torpedo/svp_torpedo.png" id="2_cqx7f"]
+[ext_resource type="Texture2D" uid="uid://cuv4d7gwk71ca" path="res://assets/torpedo/torpedo.png" id="2_uvraf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8idko"]
-radius = 3.0
-height = 52.0
+radius = 2.0
+height = 18.0
 
 [sub_resource type="Gradient" id="Gradient_uvraf"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -45,10 +45,9 @@ collision_mask = 33
 script = ExtResource("1_uvraf")
 
 [node name="TorpedoSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_cqx7f")
+texture = ExtResource("2_uvraf")
 
 [node name="TorpedoCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(1, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8idko")
 
@@ -56,8 +55,8 @@ shape = SubResource("CapsuleShape2D_8idko")
 one_shot = true
 
 [node name="Trail" type="GPUParticles2D" parent="."]
-position = Vector2(-24, 1)
-amount = 20
+position = Vector2(-10, 0)
+amount = 40
 lifetime = 1.25
 visibility_rect = Rect2(-1, -0.998299, 2, 80.0734)
 process_material = SubResource("ParticleProcessMaterial_4wrqq")

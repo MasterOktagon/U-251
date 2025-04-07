@@ -16,8 +16,8 @@ func _on_player_move(ppos: Vector2):
 	var p := Vector2(ppos.x + r * cos(theta),ppos.y + r * sin(theta))
 	
 	var max_depth: float = $"../Map".check_depth(int(p.x), int(p.y))
-	if (max_depth > -15): return
-	var depth: float = randf_range(-5, max(-100, max_depth + 10))
+	if (max_depth > -2 or max_depth < -120): return
+	var depth: float = randf_range(max(-5, max_depth), max(-100, max_depth))
 	var m := mine.instantiate()
 	m.depth = depth
 	m.position = p

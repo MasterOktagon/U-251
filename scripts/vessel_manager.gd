@@ -14,6 +14,7 @@ func _on_player_move(ppos: Vector2):
 
 func _on_timer_timeout() -> void:
 	i = get_tree().get_node_count_in_group("Vessels")
+	if i >= 10: return
 
 	var r: float = 1000 + randi_range(0, 900)
 	var theta: float = randf() * 2 * PI
