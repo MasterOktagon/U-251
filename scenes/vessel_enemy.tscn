@@ -56,3 +56,9 @@ rotation = -1.5708
 value = 50.0
 fill_mode = 3
 texture_progress = SubResource("GradientTexture1D_15qmo")
+
+[node name="Explosion" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Explosion" to="." method="_on_explosion_timeout"]

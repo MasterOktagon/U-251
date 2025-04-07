@@ -2,6 +2,7 @@ extends Control
 
 
 func _on_map_final_checkpoint(mission: Map.Missions) -> void:
+	$"../../Postprocessing".hide()
 	get_tree().paused = true
 	$ColorRect.show()
 	$CenterContainer.show()
@@ -14,6 +15,7 @@ func _on_map_final_checkpoint(mission: Map.Missions) -> void:
 
 
 func _on_player_died() -> void:
+	$"../../Postprocessing".hide()
 	get_tree().paused = true
 	$ColorRect.show()
 	$CenterContainer.show()

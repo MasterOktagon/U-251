@@ -4,6 +4,7 @@ extends Enemy
 var speed: float = 0.3
 var shot_cd: float = 4
 var chopper_cd: float = 5
+var exp_i: int = 0
 
 func _ready() -> void:
 	blib.texture = preload("res://assets/vessel/svp_warship.png")
@@ -31,7 +32,8 @@ func _process(_delta: float) -> void:
 
 func change_health(_amount: float) -> void:
 	state = States.DEAD
-	queue_free()
+	print("Warship killed!")
+	#queue_free()
 
 func detect_player() -> void:
 	var dist_diff: float = (target_pos-global_position).length()
@@ -84,3 +86,19 @@ func alert(cert: float) -> void:
 	uncertainty_diviation = 5*Vector2((1-cert)*randf_range(-1,1), (1-cert)*randf_range(-1,1))/$"../Map".level.map_size.x/$"../Map".level.map_scale
 	#print(uncertainty_diviation)
 	$AlertLabel.show()
+	
+func _on_explosion_timeout() -> void:
+	if state == States.DEAD:
+		$AlertLabel.hide()
+		if exp_i < 25:
+			exp_i+=1
+			var explosion := preload("res://scenes/explosion.tscn").instantiate()
+			explosion.position = position + Vector2(randf_range(-7,7), randf_range(-45,45))
+			explosion.autoplay = "default"
+			explosion.z_index = depth+3
+			$"..".add_child(explosion)
+			modulate = modulate.darkened(0.05)
+		else:
+			depth = max(depth - 1, $"../Map".check_depth(self.global_position.x, self.global_position.y))
+			if (depth <= max(-20, $"../Map".check_depth(self.global_position.x, self.global_position.y))):
+				emit_signal("died")

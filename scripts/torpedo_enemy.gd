@@ -1,7 +1,7 @@
 extends Enemy
 
-const IGNORE_LAYER: int = (1<<3) | (1<<4) | (1<<5) # ignoring player torpedos, enemies, enemy weapons
-const TARGET_LAYER: int = (1<<0) | (1<<1) | (1<<2) # hitting world, player, player diversion
+const IGNORE_LAYER: int = (1<<3) | (1<<5) # ignoring player torpedos, enemy weapons
+const TARGET_LAYER: int = (1<<0) | (1<<1) | (1<<2) | (1<<4) # hitting world, player, player diversion, enemies
 
 var speed: float = 1
 var lifetime: float = 30
@@ -19,8 +19,8 @@ func _physics_process(_delta: float) -> void:
 	update_target_pos()
 	#update_target_depth()
 	z_index = int(depth)
-	if $LifeTimer.time_left == 0:
-		state == States.DEAD
+	if $LifeTimer.time_left <= 0:
+		state = States.DEAD
 		queue_free()
 	if state == States.DEAD:
 		return
@@ -44,6 +44,7 @@ func _physics_process(_delta: float) -> void:
 	$Trail.emitting = depth <= 0
 
 func _on_body_entered(body: Node2D) -> void:
+	if $Arming.time_left > 0: return
 	if (body.collision_layer & IGNORE_LAYER):
 		return
 	elif body.collision_layer & TARGET_LAYER:

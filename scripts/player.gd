@@ -123,6 +123,7 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_SPACE) and $NoisemakerCooldown.time_left == 0:
 		var nm := preload("res://scenes/noise_maker.tscn").instantiate()
 		nm.position = position
+		nm.z_index = round(depth)
 		$"..".add_child(nm)
 		$NoisemakerCooldown.start()
 	

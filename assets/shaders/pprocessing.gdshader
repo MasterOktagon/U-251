@@ -75,6 +75,6 @@ void fragment(){
 		if (i < s) {vI *= randomBlotch(t+6.0+19.0*i, uv);}}
 	
 	COLOR = grayscale(texture(screen_texture, UV), 0.5);
-	COLOR.rgb = (oldImage*vI*COLOR.rgb*1.8 + COLOR.rgb*1.2)/3.;
+	COLOR.rgb = (oldImage*vI*COLOR.rgb + COLOR.rgb*2.)/3.;
 	COLOR *= (1.0+(randi(uv+vec2(t*0.01))-0.2)*0.45);
 }

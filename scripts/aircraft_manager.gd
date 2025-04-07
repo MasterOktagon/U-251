@@ -17,7 +17,7 @@ func _on_timer_timeout() -> void:
 	var p := Vector2(ppos.x + r * cos(theta),ppos.y + r * sin(theta))
 	
 	var max_depth: float = $"../Map".check_depth(int(p.x), int(p.y))
-	if (max_depth > -15): return
+	if (max_depth < -15): return
 	if $"../Player".depth < -80: return
 	var m := aircraft.instantiate()
 	m.position = p

@@ -61,4 +61,10 @@ lifetime = 1.25
 visibility_rect = Rect2(-1, -0.998299, 2, 80.0734)
 process_material = SubResource("ParticleProcessMaterial_4wrqq")
 
+[node name="Arming" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
