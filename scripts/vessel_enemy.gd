@@ -101,5 +101,3 @@ func _on_explosion_timeout() -> void:
 			modulate = modulate.darkened(0.05)
 		else:
 			depth = max(depth - 1, $"../Map".check_depth(self.global_position.x, self.global_position.y))
-			if (depth <= max(-20, $"../Map".check_depth(self.global_position.x, self.global_position.y))):
-				emit_signal("died")

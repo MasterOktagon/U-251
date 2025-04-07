@@ -8,7 +8,7 @@ var map_resource: String = "res://assets/heightmap/VirginLands.png"
 var heightmap: PackedByteArray = preload("res://assets/heightmap/VirginLands.png").get_image().get_data()
 var map_size: Vector2i = Vector2i(4096, 4096)
 var map_scale: int = 0
-var delete_radius: float = 8000
+var delete_radius: float = 2000
 var start_pos := Vector2(0,0)
 var start_rot: float = 0
 var checkpoint_pos: Array[Vector2] = []
@@ -52,7 +52,7 @@ func load_skagerrak():
 	start_pos = Vector2i(1450, 2816)
 	start_rot = 0*PI
 	checkpoint_pos = [Vector2(1500,2800), Vector2(1550,2610), Vector2(1506,2348), Vector2(1710,1616), Vector2(1534, 709)]
-	checkpoint_names = ["Kieler Bay", "Fehmarnsund", "Nakskov", "Kattegat", "Skagerrak"]
+	checkpoint_names = ["Kiel Bay", "Fehmarnsund", "Nakskov", "Kattegat", "Skagerrak"]
 	depth_scale = 3
 
 func load_channel():
