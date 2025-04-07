@@ -21,7 +21,7 @@ func _on_player_move(pos: Vector2):
 
 func _on_timer_timeout() -> void:
 	n = get_tree().get_node_count_in_group("Batteries")
-	if n >= 1:
+	if n >= 10:
 		$Timer.start(cooldown)
 		return
 
@@ -29,7 +29,7 @@ func _on_timer_timeout() -> void:
 		var r: CustomRaycast = CustomRaycast.new()
 		r.connect("got_result", self.ray_hit)
 		r.p = self.ppos
-		r.v = (Vector2.from_angle(i*PI/4)*5000) / 100
+		r.v = (Vector2.from_angle(i*PI/4)*5000) / 10
 		r.m = 5000
 		r.w = true
 		r.c = $"../Map".check_depth
