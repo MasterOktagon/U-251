@@ -132,8 +132,8 @@ func _process(delta: float) -> void:
 	if $"../Map".check_depth(bow_pos.x, bow_pos.y)>=0:
 		move_local_y(speed)
 		speed = 0
-		change_health(-10)
-	if (abs(speed) > 0): moved.emit(self.global_position)
+		change_health(-1)
+	if (abs(speed) > 0): emit_signal("moved", position)
 	if depth > 0: depth = 0
 
 func change_health(amount: float) -> void:
