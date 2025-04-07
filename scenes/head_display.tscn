@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://m2owfkt7wla3"]
+[gd_scene load_steps=4 format=3 uid="uid://m2owfkt7wla3"]
 
 [ext_resource type="Script" uid="uid://c7bqx7vb53atb" path="res://scripts/head_display.gd" id="1_ax3nf"]
+[ext_resource type="FontFile" uid="uid://c01e3tw5rptgh" path="res://assets/fonts/Mechanical-g5Y5.otf" id="2_uyssb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2k4tj"]
+font = ExtResource("2_uyssb")
+font_size = 32
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
 
 [node name="HeadDisplay" type="Control"]
 layout_mode = 3
@@ -20,5 +28,6 @@ offset_left = -269.0
 offset_right = 271.0
 offset_bottom = 61.0
 text = "Surfaced"
+label_settings = SubResource("LabelSettings_2k4tj")
 horizontal_alignment = 1
 vertical_alignment = 1
