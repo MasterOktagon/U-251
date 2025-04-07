@@ -19,7 +19,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e8heu"]
 shader = ExtResource("3_80cx4")
-shader_parameter/size = Vector2(32, 28)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vef74"]
 bg_color = Color(0.6, 0.352941, 0.6, 1)
@@ -76,6 +75,7 @@ adjustment_brightness = 4.28
 [node name="Map" parent="." instance=ExtResource("1_215e1")]
 
 [node name="Postprocessing" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="ColorRect" type="ColorRect" parent="Postprocessing"]
 material = SubResource("ShaderMaterial_e8heu")
@@ -88,7 +88,6 @@ script = ExtResource("9_iotsf")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 process_mode = 3
-layer = 2
 
 [node name="Height" parent="GUI" instance=ExtResource("1_80nbo")]
 
@@ -239,7 +238,7 @@ script = ExtResource("11_iotsf")
 script = ExtResource("12_iotsf")
 
 [node name="Timer" type="Timer" parent="VesselManager"]
-wait_time = 5.0
+wait_time = 2.0
 autostart = true
 
 [node name="AircraftManager" type="Node2D" parent="."]

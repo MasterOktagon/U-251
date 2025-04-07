@@ -30,6 +30,7 @@ window/vsync/vsync_mode=2
 Enemies=""
 NoiseMaker=""
 Mines=""
+Vessels=""
 
 [rendering]
 
