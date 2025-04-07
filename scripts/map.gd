@@ -1,6 +1,7 @@
 extends Node2D
 
 var level: Level = Level.new()
+var player_pos: Vector2
 
 func _ready() -> void:
 	level.load_atlantic()
@@ -16,10 +17,10 @@ func _ready() -> void:
 	# loading checkpoints
 
 func _process(_delta: float) -> void:
+	player_pos = $"../Player".global_position
+	var on_map: Vector2 = floor(abs(player_pos))
 	update_enemies()
 	
-	var player_pos: Vector2 = $"../Player".global_position
-	var on_map: Vector2 = floor(abs(player_pos))
 	on_map.x = clamp(on_map.x, 0, self.global_scale.x-1)
 	on_map.y = clamp(on_map.y, 0, self.global_scale.y-1)
 	$Terrain.material.set_shader_parameter("offset", on_map)
@@ -27,7 +28,7 @@ func _process(_delta: float) -> void:
 
 func update_enemies()->void:
 	for e: Enemy in get_tree().get_nodes_in_group("Enemies"):
-		if (global_position - e.position).length() > level.delete_radius:
+		if (player_pos - e.position).length() > level.delete_radius:
 			e.queue_free()
 
 func check_depth(x: int, y: int) -> float:
