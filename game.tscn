@@ -54,14 +54,14 @@ adjustment_brightness = 4.28
 
 [node name="Game" type="Node2D" groups=["Mines"]]
 
+[node name="Player" parent="." instance=ExtResource("2_e2o6t")]
+
 [node name="Map" parent="." instance=ExtResource("1_215e1")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_ryrav")
 centered = false
-
-[node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 
 [node name="GUI" type="CanvasLayer" parent="."]
 

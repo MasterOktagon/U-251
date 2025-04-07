@@ -39,7 +39,7 @@ func _ready() -> void:
 	speed = 0
 	max_health_changed.emit(max_health)
 	health_changed.emit(health)
-	self.global_position = $"../Map".level.start_pos
+	self.global_position = Vector2(0,0)
 	depth_changed.emit(0)
 	
 func min_abs(a: float, b: float)->float:

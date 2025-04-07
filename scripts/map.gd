@@ -2,10 +2,26 @@ extends Node2D
 
 var level: Level = Level.new()
 
+enum Missions{
+	TEST,
+	VIRGIN,
+	ATLANTIC,
+	DEFAULT
+}
+
 func _ready() -> void:
-	level.load_atlantic()
+	load_level(Missions.ATLANTIC)
+
+func load_level(mission: Missions = Missions.DEFAULT):
+	match mission:
+		Missions.VIRGIN:
+			level.load_VirginLands()
+		Missions.ATLANTIC:
+			level.load_atlantic()
+		var err:
+			print("couldn´t load level: ", err)
 	
-	# detting shader
+	# setting shader
 	$Terrain.material.set_shader_parameter("map_scale", level.map_scale)
 	$Terrain.material.set_shader_parameter("map", load(level.map_resource))
 	$Terrain.material.set_shader_parameter("sealevel", level.sea_level)
@@ -13,7 +29,17 @@ func _ready() -> void:
 	$Terrain.material.set_shader_parameter("heightmax", level.height_max)
 	$Terrain.scale = level.map_size*level.map_scale
 	
+	$"../Player".global_position = level.start_pos*level.map_scale
+	
 	# loading checkpoints
+	for i in range(len(level.checkpoint_pos)):
+		level.checkpoints.append(Sprite2D.new())
+		level.checkpoints[i].global_position = level.checkpoint_pos[i]*level.map_scale
+		level.checkpoints[i].texture = preload("res://assets/heightmap/test2.png")
+		level.checkpoints[i].scale = level.checkpoints[i].texture.get_size()
+		level.checkpoints[i].z_index = 0
+		add_child(level.checkpoints[i])
+		print(level.checkpoints[i])
 
 func _process(_delta: float) -> void:
 	update_enemies()
@@ -24,6 +50,18 @@ func _process(_delta: float) -> void:
 	on_map.y = clamp(on_map.y, 0, self.global_scale.y-1)
 	$Terrain.material.set_shader_parameter("offset", on_map)
 	$Terrain.material.set_shader_parameter("size", scale)
+	
+	# chechpoint check
+	for i in range(len(level.checkpoints)):
+		# direction arrow look at
+		if abs((player_pos-level.checkpoints[i].global_position).length())<100:
+			print("chechpoint reached: ", level.checkpoint_names[i])
+			var del: Array[Sprite2D] = level.checkpoints.slice(0,i+1)
+			level.checkpoints = level.checkpoints.slice(i+1,len(level.checkpoints))
+			level.checkpoint_names = level.checkpoint_names.slice(i+1,len(level.checkpoint_names))
+			for d in del:
+				d.queue_free()
+			break
 
 func update_enemies()->void:
 	for e: Enemy in get_tree().get_nodes_in_group("Enemies"):
