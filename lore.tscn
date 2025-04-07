@@ -77,6 +77,7 @@ text = "1. Skagerrak"
 alignment = 0
 
 [node name="Level2" type="Button" parent="LevelSelection/LevelList"]
+visible = false
 layout_mode = 2
 text = "2. Channel"
 alignment = 0
@@ -84,7 +85,7 @@ alignment = 0
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_uwkfr")
 volume_db = -10.0
-parameters/looping = false
+parameters/looping = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="NewChar" to="." method="_on_new_char_timeout"]

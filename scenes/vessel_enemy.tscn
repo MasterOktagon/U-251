@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://clow01wc1phxn"]
 
-[ext_resource type="Texture2D" uid="uid://bcfjg6m27y8xa" path="res://assets/vessel/svp_warship.png" id="1_80ghm"]
 [ext_resource type="Script" uid="uid://wxslj5bjgxbe" path="res://scripts/vessel_enemy.gd" id="1_dlmqs"]
+[ext_resource type="Texture2D" uid="uid://cmq6521a5x3ya" path="res://assets/vessel/vessel.png" id="2_dlmqs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dlmqs"]
-radius = 7.0
-height = 58.0
+radius = 8.0
+height = 110.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_dlmqs"]
 font_size = 23
@@ -21,7 +21,9 @@ gradient = SubResource("Gradient_kftnf")
 script = ExtResource("1_dlmqs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_80ghm")
+position = Vector2(0, -7)
+rotation = 1.5708
+texture = ExtResource("2_dlmqs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)

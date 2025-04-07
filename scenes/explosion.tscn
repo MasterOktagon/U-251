@@ -93,5 +93,7 @@ wait_time = 0.001
 one_shot = true
 autostart = true
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+autoplay = true
+
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
-[connection signal="timeout" from="Warmup" to="." method="_on_warmup_timeout"]

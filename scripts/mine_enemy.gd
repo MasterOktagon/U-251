@@ -5,7 +5,7 @@ const IGNORE_LAYER: int = (1<<3) | (1<<4) | (1<<5) # ignoring player torpedos, e
 const TARGET_LAYER: int = (1<<1) | (1<<2) # hitting player, player diversion
 
 func _ready() -> void:
-	blib.texture = preload("res://assets/mine/icon_minefield.png")
+	blib.texture = preload("res://assets/mine/icon_mine.png")
 	state = States.ALIVE
 	type = Types.MINE
 	#depth = -130
