@@ -18,6 +18,7 @@ enum Types{
 	CHOPPER,
 	WAHRSHIP,
 	SUBMARINE,
+	BATTERY,
 	DEFAULT
 }
 var type: Types = Types.DEFAULT

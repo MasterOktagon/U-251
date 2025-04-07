@@ -9,8 +9,8 @@ func _ready() -> void:
 	randomize()
 	
 
-func _on_player_move(ppos: Vector2):
-	self.ppos = ppos
+func _on_player_move(pos: Vector2):
+	self.ppos = pos
 
 func _on_timer_timeout() -> void:
 	i = get_tree().get_node_count_in_group("Vessels")
@@ -25,5 +25,4 @@ func _on_timer_timeout() -> void:
 	var m := vessel.instantiate()
 	m.depth = 0
 	m.position = p
-	m.add_to_group("Enemies")
 	$"..".add_child(m)

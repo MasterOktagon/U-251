@@ -36,6 +36,7 @@ func load_level(mission: Missions = Missions.DEFAULT):
 	$Terrain.scale = level.map_size*level.map_scale
 	
 	$"../Player".global_position = level.start_pos*level.map_scale
+	$"../Player".moved.emit($"../Player".global_position)
 	
 	# loading checkpoints
 	for i in range(len(level.checkpoint_pos)):

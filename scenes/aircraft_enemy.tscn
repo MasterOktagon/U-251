@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://kak7hfoxpw3o" path="res://scripts/aircraft_enemy.gd" id="1_je1o6"]
 [ext_resource type="Texture2D" uid="uid://gqf8kq76uhp" path="res://assets/aircraft/P38_lvl_0_d0.png" id="2_v1ftv"]
-[ext_resource type="Shader" uid="uid://cm0t4lvxqqoq7" path="res://assets/shaders/shadow.gdshader" id="3_wf73f"]
+[ext_resource type="Shader" path="res://assets/shaders/shadow.gdshader" id="3_wf73f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5rw1f"]
 shader = ExtResource("3_wf73f")

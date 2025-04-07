@@ -6,14 +6,14 @@ var noise := FastNoiseLite.new()
 func _ready()->void:
 	randomize()
 
-func _on_player_move(ppos: Vector2):
+func _on_player_move(pos: Vector2):
 	var i : int = get_tree().get_node_count_in_group("Mines")
 	if i>=200:
 		return
 		
 	var r: float = 1000 + randi_range(0, 900)
 	var theta: float = randf() * 2 * PI
-	var p := Vector2(ppos.x + r * cos(theta),ppos.y + r * sin(theta))
+	var p := Vector2(pos.x + r * cos(theta),pos.y + r * sin(theta))
 	
 	var max_depth: float = $"../Map".check_depth(int(p.x), int(p.y))
 	if (max_depth > -2 or max_depth < -120): return

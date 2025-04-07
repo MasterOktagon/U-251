@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1txu8c4uik64"]
+[gd_scene load_steps=17 format=3 uid="uid://c1txu8c4uik64"]
 
 [ext_resource type="PackedScene" uid="uid://ltm6os276xx6" path="res://scenes/height.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://objm3tdls3ao" path="res://scenes/map.tscn" id="1_215e1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://be2vhf36teocy" path="res://scripts/healthbar.gd" id="7_vef74"]
 [ext_resource type="PackedScene" uid="uid://m2owfkt7wla3" path="res://scenes/head_display.tscn" id="8_hve3p"]
 [ext_resource type="Script" uid="uid://ca8guyd3pd4ut" path="res://scripts/pos.gd" id="10_80cx4"]
+[ext_resource type="Script" uid="uid://bbuyco5um4cmc" path="res://scripts/battery_manager.gd" id="10_mfdv2"]
 [ext_resource type="Script" uid="uid://w4b7lina4jch" path="res://scripts/mine_manager.gd" id="11_iotsf"]
 [ext_resource type="Script" uid="uid://d167g4f0n4xpu" path="res://scripts/vessel_manager.gd" id="12_iotsf"]
 [ext_resource type="Script" uid="uid://bvpkeu6ubbb8b" path="res://scripts/aircraft_manager.gd" id="14_215e1"]
@@ -132,6 +133,12 @@ script = ExtResource("12_iotsf")
 wait_time = 5.0
 autostart = true
 
+[node name="BatteryManager" type="Node2D" parent="."]
+script = ExtResource("10_mfdv2")
+
+[node name="Timer" type="Timer" parent="BatteryManager"]
+one_shot = true
+
 [node name="AircraftManager" type="Node2D" parent="."]
 script = ExtResource("14_215e1")
 
@@ -144,6 +151,8 @@ autostart = true
 [connection signal="health_changed" from="Player" to="GUI/Healthbar" method="update_health"]
 [connection signal="moved" from="Player" to="MineManager" method="_on_player_move"]
 [connection signal="moved" from="Player" to="VesselManager" method="_on_player_move"]
+[connection signal="moved" from="Player" to="BatteryManager" method="_on_player_move"]
 [connection signal="moved" from="Player" to="AircraftManager" method="_on_player_move"]
 [connection signal="timeout" from="VesselManager/Timer" to="VesselManager" method="_on_timer_timeout"]
+[connection signal="timeout" from="BatteryManager/Timer" to="BatteryManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="AircraftManager/Timer" to="AircraftManager" method="_on_timer_timeout"]

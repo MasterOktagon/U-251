@@ -8,8 +8,8 @@ var ppos: Vector2
 func _ready() -> void:
 	randomize()
 
-func _on_player_move(ppos: Vector2):
-	self.ppos = ppos
+func _on_player_move(pos: Vector2):
+	self.ppos = pos
 
 func _on_timer_timeout() -> void:
 	var r: float = 1900
@@ -21,5 +21,4 @@ func _on_timer_timeout() -> void:
 	if $"../Player".depth < -80: return
 	var m := aircraft.instantiate()
 	m.position = p
-	m.add_to_group("Enemies")
 	$"..".add_child(m)
