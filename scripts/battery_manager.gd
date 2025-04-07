@@ -38,6 +38,9 @@ func _on_timer_timeout() -> void:
 
 
 func ray_hit(res: bool, pos: Vector2, r: CustomRaycast):
+	if (ppos - pos).length() < 1000:
+		rays.erase(r)
+		return
 	if res:
 		rays = []
 		var m := battery.instantiate()

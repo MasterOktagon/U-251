@@ -18,7 +18,6 @@ func _physics_process(_delta: float) -> void:
 		return
 	
 	move_local_x(speed)
-	#print("Target",target_pos)
 	if (target_pos-self.global_position).length()<5:
 		for hits in self.get_overlapping_areas():
 			if hits.has_method("change_health"):

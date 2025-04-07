@@ -12,6 +12,8 @@ func _on_map_final_checkpoint(mission: Map.Missions) -> void:
 			$"CenterContainer/VBoxContainer/Label".text = "SUCCESS"
 		Map.Missions.SKAGERRAK:
 			$"CenterContainer/VBoxContainer/Label".text = "You have succesfuly moved through Skagerrak,\nthe most dangerous section of your voyage,\nbut communications from Berlin have stopped.\n\nIts only the Crew, your ship\nand 1000s of kilometers of Water until antarctica"
+		Map.Missions.SKAGERRAK:
+			$"CenterContainer/VBoxContainer/Label".text = "You have succesfuly moved through Skagerrak,\nthe most dangerous section of your voyage,\nbut communications from Berlin have stopped.\n\nIts only the Crew, your ship\nand 1000s of kilometers of Water until antarctica"
 
 
 func _on_player_died() -> void:

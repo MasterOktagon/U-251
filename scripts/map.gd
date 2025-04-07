@@ -19,14 +19,12 @@ func _ready() -> void:
 	load_level(Global.level)
 
 func load_level(mission: Missions = Missions.DEFAULT):
-	$"../MineManager".process_mode = Node.PROCESS_MODE_INHERIT
 	match mission:
 		Missions.VIRGIN:
 			level.load_VirginLands()
 		Missions.ATLANTIC:
 			level.load_atlantic()
 		Missions.SKAGERRAK:
-			$"../MineManager".process_mode = Node.PROCESS_MODE_DISABLED
 			level.load_skagerrak()
 		Missions.CHANNEL:
 			$"../MineManager".process_mode = Node.PROCESS_MODE_DISABLED

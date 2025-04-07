@@ -14,6 +14,7 @@ func _ready() -> void:
 	$LifeTimer.start(lifetime)
 	update_target_depth()
 	#print("Torpedo created at ", position, " | ", depth, " target ", target_depth)
+	$Splash.play()
 
 func _physics_process(_delta: float) -> void:
 	update_target_pos()
