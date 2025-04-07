@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://8k62u1ud6ha4"]
 
 [ext_resource type="Script" uid="uid://ckbl1aemgcype" path="res://scripts/bomb_enemy.gd" id="1_il8n5"]
-[ext_resource type="Texture2D" uid="uid://cuv4d7gwk71ca" path="res://assets/torpedo/torpedo.png" id="2_7xx5p"]
+[ext_resource type="Texture2D" uid="uid://cm1l56h52a262" path="res://assets/heightmap/test2.png" id="2_il8n5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8idko"]
 radius = 12.0
@@ -45,7 +45,7 @@ collision_mask = 33
 script = ExtResource("1_il8n5")
 
 [node name="BombSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_7xx5p")
+texture = ExtResource("2_il8n5")
 
 [node name="BombCollisionShape" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -57,5 +57,3 @@ amount = 40
 lifetime = 1.25
 visibility_rect = Rect2(-1, -0.998299, 2, 80.0734)
 process_material = SubResource("ParticleProcessMaterial_4wrqq")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

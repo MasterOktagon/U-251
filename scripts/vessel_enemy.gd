@@ -59,6 +59,7 @@ func attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 		shot.look_at(global_position+shot_dir)
 		shot.target_depth = target_depth
 		$ShotCooldown.start(shot_cd)
+		Vector2(0,0).normalized()
 	
 	# if chopper is back and alert ships send chopper after cd
 

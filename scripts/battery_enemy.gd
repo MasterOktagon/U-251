@@ -48,10 +48,12 @@ func attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 		var shot: Enemy = preload("res://scenes/bomb_enemy.tscn").instantiate()
 		get_parent().add_child(shot)
 		shot.dmg = dmg
-		shot.global_transform.origin = self.global_transform.origin
+		shot.global_position = self.global_position
 		var shot_dir: Vector2 = ((est_pos+est_vel*est_dist/shot.speed)-shot.global_position).normalized()
-		shot.look_at(global_position+shot_dir)
+		print(shot_dir)
+		shot.look_at(shot.global_position+shot_dir)
 		shot.target_pos = ((est_pos+est_vel*est_dist/shot.speed)-shot.global_position)
+		print("Target: ", shot.target_pos)
 		$ShotCooldown.start(shot_cd)
 
 func alert(cert: float) -> void:

@@ -1,16 +1,17 @@
 extends Enemy
 
-const IGNORE_LAYER: int = (1<<3) | (1<<4) | (1<<5) # ignoring player torpedos, enemies, enemy weapons
-const TARGET_LAYER: int = (1<<0) | (1<<1) | (1<<2) # hitting world, player, player diversion
+const IGNORE_LAYER: int = (1<<3) | (1<<5) # ignoring player torpedos, enemy weapons
+const TARGET_LAYER: int = (1<<0) | (1<<1) | (1<<2) | (1<<4) # hitting world, player, player diversion
 
 var speed: float = 2
 
 func _ready() -> void:
-	blib.texture = preload("res://assets/torpedo/svp_torpedo.png")
+	blib.texture = preload("res://assets/torpedo/torpedo.png")
 	state = States.ALIVE
 	type = Types.BOMB
 	z_index = 1
 	$Trail.emitting = true
+
 
 func _physics_process(_delta: float) -> void:
 	if state == States.DEAD:

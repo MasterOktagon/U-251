@@ -1,18 +1,18 @@
-[gd_scene load_steps=26 format=3 uid="uid://c1txu8c4uik64"]
+[gd_scene load_steps=27 format=3 uid="uid://c1txu8c4uik64"]
 
 [ext_resource type="PackedScene" uid="uid://ltm6os276xx6" path="res://scenes/height.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://objm3tdls3ao" path="res://scenes/map.tscn" id="1_215e1"]
 [ext_resource type="PackedScene" uid="uid://cow2i2nhhp4s2" path="res://scenes/player.tscn" id="2_e2o6t"]
-[ext_resource type="Shader" uid="uid://blju74fsoqg0n" path="res://assets/shaders/pprocessing.gdshader" id="3_80cx4"]
+[ext_resource type="Shader" path="res://assets/shaders/pprocessing.gdshader" id="3_80cx4"]
 [ext_resource type="Script" uid="uid://c2guqw1lxu6us" path="res://scripts/fps.gd" id="6_eow3j"]
 [ext_resource type="Script" uid="uid://be2vhf36teocy" path="res://scripts/healthbar.gd" id="7_vef74"]
 [ext_resource type="PackedScene" uid="uid://m2owfkt7wla3" path="res://scenes/head_display.tscn" id="8_hve3p"]
-[ext_resource type="Script" uid="uid://bm13ookn6wj1f" path="res://scripts/end_screen.gd" id="8_mfdv2"]
-[ext_resource type="Script" uid="uid://ds3lhh2lgy03s" path="res://scripts/bg_color.gd" id="9_iotsf"]
+[ext_resource type="Script" path="res://scripts/end_screen.gd" id="8_mfdv2"]
+[ext_resource type="Script" path="res://scripts/bg_color.gd" id="9_iotsf"]
 [ext_resource type="FontFile" uid="uid://bot3o81ywy68" path="res://assets/fonts/DinSchablonierschrift-ARBA.ttf" id="10_7sc4i"]
 [ext_resource type="Script" uid="uid://ca8guyd3pd4ut" path="res://scripts/pos.gd" id="10_80cx4"]
-[ext_resource type="Script" uid="uid://bbuyco5um4cmc" path="res://scripts/battery_manager.gd" id="10_mfdv2"]
 [ext_resource type="FontFile" uid="uid://c01e3tw5rptgh" path="res://assets/fonts/Mechanical-g5Y5.otf" id="10_lc2xo"]
+[ext_resource type="Script" uid="uid://bbuyco5um4cmc" path="res://scripts/battery_manager.gd" id="10_mfdv2"]
 [ext_resource type="Script" uid="uid://w4b7lina4jch" path="res://scripts/mine_manager.gd" id="11_iotsf"]
 [ext_resource type="Script" uid="uid://d167g4f0n4xpu" path="res://scripts/vessel_manager.gd" id="12_iotsf"]
 [ext_resource type="AudioStream" uid="uid://bo7ftqrd7diwr" path="res://assets/music/sub game.mp3" id="14_7sc4i"]
@@ -99,7 +99,6 @@ offset_bottom = 23.0
 script = ExtResource("6_eow3j")
 
 [node name="Pos" type="Label" parent="GUI"]
-visible = false
 offset_top = 25.0
 offset_right = 40.0
 offset_bottom = 48.0
