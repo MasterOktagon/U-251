@@ -81,6 +81,6 @@ func move_attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 
 func alert(cert: float) -> void:
 	state = States.ALERTED
-	uncertainty_diviation = Vector2((1-cert)*randf_range(-1,1), (1-cert)*randf_range(-1,1))
+	uncertainty_diviation = 5*Vector2((1-cert)*randf_range(-1,1), (1-cert)*randf_range(-1,1))/$"../Map".level.map_size.x/$"../Map".level.map_scale
 	#print(uncertainty_diviation)
 	$AlertLabel.show()

@@ -20,8 +20,9 @@ func _process(_delta: float) -> void:
 	detect_player()
 	if state==States.ALERTED:
 		var est_pos: Vector2 = target_pos + target_pos*uncertainty_diviation
+		#print("Est_pos",est_pos)
 		var est_vel: Vector2 = target_vel + target_vel*uncertainty_diviation
-		var est_dist: float = (est_pos+est_vel - global_position).length()
+		var est_dist: float = (est_pos+est_vel - self.global_position).length()
 		if (est_dist < 1200): attack(est_pos, est_vel, est_dist)
 
 func change_health(_amount: float) -> void:
@@ -50,14 +51,15 @@ func attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 		shot.dmg = dmg
 		shot.global_position = self.global_position
 		var shot_dir: Vector2 = ((est_pos+est_vel*est_dist/shot.speed)-shot.global_position).normalized()
-		print(shot_dir)
 		shot.look_at(shot.global_position+shot_dir)
-		shot.target_pos = ((est_pos+est_vel*est_dist/shot.speed)-shot.global_position)
-		print("Target: ", shot.target_pos)
+		shot.target_pos = ((est_pos+est_vel*est_dist/shot.speed))
+		if (shot.target_pos-self.global_position).length()>4000:
+			shot.queue_free()
+			return
 		$ShotCooldown.start(shot_cd)
 
 func alert(cert: float) -> void:
 	state = States.ALERTED
-	uncertainty_diviation = Vector2((1-cert)*randf_range(-1,1), (1-cert)*randf_range(-1,1))
+	uncertainty_diviation = 5*Vector2((1-cert)*randf_range(-1,1), (1-cert)*randf_range(-1,1))/$"../Map".level.map_size.x/$"../Map".level.map_scale
 	#print(uncertainty_diviation)
 	$AlertLabel.show()

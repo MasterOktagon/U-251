@@ -1,7 +1,7 @@
 extends Enemy
 
 const IGNORE_LAYER: int = (1<<3) | (1<<5) # ignoring player torpedos, enemy weapons
-const TARGET_LAYER: int = (1<<0) | (1<<1) | (1<<2) | (1<<4) # hitting world, player, player diversion
+const TARGET_LAYER: int = (1<<0) | (1<<1) | (1<<2) | (1<<4) # hitting world, player, player diversion, enemies
 
 var speed: float = 2
 
@@ -18,7 +18,8 @@ func _physics_process(_delta: float) -> void:
 		return
 	
 	move_local_x(speed)
-	if (target_pos-self.global_position).length()<50:
+	print("Target",target_pos)
+	if (target_pos-self.global_position).length()<5:
 		for hits in self.get_overlapping_areas():
 			if hits.has_method("change_health"):
 				hits.change_health(-dmg)

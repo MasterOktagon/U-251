@@ -133,7 +133,7 @@ func _process(delta: float) -> void:
 		move_local_y(speed)
 		speed = 0
 		change_health(-1)
-	if (abs(speed) > 0): emit_signal("moved", position)
+	if (abs(speed) > 0): emit_signal("moved", self.global_position)
 	if depth > 0: depth = 0
 
 func change_health(amount: float) -> void:

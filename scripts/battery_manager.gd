@@ -21,7 +21,7 @@ func _on_player_move(pos: Vector2):
 
 func _on_timer_timeout() -> void:
 	n = get_tree().get_node_count_in_group("Batteries")
-	if n >= 10:
+	if n >= 1:
 		$Timer.start(cooldown)
 		return
 
