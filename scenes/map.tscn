@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vi8gfkyxhu5x" path="res://scripts/map.gd" id="1_4xfga"]
 [ext_resource type="Shader" uid="uid://c8poukl35wv77" path="res://assets/shaders/map.gdshader" id="2_0cso3"]
-[ext_resource type="Texture2D" uid="uid://lwvt5ueskx8k" path="res://assets/heightmap/atlantic.png" id="3_2klcf"]
+[ext_resource type="Texture2D" uid="uid://djxh533dtrs0h" path="res://assets/heightmap/skagerrak.png" id="3_gldc4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nakos"]
 noise_type = 3
@@ -39,8 +39,8 @@ shader_parameter/tiling = Vector2(8, 8)
 shader_parameter/offSetSpeed = Vector2(0.003, 0.003)
 shader_parameter/backGroundDirX = 0.023
 shader_parameter/backGroundDirY = 0.01
-shader_parameter/map = ExtResource("3_2klcf")
-shader_parameter/sealevel = -42.01
+shader_parameter/map = ExtResource("3_gldc4")
+shader_parameter/sealevel = -155.0
 shader_parameter/heightmin = -255.0
 shader_parameter/heightmax = 0.0
 shader_parameter/offset = Vector2(0, 0)
@@ -57,3 +57,7 @@ material = SubResource("ShaderMaterial_be0no")
 scale = Vector2(6150, 6150)
 texture = SubResource("CanvasTexture_blm8a")
 centered = false
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(41055, 71760)
+scale = Vector2(6150, 6150)
