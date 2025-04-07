@@ -101,7 +101,7 @@ func _process(delta: float) -> void:
 		rotation += delta*rotation_speed*speed
 	
 	if Input.is_key_pressed(KEY_PAGEUP):
-		$MainCamera.zoom = clamp($MainCamera.zoom*0.99,Vector2(0.005,0.005), Vector2(2,2))
+		$MainCamera.zoom = clamp($MainCamera.zoom*0.99,Vector2(0.5,0.5), Vector2(2,2))
 	
 	if Input.is_key_pressed(KEY_PAGEDOWN):
 		$MainCamera.zoom = clamp($MainCamera.zoom*1.01,Vector2(0.5,0.5), Vector2(2,2))
@@ -110,7 +110,7 @@ func _process(delta: float) -> void:
 	if depth<=max_depth:
 		depth = max_depth
 		# play sound "kiel auf grund"
-		change_health(-0.2)
+		change_health(-0.1)
 	
 	if Input.is_key_pressed(KEY_Q):
 		depth = move_toward(depth, 0, 0.03)

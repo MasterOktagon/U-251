@@ -94,11 +94,13 @@ process_mode = 3
 [node name="Height" parent="GUI" instance=ExtResource("1_80nbo")]
 
 [node name="FPS" type="Label" parent="GUI"]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("6_eow3j")
 
 [node name="Pos" type="Label" parent="GUI"]
+visible = false
 offset_top = 25.0
 offset_right = 40.0
 offset_bottom = 48.0
