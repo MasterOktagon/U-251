@@ -49,6 +49,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if (body.collision_layer & IGNORE_LAYER):
 		return
 	elif body.collision_layer & TARGET_LAYER:
+		if (body is NoiseMaker): return
 		if abs(body.depth - depth) > 6:
 			return
 		if body.has_method("change_health"):
