@@ -69,6 +69,7 @@ autostart = true
 
 [node name="Splash" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_cqx7f")
+volume_db = -10.895
 
 [connection signal="area_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
