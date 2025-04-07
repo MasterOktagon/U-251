@@ -13,7 +13,7 @@ func _ready() -> void:
 	type = Types.TORPEDO
 	$LifeTimer.start(lifetime)
 	update_target_depth()
-	print("Torpedo created at ", position, " | ", depth, " target ", target_depth)
+	#print("Torpedo created at ", position, " | ", depth, " target ", target_depth)
 
 func _physics_process(_delta: float) -> void:
 	update_target_pos()

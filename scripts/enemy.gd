@@ -33,6 +33,8 @@ var target_vel:= Vector2(0,0)
 var target_depth: float = 0
 var certainty: float = 0
 var uncertainty_diviation: Vector2 = Vector2(0,0)
+var max_deviation_pos := Vector2(100,100)
+var max_deviation_vel := Vector2(0.5,0.5)
 
 func update_target_pos() -> void:
 	for e: NoiseMaker in get_tree().get_nodes_in_group("NoiseMaker"):

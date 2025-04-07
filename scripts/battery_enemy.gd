@@ -19,9 +19,9 @@ func _process(_delta: float) -> void:
 	update_target_depth()
 	detect_player()
 	if state==States.ALERTED:
-		var est_pos: Vector2 = target_pos + target_pos*uncertainty_diviation
+		var est_pos: Vector2 = target_pos + max_deviation_pos*uncertainty_diviation
 		#print("Est_pos",est_pos)
-		var est_vel: Vector2 = target_vel + target_vel*uncertainty_diviation
+		var est_vel: Vector2 = target_vel + max_deviation_vel*uncertainty_diviation
 		var est_dist: float = (est_pos+est_vel - self.global_position).length()
 		if (est_dist < 1200): attack(est_pos, est_vel, est_dist)
 
@@ -60,6 +60,6 @@ func attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 
 func alert(cert: float) -> void:
 	state = States.ALERTED
-	uncertainty_diviation = 5*Vector2((1-cert)*randf_range(-1,1), (1-cert)*randf_range(-1,1))/$"../Map".level.map_size.x/$"../Map".level.map_scale
+	uncertainty_diviation = Vector2((1-cert)*randf_range(-1,1), (1-cert)*randf_range(-1,1))
 	#print(uncertainty_diviation)
 	$AlertLabel.show()
