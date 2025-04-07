@@ -23,7 +23,7 @@ uniform float backGroundDirX : hint_range(-0.1, 0.1) = 0.01;
 uniform float backGroundDirY : hint_range(-0.1, 0.1) = 0.01;
 
 group_uniforms map;
-uniform sampler2D map;
+uniform sampler2D map : filter_linear;
 uniform float sealevel;
 uniform float heightmin;
 uniform float heightmax;
@@ -70,7 +70,7 @@ void fragment() {
 		waterUV = waterUV + noiseValue * distortionForce * WDSpeed;
 
 
-		vec4 noiseColor = texture(waterNoise, waterUV*2.);
+		vec4 noiseColor = vec4(0);//texture(waterNoise, waterUV*2.);
 		float intensity = smoothstep(WDFreq, WDSize, noiseColor.r);
 		color += vec4(intensity * vec3(WDBrightness), color.a);
 

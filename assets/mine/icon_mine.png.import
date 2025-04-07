@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfmllwnw8pyys"
-path="res://.godot/imported/svp_torpedo.png-247f3cf0c7cb377c38b358900cb05253.ctex"
+uid="uid://b5v5667e8kkl"
+path="res://.godot/imported/icon_mine.png-1caf3d55792e32a2c9ff16f3e790d84e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/torpedo/svp_torpedo.png"
-dest_files=["res://.godot/imported/svp_torpedo.png-247f3cf0c7cb377c38b358900cb05253.ctex"]
+source_file="res://assets/mine/icon_mine.png"
+dest_files=["res://.godot/imported/icon_mine.png-1caf3d55792e32a2c9ff16f3e790d84e.ctex"]
 
 [params]
 

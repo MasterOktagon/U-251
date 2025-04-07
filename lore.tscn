@@ -1,13 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://oqyc4pe4nagh"]
+[gd_scene load_steps=10 format=3 uid="uid://b5compp1o6nvr"]
 
 [ext_resource type="FontFile" uid="uid://c01e3tw5rptgh" path="res://assets/fonts/Mechanical-g5Y5.otf" id="1_k5caf"]
 [ext_resource type="Script" uid="uid://dj78u1syvtdio" path="res://scripts/lore.gd" id="1_pp6gk"]
 [ext_resource type="Script" path="res://scripts/bg_color.gd" id="3_iswpb"]
 [ext_resource type="FontFile" uid="uid://bot3o81ywy68" path="res://assets/fonts/DinSchablonierschrift-ARBA.ttf" id="4_sb8fh"]
+[ext_resource type="Texture2D" uid="uid://cb7m3dqjsfl5w" path="res://logo.png" id="5_texsl"]
 [ext_resource type="AudioStream" uid="uid://bb68d3cyovcrv" path="res://assets/music/Ove Melaa - Dark Blue.ogg" id="5_uwkfr"]
 
 [sub_resource type="Theme" id="Theme_iswpb"]
 default_font = ExtResource("1_k5caf")
+
+[sub_resource type="LabelSettings" id="LabelSettings_texsl"]
+font = ExtResource("4_sb8fh")
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_uwkfr"]
 font = ExtResource("4_sb8fh")
@@ -30,6 +35,13 @@ offset_bottom = 40.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("3_iswpb")
 
+[node name="LoadScreen" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+texture = ExtResource("5_texsl")
+expand_mode = 1
+script = ExtResource("3_iswpb")
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -41,6 +53,13 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 alignment = 1
+
+[node name="Briefing" type="Label" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "BRIEFING"
+label_settings = SubResource("LabelSettings_texsl")
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -77,6 +96,7 @@ text = "1. Skagerrak"
 alignment = 0
 
 [node name="Level2" type="Button" parent="LevelSelection/LevelList"]
+visible = false
 layout_mode = 2
 text = "2. Channel"
 alignment = 0
@@ -84,7 +104,8 @@ alignment = 0
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_uwkfr")
 volume_db = -10.0
-parameters/looping = false
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="NewChar" to="." method="_on_new_char_timeout"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://objm3tdls3ao"]
+[gd_scene load_steps=11 format=3 uid="uid://objm3tdls3ao"]
 
 [ext_resource type="Script" uid="uid://vi8gfkyxhu5x" path="res://scripts/map.gd" id="1_4xfga"]
 [ext_resource type="Shader" uid="uid://c8poukl35wv77" path="res://assets/shaders/map.gdshader" id="2_0cso3"]
 [ext_resource type="Texture2D" uid="uid://djxh533dtrs0h" path="res://assets/heightmap/skagerrak.png" id="3_gldc4"]
+[ext_resource type="AudioStream" uid="uid://c05sdfwc7s8xt" path="res://assets/sounds/checkpoint.wav" id="4_0cso3"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nakos"]
 noise_type = 3
@@ -61,3 +62,6 @@ centered = false
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(41055, 71760)
 scale = Vector2(6150, 6150)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0cso3")

@@ -1,6 +1,8 @@
 class_name Map
 extends Node2D
 
+signal final_checkpoint(mission: Missions)
+
 var level: Level = Level.new()
 var player_pos: Vector2
 
@@ -16,12 +18,14 @@ func _ready() -> void:
 	load_level(Global.level)
 
 func load_level(mission: Missions = Missions.DEFAULT):
+	$"../MineManager".process_mode = Node.PROCESS_MODE_INHERIT
 	match mission:
 		Missions.VIRGIN:
 			level.load_VirginLands()
 		Missions.ATLANTIC:
 			level.load_atlantic()
 		Missions.SKAGERRAK:
+			$"../MineManager".process_mode = Node.PROCESS_MODE_DISABLED
 			level.load_skagerrak()
 		var err:
 			print("couldn´t load level: ", err)
@@ -42,7 +46,8 @@ func load_level(mission: Missions = Missions.DEFAULT):
 	for i in range(len(level.checkpoint_pos)):
 		level.checkpoints.append(Sprite2D.new())
 		level.checkpoints[i].global_position = level.checkpoint_pos[i]*level.map_scale
-		level.checkpoints[i].texture = preload("res://assets/heightmap/test2.png")
+		level.checkpoints[i].texture = preload("res://assets/ui/checkpoint.svg")
+		level.checkpoints[i].scale = Vector2(0.6, 0.6)
 		level.checkpoints[i].z_index = 0
 		add_child(level.checkpoints[i])
 
@@ -59,6 +64,7 @@ func _process(_delta: float) -> void:
 	# chechpoint check
 	var nearest_pos: Vector2 = Vector2(0,0)
 	var nearest_dist:float = INF
+	var nearest_name: String = ""
 	for i in range(len(level.checkpoints)):
 		var dist: float =  abs((player_pos-level.checkpoints[i].global_position).length())
 		if dist<350:
@@ -66,14 +72,20 @@ func _process(_delta: float) -> void:
 			var del: Array[Sprite2D] = level.checkpoints.slice(0,i+1)
 			level.checkpoints = level.checkpoints.slice(i+1,len(level.checkpoints))
 			level.checkpoint_names = level.checkpoint_names.slice(i+1,len(level.checkpoint_names))
+			
+			if level.checkpoints.size() == 0: emit_signal("final_checkpoint", Global.level)
+			else: $AudioStreamPlayer2D.play()
 			for d in del:
 				d.queue_free()
 			break
 		if dist<nearest_dist:
 			nearest_dist = dist
 			nearest_pos = level.checkpoints[i].global_position
+			nearest_name = level.checkpoint_names[i]
 	$"../Player/DirectionSprite".look_at(nearest_pos)
 	$"../Player/DirectionSprite".global_rotation += PI/2
+	$"../Player/DirectionSprite/Label".text = nearest_name
+	$"../Player/DirectionSprite/Dist".text = str(snapped(((nearest_pos - player_pos)/1000).length(), 0.1)) + " km"
 
 func update_enemies()->void:
 	for e: Enemy in get_tree().get_nodes_in_group("Enemies"):
@@ -86,4 +98,4 @@ func check_depth(x: int, y: int) -> float:
 	on_map.x = clamp(on_map.x, 0, level.map_size.x-1)
 	on_map.y = clamp(on_map.y, 0, level.map_size.y-1)
 	var depth: float = level.height_min + (level.height_max-level.height_min)*level.heightmap[(on_map.y*level.map_size.x+on_map.x)*3]/255.
-	return depth-level.sea_level
+	return (depth-level.sea_level) * level.depth_scale

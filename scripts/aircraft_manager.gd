@@ -22,3 +22,5 @@ func _on_timer_timeout() -> void:
 	var m := aircraft.instantiate()
 	m.position = p
 	$"..".add_child(m)
+	$Timer.wait_time = 30.
+	$Timer.start()

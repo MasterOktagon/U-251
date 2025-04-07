@@ -5,6 +5,7 @@ signal max_health_changed(val: float)
 signal depth_changed(depth: float)
 signal air_changed(val: float)
 signal moved(pos: Vector2)
+signal died()
 
 enum States{
 	ALIVE,
@@ -31,7 +32,7 @@ var noisemaker_reload: float = 30
 var time : float = 0.
 var exp_i : int = 0
 
-const invincible := true
+const invincible := false
 
 func _ready() -> void:
 	randomize()
@@ -60,6 +61,7 @@ func _process(delta: float) -> void:
 	$Trail.emitting = abs(speed) > 0
 	
 	z_index = round(depth)
+	$AudioStreamPlayer.volume_db = remap(speed, 0, max_speed, -40, -4)
 	
 	if state == States.DEAD:
 		speed = 0
@@ -168,3 +170,5 @@ func _on_explosion_timeout() -> void:
 			modulate = modulate.darkened(0.05)
 		else:
 			depth = max(depth - 1, $"../Map".check_depth(self.global_position.x, self.global_position.y))
+			if (depth <= max(-20, $"../Map".check_depth(self.global_position.x, self.global_position.y))):
+				emit_signal("died")

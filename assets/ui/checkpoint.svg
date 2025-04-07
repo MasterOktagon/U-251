@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="350.71933mm"
+   height="350.71933mm"
+   viewBox="0 0 350.71933 350.71933"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="checkpoint.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.13716686"
+     inkscape:cx="244.22809"
+     inkscape:cy="1705.9514"
+     inkscape:window-width="1919"
+     inkscape:window-height="1048"
+     inkscape:window-x="1"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(58.919762,25.70462)">
+    <path
+       id="path894"
+       style="fill:#00ff00;fill-opacity:0.25174;stroke-width:3.77953;stroke-linecap:square;stroke-opacity:0.996351;paint-order:markers stroke fill"
+       d="M 662.77734 0 A 662.77669 662.77669 0 0 0 0 662.77734 A 662.77669 662.77669 0 0 0 662.77734 1325.5527 A 662.77669 662.77669 0 0 0 1325.5527 662.77734 A 662.77669 662.77669 0 0 0 662.77734 0 z M 670.41016 73.873047 A 588.91932 588.91932 0 0 1 1259.3301 662.79297 A 588.91932 588.91932 0 0 1 670.41016 1251.7109 A 588.91932 588.91932 0 0 1 81.490234 662.79297 A 588.91932 588.91932 0 0 1 670.41016 73.873047 z "
+       transform="matrix(0.26458333,0,0,0.26458333,-58.919762,-25.70462)" />
+  </g>
+</svg>

@@ -1,8 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://cow2i2nhhp4s2"]
+[gd_scene load_steps=14 format=3 uid="uid://cow2i2nhhp4s2"]
 
 [ext_resource type="Script" uid="uid://cqta5igr403b2" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c1u5v08cqx3ai" path="res://assets/player/player.png" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://dxjv84gvfvd76" path="res://assets/ui/direction.svg" id="4_dqkch"]
+[ext_resource type="FontFile" uid="uid://c01e3tw5rptgh" path="res://assets/fonts/Mechanical-g5Y5.otf" id="4_qlg0r"]
+[ext_resource type="FontFile" uid="uid://bbhiyuhh1nvki" path="res://assets/fonts/MechanicalBold-oOmA.otf" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://b4cd3yvxxngvl" path="res://assets/sounds/BattleShipMovementAmbient.ogg" id="6_tuyoq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tuyoq"]
+font = ExtResource("4_qlg0r")
+font_color = Color(0, 1, 0.0333333, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fjrip"]
+font = ExtResource("5_qlg0r")
+font_color = Color(0.0833333, 1, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_dqkch"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -60,6 +71,41 @@ z_index = 1
 z_as_relative = false
 texture = ExtResource("4_dqkch")
 
+[node name="Label" type="Label" parent="DirectionSprite"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = -323.5
+offset_right = -55.5
+offset_bottom = -300.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Kieler bucht"
+label_settings = SubResource("LabelSettings_tuyoq")
+vertical_alignment = 1
+
+[node name="Dist" type="Label" parent="DirectionSprite"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.5
+offset_top = -303.5
+offset_right = -93.5
+offset_bottom = -280.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "100m"
+label_settings = SubResource("LabelSettings_fjrip")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Trail" type="GPUParticles2D" parent="."]
 position = Vector2(0, 65)
 amount = 40
@@ -70,5 +116,10 @@ process_material = SubResource("ParticleProcessMaterial_tuyoq")
 [node name="Explosion" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tuyoq")
+autoplay = true
+parameters/looping = true
 
 [connection signal="timeout" from="Explosion" to="." method="_on_explosion_timeout"]
