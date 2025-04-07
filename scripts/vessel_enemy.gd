@@ -82,6 +82,7 @@ func move_attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 		depth = move_toward(depth, target_depth, 0.2)
 
 func alert(cert: float) -> void:
+	if state == States.DEAD: return
 	state = States.ALERTED
 	uncertainty_diviation = Vector2((1-cert)*randf_range(-1,1), (1-cert)*randf_range(-1,1))
 	#print(uncertainty_diviation)
