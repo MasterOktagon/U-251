@@ -1,17 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://c1txu8c4uik64"]
+[gd_scene load_steps=16 format=3 uid="uid://c1txu8c4uik64"]
 
 [ext_resource type="PackedScene" uid="uid://ltm6os276xx6" path="res://scenes/height.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://objm3tdls3ao" path="res://scenes/map.tscn" id="1_215e1"]
 [ext_resource type="PackedScene" uid="uid://cow2i2nhhp4s2" path="res://scenes/player.tscn" id="2_e2o6t"]
-[ext_resource type="Texture2D" uid="uid://ca0iei775uhpw" path="res://assets/heightmap/VirginLands.png" id="2_ryrav"]
-[ext_resource type="Texture2D" uid="uid://c7isv0g4l0i4k" path="res://icon.svg" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://c2guqw1lxu6us" path="res://scripts/fps.gd" id="6_eow3j"]
 [ext_resource type="Script" uid="uid://be2vhf36teocy" path="res://scripts/healthbar.gd" id="7_vef74"]
 [ext_resource type="PackedScene" uid="uid://m2owfkt7wla3" path="res://scenes/head_display.tscn" id="8_hve3p"]
-[ext_resource type="PackedScene" uid="uid://h2rrq3170ej3" path="res://scenes/mine_enemy.tscn" id="8_j5wjh"]
 [ext_resource type="Script" uid="uid://ca8guyd3pd4ut" path="res://scripts/pos.gd" id="10_80cx4"]
 [ext_resource type="Script" uid="uid://w4b7lina4jch" path="res://scripts/mine_manager.gd" id="11_iotsf"]
-[ext_resource type="PackedScene" uid="uid://clow01wc1phxn" path="res://scenes/vessel_enemy.tscn" id="11_mfdv2"]
 [ext_resource type="Script" uid="uid://d167g4f0n4xpu" path="res://scripts/vessel_manager.gd" id="12_iotsf"]
 [ext_resource type="Script" uid="uid://bvpkeu6ubbb8b" path="res://scripts/aircraft_manager.gd" id="14_215e1"]
 
@@ -57,11 +53,6 @@ adjustment_brightness = 4.28
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 
 [node name="Map" parent="." instance=ExtResource("1_215e1")]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_ryrav")
-centered = false
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -128,18 +119,8 @@ show_percentage = false
 
 [node name="HeadDisplay" parent="GUI" instance=ExtResource("8_hve3p")]
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(114, -5)
-texture = ExtResource("5_7jktm")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ryrav")
-
-[node name="MineEnemy" parent="." instance=ExtResource("8_j5wjh")]
-position = Vector2(-125, -15)
-
-[node name="VesselEnemy" parent="." instance=ExtResource("11_mfdv2")]
-position = Vector2(-324, 214)
 
 [node name="MineManager" type="Node2D" parent="."]
 script = ExtResource("11_iotsf")

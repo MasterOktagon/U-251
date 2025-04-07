@@ -39,3 +39,16 @@ func load_atlantic():
 	start_rot = 0*PI
 	checkpoint_pos = [Vector2(100,100), Vector2(3750,790), Vector2(350,100), Vector2(3249, 5815)]
 	checkpoint_names = ["Ärmelkanal", "Skagerag", "Orkney", "Southpole base"]
+	
+func load_skagerrak():
+	height_min = -255
+	height_max = 0
+	sea_level = -155.
+	map_resource = "res://assets/heightmap/skagerrak.png"
+	heightmap = preload("res://assets/heightmap/skagerrak.png").get_image().get_data()
+	map_size = Vector2i(3636, 3636)
+	map_scale = 15
+	start_pos = Vector2i(1450, 2816)
+	start_rot = 0*PI
+	checkpoint_pos = [Vector2(1500,2800), Vector2(1550,2610), Vector2(1506,2348), Vector2(350,100), Vector2(3249, 5815)]
+	checkpoint_names = ["Kieler Bucht", "Fehmarnsund", "Nakskov", "Kattegat", "Skagerrak"]

@@ -8,7 +8,8 @@ enum Missions{
 	TEST,
 	VIRGIN,
 	ATLANTIC,
-	DEFAULT
+	DEFAULT,
+	SKAGERRAK
 }
 
 func _ready() -> void:
@@ -20,6 +21,8 @@ func load_level(mission: Missions = Missions.DEFAULT):
 			level.load_VirginLands()
 		Missions.ATLANTIC:
 			level.load_atlantic()
+		Missions.SKAGERRAK:
+			level.load_skagerrak()
 		var err:
 			print("couldn´t load level: ", err)
 			level.load_VirginLands()
@@ -57,7 +60,7 @@ func _process(_delta: float) -> void:
 	var nearest_dist:float = INF
 	for i in range(len(level.checkpoints)):
 		var dist: float =  abs((player_pos-level.checkpoints[i].global_position).length())
-		if dist<200:
+		if dist<350:
 			print("chechpoint reached: ", level.checkpoint_names[i])
 			var del: Array[Sprite2D] = level.checkpoints.slice(0,i+1)
 			level.checkpoints = level.checkpoints.slice(i+1,len(level.checkpoints))
