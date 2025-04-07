@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyecccyr0dab6"]
+[gd_scene load_steps=5 format=3 uid="uid://cyecccyr0dab6"]
 
 [ext_resource type="Script" uid="uid://1gae4je6hf25" path="res://scripts/battery_enemy.gd" id="1_4hq52"]
-[ext_resource type="Texture2D" uid="uid://bcfjg6m27y8xa" path="res://assets/vessel/svp_warship.png" id="2_bqr4e"]
+[ext_resource type="Texture2D" uid="uid://ty1m04tq6wye" path="res://assets/battery/battery.png" id="2_4hq52"]
+[ext_resource type="AudioStream" uid="uid://bflnn0iy3t8i" path="res://assets/sounds/ExplosionMetal.ogg" id="3_bqr4e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dlmqs"]
 font_size = 23
@@ -13,7 +14,8 @@ collision_mask = 17
 script = ExtResource("1_4hq52")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_bqr4e")
+rotation = -1.5708
+texture = ExtResource("2_4hq52")
 
 [node name="ShotCooldown" type="Timer" parent="."]
 wait_time = 5.0
@@ -27,3 +29,6 @@ offset_right = 36.0
 offset_bottom = -15.0
 text = "!"
 label_settings = SubResource("LabelSettings_dlmqs")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_bqr4e")

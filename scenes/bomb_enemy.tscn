@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://8k62u1ud6ha4"]
+[gd_scene load_steps=9 format=3 uid="uid://bgd7c4bqmx5sf"]
 
 [ext_resource type="Script" uid="uid://ckbl1aemgcype" path="res://scripts/bomb_enemy.gd" id="1_il8n5"]
-[ext_resource type="Texture2D" uid="uid://cm1l56h52a262" path="res://assets/heightmap/test2.png" id="2_il8n5"]
+[ext_resource type="Texture2D" uid="uid://cl5loqeuayq36" path="res://assets/battery/bomb.png" id="2_il8n5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8idko"]
-radius = 20.0
-height = 40.0
+radius = 8.0
+height = 26.0
 
 [sub_resource type="Gradient" id="Gradient_uvraf"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -34,7 +34,8 @@ directional_velocity_min = 1.0
 directional_velocity_max = 1.0
 directional_velocity_curve = SubResource("CurveXYZTexture_he2iy")
 gravity = Vector3(0, 0, 0)
-scale_max = 12.49
+scale_min = 3.0
+scale_max = 3.0
 color = Color(1, 1, 1, 0.501961)
 color_ramp = SubResource("GradientTexture1D_cqx7f")
 turbulence_enabled = true
@@ -45,6 +46,7 @@ collision_mask = 33
 script = ExtResource("1_il8n5")
 
 [node name="BombSprite" type="Sprite2D" parent="."]
+rotation = 3.14159
 texture = ExtResource("2_il8n5")
 
 [node name="BombCollisionShape" type="CollisionShape2D" parent="."]
@@ -52,7 +54,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8idko")
 
 [node name="Trail" type="GPUParticles2D" parent="."]
-position = Vector2(-10, 0)
+position = Vector2(-4, 0)
 amount = 40
 lifetime = 1.25
 visibility_rect = Rect2(-1, -0.998299, 2, 80.0734)

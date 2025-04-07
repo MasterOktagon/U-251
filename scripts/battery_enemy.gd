@@ -24,6 +24,7 @@ func _process(_delta: float) -> void:
 		var est_vel: Vector2 = target_vel + target_vel*uncertainty_diviation
 		var est_dist: float = (est_pos+est_vel - self.global_position).length()
 		if (est_dist < 1200): attack(est_pos, est_vel, est_dist)
+		look_at(est_pos)
 
 func change_health(_amount: float) -> void:
 	state = States.DEAD
@@ -53,9 +54,11 @@ func attack(est_pos:Vector2, est_vel:Vector2, est_dist: float) -> void:
 		var shot_dir: Vector2 = ((est_pos+est_vel*est_dist/shot.speed)-shot.global_position).normalized()
 		shot.look_at(shot.global_position+shot_dir)
 		shot.target_pos = ((est_pos+est_vel*est_dist/shot.speed))
+		print("Battery fired at ",target_pos)
 		if (shot.target_pos-self.global_position).length()>4000:
 			shot.queue_free()
 			return
+		$AudioStreamPlayer2D.play()
 		$ShotCooldown.start(shot_cd)
 
 func alert(cert: float) -> void:
