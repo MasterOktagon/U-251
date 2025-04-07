@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5compp1o6nvr"]
+[gd_scene load_steps=8 format=3 uid="uid://oqyc4pe4nagh"]
 
 [ext_resource type="FontFile" uid="uid://c01e3tw5rptgh" path="res://assets/fonts/Mechanical-g5Y5.otf" id="1_k5caf"]
 [ext_resource type="Script" uid="uid://dj78u1syvtdio" path="res://scripts/lore.gd" id="1_pp6gk"]
-[ext_resource type="Script" uid="uid://ds3lhh2lgy03s" path="res://scripts/bg_color.gd" id="3_iswpb"]
+[ext_resource type="Script" path="res://scripts/bg_color.gd" id="3_iswpb"]
 [ext_resource type="FontFile" uid="uid://bot3o81ywy68" path="res://assets/fonts/DinSchablonierschrift-ARBA.ttf" id="4_sb8fh"]
 [ext_resource type="AudioStream" uid="uid://bb68d3cyovcrv" path="res://assets/music/Ove Melaa - Dark Blue.ogg" id="5_uwkfr"]
 
