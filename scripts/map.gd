@@ -1,3 +1,4 @@
+class_name Map
 extends Node2D
 
 var level: Level = Level.new()
@@ -11,7 +12,7 @@ enum Missions{
 }
 
 func _ready() -> void:
-	load_level(Missions.ATLANTIC)
+	load_level(Global.level)
 
 func load_level(mission: Missions = Missions.DEFAULT):
 	match mission:

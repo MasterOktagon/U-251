@@ -12,6 +12,9 @@ func  _ready() -> void:
 	pass
 
 func _on_new_char_timeout() -> void:
+	if $Music.playing:
+		$Music.volume_db = move_toward($Music.volume_db, 0., 0.1)
+		return
 	if idx == 3: return
 	if current == 0:
 		var l := Label.new()
@@ -43,3 +46,9 @@ func _on_new_char_timeout() -> void:
 func _on_button_pressed() -> void:
 	$CenterContainer.hide()
 	$LevelSelection.show()
+	$Music.playing = true
+
+
+func _on_level_1_pressed() -> void:
+	Global.level = Map.Missions.ATLANTIC
+	get_tree().change_scene_to_file("res://game.tscn")
