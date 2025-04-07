@@ -11,7 +11,8 @@ enum Missions{
 	VIRGIN,
 	ATLANTIC,
 	DEFAULT,
-	SKAGERRAK
+	SKAGERRAK,
+	CHANNEL
 }
 
 func _ready() -> void:
@@ -27,6 +28,9 @@ func load_level(mission: Missions = Missions.DEFAULT):
 		Missions.SKAGERRAK:
 			$"../MineManager".process_mode = Node.PROCESS_MODE_DISABLED
 			level.load_skagerrak()
+		Missions.CHANNEL:
+			$"../MineManager".process_mode = Node.PROCESS_MODE_DISABLED
+			level.load_channel()
 		var err:
 			print("couldn´t load level: ", err)
 			level.load_VirginLands()
@@ -40,6 +44,7 @@ func load_level(mission: Missions = Missions.DEFAULT):
 	$Terrain.scale = level.map_size*level.map_scale
 	
 	$"../Player".global_position = level.start_pos*level.map_scale
+	$"../Player".global_rotation = level.start_rot
 	$"../Player".moved.emit($"../Player".global_position)
 	
 	# loading checkpoints

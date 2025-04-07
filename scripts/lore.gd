@@ -62,3 +62,9 @@ func _on_level_1_pressed() -> void:
 	$LoadScreen.show()
 	$LevelSelection.hide()
 	load_next = 1
+
+func _on_level_2_pressed() -> void:
+	Global.level = Map.Missions.CHANNEL
+	$LoadScreen.show()
+	$LevelSelection.hide()
+	load_next = 1

@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://c2guqw1lxu6us" path="res://scripts/fps.gd" id="6_eow3j"]
 [ext_resource type="Script" uid="uid://be2vhf36teocy" path="res://scripts/healthbar.gd" id="7_vef74"]
 [ext_resource type="PackedScene" uid="uid://m2owfkt7wla3" path="res://scenes/head_display.tscn" id="8_hve3p"]
-[ext_resource type="Script" path="res://scripts/end_screen.gd" id="8_mfdv2"]
+[ext_resource type="Script" uid="uid://bm13ookn6wj1f" path="res://scripts/end_screen.gd" id="8_mfdv2"]
 [ext_resource type="Script" path="res://scripts/bg_color.gd" id="9_iotsf"]
 [ext_resource type="FontFile" uid="uid://bot3o81ywy68" path="res://assets/fonts/DinSchablonierschrift-ARBA.ttf" id="10_7sc4i"]
 [ext_resource type="Script" uid="uid://ca8guyd3pd4ut" path="res://scripts/pos.gd" id="10_80cx4"]
