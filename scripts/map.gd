@@ -6,7 +6,7 @@ var sea_level: float = -220
 var heightmap: PackedByteArray = preload("res://assets/heightmap/VirginLands.png").get_image().get_data()
 var map_size: Vector2i = Vector2i(4096, 4096)
 var map_scale: int = 0
-const DELETE_RADIUS: float = 2000;
+const DELETE_RADIUS: float = 2000
 
 func _ready() -> void:
 	#heightmap = preload("res://assets/heightmap/test2.png").get_image().get_data()
